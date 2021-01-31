@@ -5,10 +5,20 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@900&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body className="bg-white text-black dark:bg-black dark:text-white">
           <Main />
           <NextScript />
+          <style jsx global>{`
+            #__next {
+              height: 100%;
+            }
+          `}</style>
         </body>
       </Html>
     );

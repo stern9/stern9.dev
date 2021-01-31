@@ -18,6 +18,10 @@ html {
   min-height: 100vh;
 }
 
+.logo {
+  font-family: "Nunito Sans", sans-serif;
+}
+
 .sticky-nav {
   position: sticky;
   z-index: 10;
