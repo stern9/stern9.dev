@@ -11,20 +11,19 @@ export default function Layout({ children }) {
   useEffect(() => setMounted(true), []);
 
   return (
-    <div className="h-full bg-white dark:bg-black">
-      <nav className="sticky-nav flex justify-items-stretch items-center max-w-4xl w-full p-6 my-0 md:my-4 mx-auto bg-white dark:bg-black bg-opacity-60">
+    <div className="h-full">
+      <nav className="sticky-nav flex justify-items-stretch items-center max-w-4xl w-full p-6 my-0 md:my-4 mx-auto bg-white dark:bg-black">
         <div className="flex justify-start logo 4xl">
-          <a href="index.html">
-            <h1 className="text-3xl">Avram Stern</h1>
-            <h2 className="text-base">Full Stack Developer</h2>
-          </a>
-        </div>
-        <div className="flex justify-start ml-auto">
           <Link href="/">
-            <a className="flex-row p-1 sm:p-4 text-gray-900 dark:text-gray-100">
-              Home
+            <a>
+              <h1 className="text-3xl">
+                Avram Stern{" "}
+                <span className="block text-base">Full Stack Developer</span>
+              </h1>
             </a>
           </Link>
+        </div>
+        <div className="flex justify-start ml-auto">
           <Link href="/about">
             <a className="p-1 sm:p-4 text-gray-900 dark:text-gray-100">About</a>
           </Link>

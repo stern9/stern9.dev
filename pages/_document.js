@@ -14,11 +14,6 @@ class MyDocument extends Document {
         <body className="bg-white text-black dark:bg-black dark:text-white">
           <Main />
           <NextScript />
-          <style jsx global>{`
-            #__next {
-              height: 100%;
-            }
-          `}</style>
         </body>
       </Html>
     );
