@@ -22,14 +22,6 @@ export default function Home() {
                   Creating awesome stuff to get a super dope new job and grow as
                   a professional.
                 </h2>
-                <div className="flex items-center justify-center mt-4">
-                  <a
-                    href="#"
-                    className="uppercase py-2 my-2 px-4 md:mt-16 rounded-2xl bg-transparent dark:text-gray-800 dark:bg-white hover:dark:bg-gray-100 border-2 border-gray-800 text-gray-800 dark:text-white hover:bg-gray-800 hover:text-white text-md"
-                  >
-                    Button?
-                  </a>
-                </div>
               </div>
             </div>
           </div>

@@ -41,35 +41,39 @@ export default function Footer() {
             </Link>
           </div>
           <div className="md:hidden mt-1 mx-auto w-11 h-px rounded-full"></div>
-          <div className="grid-rows 2 mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-100">
-            <a
-              className="hover:text-primary-gray-20"
-              href="https://github.com/"
-              target="_blank"
-            >
-              <span className="sr-only">View on GitHub</span>
-              <FaGithub />
-            </a>
-            <a className="ml-4 hover:text-primary-gray-20" href="#">
-              <span className="sr-only">IG</span>
-              <FaLinkedinIn />
-            </a>
-            <a className="ml-4 hover:text-primary-gray-20" href="#">
-              <span className="sr-only">IG</span>
-              <FaFacebook />
-            </a>
-            <a
-              className="ml-4 hover:text-primary-gray-20"
-              href="https://github.com/Charlie85270/tail-kit"
-            >
-              <span className="sr-only">View on LinkedinIn</span>
-              <FaTwitter />
-            </a>
-            <a className="ml-4 hover:text-primary-gray-20" href="#">
-              <span className="sr-only">IG</span>
-              <FaInstagram />
-            </a>
-            <NowPlaying />
+          <div className="grid md:border-r border-gray-100 px-4 ">
+            <div className="mt-4 md:mt-0 flex-1 flex items-end justify-center">
+              <a
+                className="hover:text-primary-gray-20"
+                href="https://github.com/"
+                target="_blank"
+              >
+                <span className="sr-only">View on GitHub</span>
+                <FaGithub />
+              </a>
+              <a className="ml-4 hover:text-primary-gray-20" href="#">
+                <span className="sr-only">IG</span>
+                <FaLinkedinIn />
+              </a>
+              <a className="ml-4 hover:text-primary-gray-20" href="#">
+                <span className="sr-only">IG</span>
+                <FaFacebook />
+              </a>
+              <a
+                className="ml-4 hover:text-primary-gray-20"
+                href="https://github.com/Charlie85270/tail-kit"
+              >
+                <span className="sr-only">View on LinkedinIn</span>
+                <FaTwitter />
+              </a>
+              <a className="ml-4 hover:text-primary-gray-20" href="#">
+                <span className="sr-only">IG</span>
+                <FaInstagram />
+              </a>
+            </div>
+            <div className="flex justify-center mt-2">
+              <NowPlaying />
+            </div>
           </div>
 
           <div className="md:hidden mt-1 mx-auto w-11 h-px rounded-full "></div>

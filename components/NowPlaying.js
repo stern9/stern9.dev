@@ -5,7 +5,7 @@ export default function NowPlaying() {
   const { data } = useSWR("/api/now-playing", fetcher);
 
   return (
-    <div className="flex flex-row sm:flex-row mb-8 space-x-0 sm:space-x-2 w-full">
+    <div className="flex flex-row sm:flex-row mb-2 space-x-0 sm:space-x-2 justify-center ">
       <svg className="h-4 w-4 ml-auto mt-1" viewBox="0 0 168 168">
         <path
           fill="#1ED760"
@@ -15,7 +15,7 @@ export default function NowPlaying() {
       <div className="inline-flex flex-col sm:flex-row w-full max-w-full truncate">
         {data?.songUrl ? (
           <a
-            className="text-gray-800 dark:text-gray-200 font-medium  max-w-max truncate"
+            className="text-gray-800 dark:text-gray-200 font-medium max-w-max truncate"
             href={data.songUrl}
             target="_blank"
             rel="noopener noreferrer"
