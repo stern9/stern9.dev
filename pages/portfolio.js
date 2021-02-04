@@ -14,12 +14,11 @@ const portfolio = () => {
             <div className="container flex flex-col justify-between items-center py-4">
               <div className="flex flex-col items-center py-4">
                 <p className="text-3xl my-6 text-center dark:text-white">
-                  This is the Portfolio
+                  This is the Portfolio page
                 </p>
                 <h2 className="max-w-3xl text-5xl md:text-6xl font-bold dark:text-white text-gray-800 text-center py-2">
-                  Some of my previous work will be displayed here
+                  I will add some of my projects here
                 </h2>
-                <div className="flex items-center justify-center mt-4"></div>
               </div>
             </div>
           </div>

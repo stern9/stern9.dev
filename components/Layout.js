@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import Footer from "../components/Footer";
+import Nav from "../components/Nav";
 
 export default function Layout({ children }) {
   const [mounted, setMounted] = useState(false);
@@ -12,7 +13,8 @@ export default function Layout({ children }) {
 
   return (
     <div className="h-full">
-      <nav className="sticky-nav flex justify-items-stretch items-center max-w-4xl w-full p-6 my-0 md:my-4 mx-auto bg-white dark:bg-black">
+      <Nav />
+      {/* <nav className="sticky-nav flex justify-items-stretch items-center max-w-4xl w-full p-6 my-0 md:my-4 mx-auto bg-white dark:bg-black">
         <div className="flex justify-start logo 4xl">
           <Link href="/">
             <a>
@@ -70,7 +72,7 @@ export default function Layout({ children }) {
             </svg>
           )}
         </button>
-      </nav>
+      </nav> */}
       <main className="flex flex-col justify-center bg-white dark:bg-black">
         {children}
         <Footer />
