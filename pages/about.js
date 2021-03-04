@@ -21,6 +21,11 @@ const about = () => {
                   I will add my top 10 favorite spotify tracks
                 </h2>
                 <div className="items-center justify-center mt-4">
+                  <p>
+                    Since I have linked the Spotify API to my site, might as
+                    well just share my 10 current favorite songs, these are
+                    mostly part of my working out playlist 💪🏻😎
+                  </p>
                   <TopTracks />
                 </div>
               </div>
