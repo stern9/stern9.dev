@@ -35,7 +35,7 @@ export default function Layout({ children }) {
     <div className="h-full">
       <Navbar toggle={toggle} />
       <Dropdown isOpen={isOpen} toggle={toggle} />
-      <div className="flex justify-center md:block">
+      {/* <div className="flex justify-center md:block">
         <button
           aria-label="Toggle Dark Mode"
           type="button"
@@ -68,9 +68,9 @@ export default function Layout({ children }) {
             </svg>
           )}
         </button>
-      </div>
-      {/* <Nav /> */}
-      {/* <nav className="sticky-nav flex justify-items-stretch items-center max-w-4xl w-full p-6 my-0 md:my-4 mx-auto bg-white dark:bg-black">
+      </div> */}
+      <Nav />
+      <nav className="sticky-nav flex justify-items-stretch items-center max-w-4xl w-full p-6 my-0 md:my-4 mx-auto bg-white dark:bg-black">
         <div className="flex justify-start logo 4xl">
           <Link href="/">
             <a>
@@ -128,7 +128,7 @@ export default function Layout({ children }) {
             </svg>
           )}
         </button>
-      </nav> */}
+      </nav>
       <main className="flex flex-col justify-center bg-white dark:bg-black">
         {children}
         <Footer />
