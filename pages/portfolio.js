@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Cards from "../components/Cards";
 import Layout from "../components/Layout";
+import Blog from "../components/Blog";
 
 const portfolio = () => {
   return (
@@ -11,7 +12,7 @@ const portfolio = () => {
       </Head>
       <Layout>
         <Cards />
-        {/* <div className="flex flex-col justify-center items-start max-w-2xl mx-auto ">
+        <div className="flex flex-col justify-center items-start max-w-2xl mx-auto ">
           <div className="flex relative items-center">
             <div className="container flex flex-col justify-between items-center py-4">
               <div className="flex flex-col items-center py-4">
@@ -24,7 +25,8 @@ const portfolio = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
+        <Blog />
       </Layout>
     </>
   );
