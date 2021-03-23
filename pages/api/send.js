@@ -9,19 +9,21 @@ export default async function (req, res) {
 
   sgMail.setApiKey(client_id);
 
-  const { email, message } = req.body;
+  const { fullName, email, message } = req.body;
 
   const content = {
     to: to_email,
     from: from_email,
-    subject: `New Message From stern9.dev form - ${email}`,
+    subject: `New Message From stern9.dev - ${email}`,
     text: message,
-    html: `<p>${message}</p>`,
+    html: `
+    <p>From: ${fullName}</p>
+    <p>${message}</p>`,
   };
 
   try {
     await sgMail.send(content);
-    res.status(200).send("Message sent successfully.");
+    res.status(200).send("Message sent.");
   } catch (error) {
     console.log("ERROR", error);
     res.status(400).send("Message not sent.");
