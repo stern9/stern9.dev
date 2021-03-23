@@ -27,7 +27,10 @@ const about = () => {
                     can share projects and the things I like to do. More
                     information about me can be found on my{" "}
                     <Link href="https://stern9-cv.netlify.app/">
-                      <a target="_blank" className="underline font-bold">
+                      <a
+                        target="_blank"
+                        className="underline font-bold text-secondary hover:bg-secondary hover:text-white"
+                      >
                         resumé.
                       </a>
                     </Link>{" "}
@@ -38,14 +41,19 @@ const about = () => {
                     build hosted on Github and to be honest not that great. But
                     hey we have to start somewhere right? -{" "}
                     <Link href="http://stern9.github.io/">
-                      <a target="_blank" className="underline font-bold">
+                      <a
+                        target="_blank"
+                        className="underline font-bold text-secondary hover:bg-secondary hover:text-white"
+                      >
                         check it out
                       </a>
                     </Link>{" "}
                     if you want to see some of my first projects.
                   </p>
                   <p className="text-1xl py-4">
-                    <span className="text-1xl font-bold">About this site:</span>{" "}
+                    <span className="text-1xl font-bold text-secondary">
+                      About this site:
+                    </span>{" "}
                     built with modern technologies - NextJS styled using
                     TailwindCSS with a couple of API's used to connect social
                     media information. All images are of my personal/work
@@ -57,22 +65,24 @@ const about = () => {
                     </span>
                   </p>
                   <p className="text-1xl py-4">
-                    <span className="text-1xl font-bold">
+                    <span className="text-1xl font-bold text-secondary">
                       I am currently learning about:
                     </span>{" "}
-                    TypeScript, React Native; more about how the cloud works
-                    (AWS - I see you!!). And of course JavaScript - you can
+                    TypeScript, React Native, GraphQL; more about how the cloud
+                    works (AWS - I see you!!) And of course JavaScript - you can
                     never stop learning about this wonderful and complex
-                    language.
+                    programming language.
                   </p>
                   <p className="text-1xl py-4">
-                    <span className="text-1xl font-bold">Just for fun:</span>{" "}
+                    <span className="text-1xl font-bold text-secondary">
+                      Just for fun:
+                    </span>{" "}
                     Since I have linked the Spotify API to my site, might as
                     well just share my 10 current favorite songs, these are
                     mostly part of my 'mambamentality' working-out playlist 💪🏻😎
                     check it out, maybe you like a song or two.
                   </p>
-                  <TopTracks />
+                  <TopTracks className="text-primary dark:text-white" />
                 </div>
               </div>
             </div>

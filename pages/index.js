@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
+import Sparkles from "../components/Sparkles";
 import Image from "next/image";
 
 export default function Home() {
@@ -15,9 +16,11 @@ export default function Home() {
             <div className="container flex flex-col justify-between items-center py-4">
               <div className="flex flex-col items-center py-4">
                 <Image src="/img/me.png" alt="me" width={160} height={160} />
-                <h2 className="text-4xl font-bold my-6 text-center dark:text-white">
-                  Hi, my name is Avram 🤘
-                </h2>
+                <Sparkles>
+                  <h2 className="text-4xl font-bold my-6 text-center dark:text-white">
+                    Hi, my name is Avram 🤘
+                  </h2>
+                </Sparkles>
                 <p className="max-w-3xl text-3xl mx-auto px-6 dark:text-white text-gray-800 text-center py-2">
                   I&#x27;m a passionate developer and this is my personal site -
                   mainly used as a digital playground where I like to test and

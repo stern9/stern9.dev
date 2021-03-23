@@ -61,29 +61,20 @@ const Form = () => {
   };
 
   return (
-    <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 bg-gray-500 dark:bg-gray-900 text-white-300 dark:text-red-100">
+    <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-4 sm:py-2 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 bg-gray-500 dark:bg-gray-900 text-white-300 dark:text-red-100">
       <div className="flex flex-col">
-        <div className="space-y-2">
-          <h2 className="text-4xl font-bold leading-tight lg:text-5xl">
-            Let's talk!
-          </h2>
-          <div className="dark:text-coolGray-400">
-            Go ahead and send me a message.
-          </div>
-        </div>
-        <HiOutlineChatAlt2 className="w-60 h-60 pt-5" />
+        <HiOutlineChatAlt2 className="w-60 h-60 text-secondary" />
       </div>
-      <form
-        onSubmit={handleOnSubmit}
-        noValidate=""
-        className="space-y-6 ng-untouched ng-pristine ng-valid"
-      >
+      <form onSubmit={handleOnSubmit} noValidate="" className="space-y-6">
         <div>
-          <label htmlFor="fullName" className="text-sm">
+          <label
+            htmlFor="fullName"
+            className="text-sm text-secondary dark:text-white"
+          >
             Full name
           </label>
           <input
-            className="w-full p-3 rounded dark:bg-coolGray-800"
+            className="w-full p-3 rounded border-2 border-primary dark:border-secondary"
             id="fullName"
             type="text"
             placeholder="Name..."
@@ -93,11 +84,14 @@ const Form = () => {
           />
         </div>
         <div>
-          <label htmlFor="email" className="text-sm">
+          <label
+            htmlFor="email"
+            className="text-sm text-secondary dark:text-white"
+          >
             Email
           </label>
           <input
-            className="w-full p-3 rounded dark:bg-coolGray-800"
+            className="w-full p-3 rounded border-2 border-primary dark:border-secondary"
             id="email"
             type="email"
             onChange={handleOnChange}
@@ -107,11 +101,14 @@ const Form = () => {
           />
         </div>
         <div>
-          <label htmlFor="message" className="text-sm">
+          <label
+            htmlFor="message"
+            className="text-sm text-secondary dark:text-white"
+          >
             Message
           </label>
           <textarea
-            className="w-full p-3 rounded dark:bg-coolGray-800"
+            className="w-full p-3 rounded border-2 border-primary dark:border-secondary"
             id="message"
             rows="3"
             id="message"
@@ -122,7 +119,7 @@ const Form = () => {
           ></textarea>
         </div>
         <button
-          className="w-full mt-10 py-2 px-4 border-2 border-white text-white uppercase text-sm tracking-24 bg-transparent hover:bg-white hover:text-gray-900 transition duration-150 ease-in-out"
+          className="w-full mt-10 py-2 px-4 border-2 border-primary dark:border-secondary text-primary dark:text-white dark:hover:text-primary dark:hover:bg-secondary hover:bg-primary hover:text-white uppercase text-sm tracking-24 transition duration-150 ease-in-out"
           type="submit"
           disabled={status.submitting}
         >

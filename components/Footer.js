@@ -10,7 +10,7 @@ import {
 
 function Footer() {
   return (
-    <footer className="text-gray-900 dark:text-gray-100 body-font">
+    <footer className="text-primary dark:text-white body-font">
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
         <NowPlaying />
         <p className="text-sm text-gray-900 dark:text-gray-100 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">

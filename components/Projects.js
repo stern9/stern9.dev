@@ -19,9 +19,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-gray-600">2021</span>
+              <span className="text-secondary">2021</span>
             </p>
-            <p className="mb-4 text-gray-700">
+            <p className="mb-4 text-primary">
               A CRUD interface to document and keep track of common snippets
               used alongside a team with their corresponding description. Built
               with NextJS and styled using TailwindCSS. Data stored using
@@ -29,24 +29,16 @@ const Projects = () => {
             </p>
             <div className="py-4">
               <div className="flex justify-around">
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://nextjs-code-snippets.vercel.app/">
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-gray-700"
-                    >
+                    <a target="_blank" rel="noreferrer" className="">
                       Preview
                     </a>
                   </Link>
                 </button>
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://github.com/stern9/nextjs-code-snippets">
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-gray-700"
-                    >
+                    <a target="_blank" rel="noreferrer" className="">
                       Code
                     </a>
                   </Link>
@@ -69,16 +61,16 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-gray-600">2021</span>
+              <span className="text-secondary">2021</span>
             </p>
-            <p className="mb-2 text-gray-700">
+            <p className="mb-4 text-primary">
               Full Stack ecommerce MERN App. Front end built using React. Back
               end NodeJS and Express. Database is MongoDB. Separate interface
               for admin users and consumers. Payments through PayPal.
             </p>
             <div className="py-4">
               <div className="flex justify-around">
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://stern-eshop.herokuapp.com/">
                     <a
                       target="_blank"
@@ -89,7 +81,7 @@ const Projects = () => {
                     </a>
                   </Link>
                 </button>
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://github.com/stern9/stern9-eshop">
                     <a
                       target="_blank"
@@ -118,9 +110,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-gray-600">2021</span>
+              <span className="text-secondary">2021</span>
             </p>
-            <p className="mb-2 text-gray-700">
+            <p className="mb-4 text-primary">
               React Anime application pulling data from 'MyAnimeList' using the{" "}
               <Link href="https://jikan.docs.apiary.io/">
                 <a target="_blank" className="underline">
@@ -132,7 +124,7 @@ const Projects = () => {
             </p>
             <div className="py-4">
               <div className="flex justify-around">
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://stern9-anime-app.netlify.app/">
                     <a
                       target="_blank"
@@ -143,7 +135,7 @@ const Projects = () => {
                     </a>
                   </Link>
                 </button>
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://github.com/stern9/anime-app">
                     <a
                       target="_blank"
@@ -172,9 +164,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-gray-600">2020</span>
+              <span className="text-secondary">2020</span>
             </p>
-            <p className="mb-2 text-gray-700">
+            <p className="mb-4 text-primary">
               American Express card holders informative landing page. Aiming to
               explain the different benefits each cardholder has as part of an
               specific line of business. Pulls end user information and provides
@@ -182,7 +174,7 @@ const Projects = () => {
             </p>
             <div className="py-4">
               <div className="flex justify-around">
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://amex-info.netlify.app/">
                     <a
                       target="_blank"
@@ -193,7 +185,7 @@ const Projects = () => {
                     </a>
                   </Link>
                 </button>
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://github.com/stern9/amex-work-example">
                     <a
                       target="_blank"
@@ -222,9 +214,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-gray-600">2019</span>
+              <span className="text-secondary">2019</span>
             </p>
-            <p className="mb-2 text-gray-700">
+            <p className="mb-4 text-primary">
               Landing page built for Playstation brand - showcasing the
               different games available during thanksgiving. Includes an
               interactive quiz to find out what type of gamer type matches the
@@ -233,7 +225,7 @@ const Projects = () => {
             </p>
             <div className="py-4">
               <div className="flex justify-around">
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://playstation-thanksgiving.netlify.app/">
                     <a
                       target="_blank"
@@ -244,7 +236,7 @@ const Projects = () => {
                     </a>
                   </Link>
                 </button>
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://github.com/stern9/playstation-work-example">
                     <a
                       target="_blank"
@@ -273,9 +265,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-gray-600">2018</span>
+              <span className="text-secondary">2018</span>
             </p>
-            <p className="mb-2 text-gray-700">
+            <p className="mb-4 text-primary">
               Landing page built for the holiday season. Location access needed
               to pull end user location and display an interactive unicorn based
               on the current temperature. With the help of the OpenWeather API.
@@ -283,7 +275,7 @@ const Projects = () => {
             </p>
             <div className="py-4">
               <div className="flex justify-around">
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://digitas-unicorn-landing.netlify.app/">
                     <a
                       target="_blank"
@@ -294,7 +286,7 @@ const Projects = () => {
                     </a>
                   </Link>
                 </button>
-                <button className="bg-grey hover:bg-gray-500 border font-bold py-2 px-4 rounded ml-4 shadow">
+                <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://github.com/stern9/digitas-unicorn-landing">
                     <a
                       target="_blank"

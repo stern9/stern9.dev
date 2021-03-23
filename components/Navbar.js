@@ -4,15 +4,15 @@ import Link from "next/link";
 const Navbar = () => {
   return (
     <div className="py-10">
-      <nav className="bg-gray-100 dark:bg-black py-3 fixed top-0 inset-x-0 z-50">
+      <nav className="bg-primary dark:bg-secondary py-3 fixed top-0 inset-x-0 z-50 text-white">
         <div className="px-8 mx-auto">
           <div className="flex justify-between">
             <div className="flex space-x-4">
               <div>
                 <Link href="/">
-                  <a className="flex items-center hover:text-gray-400">
+                  <a className="flex items-center hover:text-secondary dark:hover:text-primary">
                     <svg
-                      className="w-6 h-6 mr-2 text-black-400 dark:text-white "
+                      className="w-6 h-6 mr-2"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -38,17 +38,17 @@ const Navbar = () => {
 
             <div className="hidden md:flex items-center space-x-3">
               <Link href="/about">
-                <a className="p-1 sm:p-4 text-gray-700 dark:text-gray-100 hover:text-gray-400 ">
+                <a className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
                   About
                 </a>
               </Link>
               <Link href="/portfolio">
-                <a className="p-1 sm:p-4 text-gray-700 dark:text-gray-100 hover:text-gray-400">
+                <a className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
                   Portfolio
                 </a>
               </Link>
               <Link href="/contact">
-                <a className="p-1 sm:p-4 text-gray-700 dark:text-gray-100 hover:text-gray-400">
+                <a className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
                   Contact
                 </a>
               </Link>
@@ -89,17 +89,17 @@ const Navbar = () => {
         {/* mobile menu */}
         <div className="mobile-menu hidden md:hidden text-center">
           <Link href="/about">
-            <a className="block py-4 px-4 text-md text-gray-700 dark:text-gray-100 hover:text-gray-400 ">
+            <a className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
               About
             </a>
           </Link>
           <Link href="/portfolio">
-            <a className="block py-4 px-4 text-md text-gray-700 dark:text-gray-100 hover:text-gray-400">
+            <a className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
               Portfolio
             </a>
           </Link>
           <Link href="/contact">
-            <a className="block py-4 px-4 text-md text-gray-700 dark:text-gray-100 hover:text-gray-400">
+            <a className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
               Contact
             </a>
           </Link>

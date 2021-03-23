@@ -11,9 +11,7 @@ const portfolio = () => {
       </Head>
       <Layout>
         <div className="justify-center pt-14">
-          <p className="text-3xl text-center dark:text-white">
-            Some of my projects
-          </p>
+          <p className="text-3xl text-center">Some of my projects</p>
         </div>
         <Projects />
       </Layout>
