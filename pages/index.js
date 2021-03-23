@@ -15,7 +15,7 @@ export default function Home() {
           <div className="flex relative items-center">
             <div className="container flex flex-col justify-between items-center py-4">
               <div className="flex flex-col items-center py-4">
-                <Image src="/me.webp" alt="me" width="160" height="160" />
+                <Image src="/me.png" alt="me" width="160" height="160" />
                 <Sparkles>
                   <h2 className="text-4xl font-bold my-6 text-center dark:text-white">
                     Hi, my name is Avram 🤘
