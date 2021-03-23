@@ -9,11 +9,10 @@ const Projects = () => {
           <Link href="https://nextjs-code-snippets.vercel.app/">
             <a target="_blank" rel="noreferrer">
               <Image
-                src="/img/project_1.jpg"
-                alt="me"
-                className="object-cover w-full h-64"
-                width={600}
-                height={500}
+                src="/project_1.webp"
+                alt="project1"
+                width="600"
+                height="500"
               />
             </a>
           </Link>
@@ -51,11 +50,10 @@ const Projects = () => {
           <Link href="https://stern-eshop.herokuapp.com/">
             <a target="_blank" rel="noreferrer">
               <Image
-                src="/img/project_2.jpg"
-                alt="me"
-                className="object-cover w-full h-64"
-                width={600}
-                height={500}
+                src="/project_2.webp"
+                alt="project2"
+                width="600"
+                height="500"
               />
             </a>
           </Link>
@@ -100,11 +98,10 @@ const Projects = () => {
           <Link href="https://stern9-anime-app.netlify.app/">
             <a target="_blank" rel="noreferrer">
               <Image
-                src="/img/project_3.jpg"
-                alt="me"
-                className="object-cover w-full h-64"
-                width={600}
-                height={500}
+                src="/project_3.webp"
+                alt="project3"
+                width="600"
+                height="500"
               />
             </a>
           </Link>
@@ -154,11 +151,10 @@ const Projects = () => {
           <Link href="https://amex-info.netlify.app/">
             <a target="_blank" rel="noreferrer" className="text-gray-700">
               <Image
-                src="/img/project_4.jpg"
-                alt="me"
-                className="object-cover w-full h-64"
-                width={600}
-                height={500}
+                src="/project_4.webp"
+                alt="project4"
+                width="600"
+                height="500"
               />
             </a>
           </Link>
@@ -204,11 +200,10 @@ const Projects = () => {
           <Link href="https://playstation-thanksgiving.netlify.app/">
             <a target="_blank" rel="noreferrer" className="text-gray-700">
               <Image
-                src="/img/project_5.jpg"
-                alt="me"
-                className="object-cover w-full h-64"
-                width={600}
-                height={500}
+                src="/project_5.webp"
+                alt="project5"
+                width="600"
+                height="500"
               />
             </a>
           </Link>
@@ -255,11 +250,10 @@ const Projects = () => {
           <Link href="https://digitas-unicorn-landing.netlify.app/">
             <a target="_blank" rel="noreferrer">
               <Image
-                src="/img/project_6.jpg"
-                alt="me"
-                className="object-cover w-full h-64"
-                width={600}
-                height={500}
+                src="/project_6.webp"
+                alt="project6"
+                width="600"
+                height="500"
               />
             </a>
           </Link>
