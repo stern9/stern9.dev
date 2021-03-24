@@ -23,14 +23,14 @@ export default function Home() {
                 </Sparkles>
                 <p className="max-w-3xl text-3xl mx-auto px-6 dark:text-white text-gray-800 text-center py-2">
                   I&#x27;m a passionate developer and this is my personal site -
-                  mainly used as a digital playground where I like to test and
-                  learn new technologies.
+                  mainly used as a digital playground where I like to test new
+                  technologies.
                 </p>
                 <p className="max-w-3xl text-3xl mx-auto px-6 dark:text-white text-gray-800 text-center py-2">
                   Learning by creating awesome stuff - and keep growing as a
                   professional is my end goal. Here you can find a small
-                  collection of the things I've learned and created over the
-                  years.
+                  collection of the things I've created over the years and some
+                  more information about me.
                 </p>
               </div>
             </div>

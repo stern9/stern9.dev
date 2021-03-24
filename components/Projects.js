@@ -18,17 +18,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-secondary">
-                2021 - Code Snippets CRUD App
-              </span>
+              <span className="text-secondary">2021 - Code Snippets CRUD</span>
             </p>
-            <p className="mb-4 text-primary">
-              A CRUD interface to document and keep track of common snippets
-              used alongside a team with their corresponding description. Built
-              with NextJS and styled using TailwindCSS. Data stored using
-              FaunaDB
-            </p>
-            <div className="py-4">
+            <div className="my-4">
               <div className="flex justify-around">
                 <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://nextjs-code-snippets.vercel.app/">
@@ -46,6 +38,11 @@ const Projects = () => {
                 </button>
               </div>
             </div>
+            <p className="mb-4 text-primary md:text-sm">
+              A CRUD interface to document and keep track of common snippets
+              used. Built with NextJS and TailwindCSS. Data stored using
+              FaunaDB.
+            </p>
           </div>
         </div>
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-lg">
@@ -63,12 +60,7 @@ const Projects = () => {
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
               <span className="text-secondary">2021 - eCommerce App</span>
             </p>
-            <p className="mb-4 text-primary">
-              Full Stack ecommerce MERN App. Front end built using React. Back
-              end NodeJS and Express. Database is MongoDB. Separate interface
-              for admin users and consumers. Payments through PayPal.
-            </p>
-            <div className="py-4">
+            <div className="my-4">
               <div className="flex justify-around">
                 <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://stern-eshop.herokuapp.com/">
@@ -94,6 +86,11 @@ const Projects = () => {
                 </button>
               </div>
             </div>
+            <p className="mb-4 text-primary md:text-sm">
+              Full Stack ecommerce MERN App. Built with React, NodeJS and
+              Express. Data is handled using MongoDB. Payments managed through
+              PayPal.
+            </p>
           </div>
         </div>
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-lg">
@@ -108,20 +105,10 @@ const Projects = () => {
             </a>
           </Link>
           <div className="p-5 border-t-0">
-            <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
+            <p className="mb-3 text-xs font-semibold tracking-wide uppercase text-center">
               <span className="text-secondary">2021 - Search Anime App</span>
             </p>
-            <p className="mb-4 text-primary">
-              React Anime application pulling data from 'MyAnimeList' using the{" "}
-              <Link href="https://jikan.docs.apiary.io/">
-                <a target="_blank" className="underline">
-                  Jikan
-                </a>
-              </Link>{" "}
-              API. Search bar is in charge pulling specific data to the front
-              end. Every new render triggers a fan favorite animation.
-            </p>
-            <div className="py-4">
+            <div className="my-4">
               <div className="flex justify-around">
                 <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://stern9-anime-app.netlify.app/">
@@ -147,6 +134,16 @@ const Projects = () => {
                 </button>
               </div>
             </div>
+            <p className="mb-4 text-primary md:text-sm">
+              React application pulling data from 'MyAnimeList' using the{" "}
+              <Link href="https://jikan.docs.apiary.io/">
+                <a target="_blank" className="underline">
+                  Jikan
+                </a>
+              </Link>{" "}
+              API. Search bar pulls specific data. Every new render triggers a
+              fan favorite animation.
+            </p>
           </div>
         </div>
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-lg">
@@ -162,15 +159,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-secondary">2020</span>
+              <span className="text-secondary">2020 - Amex landing page</span>
             </p>
-            <p className="mb-4 text-primary">
-              American Express card holders informative landing page. Aiming to
-              explain the different benefits each cardholder has as part of an
-              specific line of business. Pulls end user information and provides
-              a personalized experience.
-            </p>
-            <div className="py-4">
+            <div className="my-4">
               <div className="flex justify-around">
                 <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://amex-info.netlify.app/">
@@ -196,6 +187,10 @@ const Projects = () => {
                 </button>
               </div>
             </div>
+            <p className="mb-4 text-primary md:text-sm">
+              American Express card holders informative landing page. Pulls end
+              user information and provides personalized content and experience.
+            </p>
           </div>
         </div>
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-lg">
@@ -211,16 +206,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-secondary">2019</span>
+              <span className="text-secondary">2019 - Playstation offers</span>
             </p>
-            <p className="mb-4 text-primary">
-              Landing page built for Playstation brand - showcasing the
-              different games available during thanksgiving. Includes an
-              interactive quiz to find out what type of gamer type matches the
-              end user depending on combination of results. Used as an email as
-              well.
-            </p>
-            <div className="py-4">
+            <div className="my-4">
               <div className="flex justify-around">
                 <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://playstation-thanksgiving.netlify.app/">
@@ -246,6 +234,11 @@ const Projects = () => {
                 </button>
               </div>
             </div>
+            <p className="mb-4 text-primary md:text-sm">
+              Landing page for Playstation - and their different games available
+              during thanksgiving. Includes an interactive quiz. Used as an
+              email as well.
+            </p>
           </div>
         </div>
         <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-lg">
@@ -261,15 +254,11 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-secondary">2018</span>
+              <span className="text-secondary">
+                2018 - Digitas holidays site
+              </span>
             </p>
-            <p className="mb-4 text-primary">
-              Landing page built for the holiday season. Location access needed
-              to pull end user location and display an interactive unicorn based
-              on the current temperature. With the help of the OpenWeather API.
-              Several creative unicorns available for a range of temperatures.
-            </p>
-            <div className="py-4">
+            <div className="my-4">
               <div className="flex justify-around">
                 <button className="bg-primary dark:bg-secondary hover:bg-secondary dark:hover:bg-primary text-white border font-bold py-2 px-4 rounded ml-4 shadow">
                   <Link href="https://digitas-unicorn-landing.netlify.app/">
@@ -295,6 +284,11 @@ const Projects = () => {
                 </button>
               </div>
             </div>
+            <p className="mb-4 text-primary md:text-sm">
+              Digitas landing page during the holiday season. Location access
+              required to display a personalized unicorn. With the help of the
+              OpenWeather API.
+            </p>
           </div>
         </div>
       </div>
