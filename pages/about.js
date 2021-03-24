@@ -26,7 +26,7 @@ const about = () => {
                     This is my own personal and tiny space on the web where I
                     can share projects and the things I like to do. More
                     information about me can be found on my{" "}
-                    <Link href="https://stern9-cv.netlify.app/">
+                    <Link href="https://www.cv.stern9.dev/">
                       <a
                         target="_blank"
                         className="underline font-bold text-secondary hover:bg-secondary hover:text-white"
@@ -68,9 +68,10 @@ const about = () => {
                     <span className="text-1xl font-bold text-secondary">
                       I am currently learning about:
                     </span>{" "}
-                    TypeScript, React Native, GraphQL; more about how the cloud
-                    works (AWS - I see you!!) And of course JavaScript - you can
-                    never stop learning about this wonderful and complex
+                    TypeScript, React Native, Docker and more about how the
+                    cloud works (AWS - I see you!!) Eventually want to
+                    understand more about Rust and of course JavaScript - you
+                    can never stop learning about this wonderful and complex
                     programming language.
                   </p>
                   <p className="text-1xl py-4">

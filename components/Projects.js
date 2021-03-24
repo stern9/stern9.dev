@@ -18,7 +18,9 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-secondary">2021</span>
+              <span className="text-secondary">
+                2021 - Code Snippets CRUD App
+              </span>
             </p>
             <p className="mb-4 text-primary">
               A CRUD interface to document and keep track of common snippets
@@ -59,7 +61,7 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-secondary">2021</span>
+              <span className="text-secondary">2021 - eCommerce App</span>
             </p>
             <p className="mb-4 text-primary">
               Full Stack ecommerce MERN App. Front end built using React. Back
@@ -107,7 +109,7 @@ const Projects = () => {
           </Link>
           <div className="p-5 border-t-0">
             <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
-              <span className="text-secondary">2021</span>
+              <span className="text-secondary">2021 - Search Anime App</span>
             </p>
             <p className="mb-4 text-primary">
               React Anime application pulling data from 'MyAnimeList' using the{" "}

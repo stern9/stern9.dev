@@ -1,7 +1,11 @@
+import { useState } from "react";
+import { Turn as Hamburger } from "hamburger-react";
 import ToggleDarkMode from "./ToggleDarkMode";
 import Link from "next/link";
 
 const Navbar = () => {
+  const [isOpen, setOpen] = useState(false);
+
   return (
     <div className="py-10">
       <nav className="bg-primary dark:bg-secondary py-3 fixed top-0 inset-x-0 z-50 text-white">
@@ -67,20 +71,7 @@ const Navbar = () => {
                   menu.classList.toggle("hidden");
                 }}
               >
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  ></path>
-                </svg>
+                <Hamburger toggled={isOpen} toggle={setOpen} />
               </button>
             </div>
           </div>
