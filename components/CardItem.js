@@ -6,7 +6,7 @@ const CardItem = ({ image, alt, header, previewURL, codeURL, description }) => {
     <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-lg">
       <Link href={previewURL}>
         <a target="_blank" rel="noreferrer">
-          <Image src={image} alt={alt} width="600" height="500" />
+          <Image src={image} alt={alt} width={600} height={500} />
         </a>
       </Link>
       <div className="p-5 border-t-0">

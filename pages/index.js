@@ -1,7 +1,11 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
-import Sparkles from "../components/Sparkles";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const Sparkles = dynamic(() => import("../components/Sparkles"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
