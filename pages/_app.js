@@ -3,7 +3,7 @@ import "tailwindcss/tailwind.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 
-export default function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   return (
     <ThemeProvider attribute="class">
       <Head>
@@ -12,4 +12,6 @@ export default function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </ThemeProvider>
   );
-}
+};
+
+export default MyApp;

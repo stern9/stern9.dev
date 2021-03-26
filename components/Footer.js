@@ -8,7 +8,7 @@ import {
   FaFacebook,
 } from "react-icons/fa";
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="text-primary dark:text-white body-font">
       <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
@@ -55,6 +55,6 @@ function Footer() {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

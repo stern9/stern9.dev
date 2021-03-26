@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
   return (
     <div className="h-full">
       <Navbar />
@@ -11,4 +11,6 @@ export default function Layout({ children }) {
       </main>
     </div>
   );
-}
+};
+
+export default Layout;

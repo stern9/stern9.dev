@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import fetcher from "../utils/fetcher";
 
-export default function NowPlaying() {
+const NowPlaying = () => {
   const { data } = useSWR("/api/now-playing", fetcher);
 
   return (
@@ -36,4 +36,6 @@ export default function NowPlaying() {
       </div>
     </div>
   );
-}
+};
+
+export default NowPlaying;
