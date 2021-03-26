@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Avram Stern | Home</title>
+        <title>Avram Stern</title>
         <meta name="keywords" content="stern9" />
       </Head>
       <Layout>
