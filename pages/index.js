@@ -20,7 +20,7 @@ export default function Home() {
             <div className="container flex flex-col justify-between items-center py-4">
               <div className="flex flex-col items-center py-4">
                 <Image
-                  src="/me.png"
+                  src="/img/me.png"
                   alt="emoji representing me"
                   width="160"
                   height="160"
