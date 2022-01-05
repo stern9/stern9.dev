@@ -15,5 +15,6 @@ module.exports = {
       },
     },
   },
+  mode: 'jit',
   variants: {},
 };

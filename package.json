@@ -23,7 +23,5 @@
     "swr": "^0.4.1",
     "tailwindcss": "^2.0.3"
   },
-  "devDependencies": {
-    "@tailwindcss/jit": "^0.1.1"
-  }
+  "devDependencies": {}
 }
