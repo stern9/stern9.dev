@@ -24,7 +24,13 @@ const getAccessToken = async () => {
     }),
   });
 
-  return response.json();
+  const data = await response.json();
+
+  if (data.error) {
+    console.error('Spotify token error:', data);
+  }
+
+  return data;
 };
 
 export const getNowPlaying = async () => {

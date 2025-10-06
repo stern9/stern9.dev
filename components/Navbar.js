@@ -13,48 +13,40 @@ const Navbar = () => {
           <div className="flex justify-between">
             <div className="flex space-x-4">
               <div>
-                <Link href="/">
-                  <a className="flex items-center hover:text-secondary dark:hover:text-primary">
-                    <svg
-                      className="w-6 h-6 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                      ></path>
-                    </svg>
-                    <h1 className="text-3xl bold">
-                      Avram Stern{" "}
-                      <span className="block text-base">
-                        Full Stack Developer
-                      </span>
-                    </h1>
-                  </a>
+                <Link href="/" className="flex items-center hover:text-secondary dark:hover:text-primary">
+                  <svg
+                    className="w-6 h-6 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    ></path>
+                  </svg>
+                  <h1 className="text-3xl bold">
+                    Avram Stern{" "}
+                    <span className="block text-base">
+                      Full Stack Developer
+                    </span>
+                  </h1>
                 </Link>
               </div>
             </div>
 
             <div className="hidden md:flex items-center space-x-3">
-              <Link href="/about">
-                <a className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
-                  About
-                </a>
+              <Link href="/about" className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
+                About
               </Link>
-              <Link href="/portfolio">
-                <a className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
-                  Portfolio
-                </a>
+              <Link href="/portfolio" className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
+                Portfolio
               </Link>
-              <Link href="/contact">
-                <a className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
-                  Contact
-                </a>
+              <Link href="/contact" className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
+                Contact
               </Link>
               <ToggleDarkMode />
             </div>
@@ -79,20 +71,14 @@ const Navbar = () => {
 
         {/* mobile menu */}
         <div className="mobile-menu hidden md:hidden text-center">
-          <Link href="/about">
-            <a className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
-              About
-            </a>
+          <Link href="/about" className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
+            About
           </Link>
-          <Link href="/portfolio">
-            <a className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
-              Portfolio
-            </a>
+          <Link href="/portfolio" className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
+            Portfolio
           </Link>
-          <Link href="/contact">
-            <a className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
-              Contact
-            </a>
+          <Link href="/contact" className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
+            Contact
           </Link>
           <ToggleDarkMode />
         </div>

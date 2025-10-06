@@ -38,13 +38,13 @@
 
 ### Built With
 
-- [Next.js](https://nextjs.org/)
-- [create-next-app](https://github.com/vercel/next.js/tree/canary/packages/create-next-app)
-- [React.js](https://reactjs.org/docs/)
+- [Next.js 15](https://nextjs.org/)
+- [React 19](https://reactjs.org/docs/)
 - [Node.js](https://nodejs.org/en/)
-- [Express.js](https://expressjs.com/)
-- [TailwindCSS](https://tailwindcss.com/docs)
+- [TailwindCSS 3](https://tailwindcss.com/docs)
 - [SWR](https://swr.vercel.app/)
+- [Resend](https://resend.com/) - Email service
+- [Spotify API](https://developer.spotify.com/documentation/web-api/)
 - [PostCSS](https://postcss.org/)
 - [Ubuntu](https://ubuntu.com/server)
 - [Nginx](https://www.nginx.com/)
@@ -63,18 +63,20 @@ To get a local copy up and running follow these simple steps.
    ```
 2. Install NPM packages
    ```sh
-   npm install / yarn
+   npm install
    ```
-3. Run files locally at localhost 3000
+3. Create `.env` file with required API keys (see `.env` example in repo)
+4. Run dev server at localhost:3000
    ```sh
-   npm run dev / yarn dev
+   npm run dev
    ```
 
 ## Acknowledgements
 
 - [Spotify API](https://developer.spotify.com/documentation/web-api/)
+- [Resend](https://resend.com/)
 - [react-icons](https://react-icons.github.io/react-icons/)
 - [heroicons](https://heroicons.dev/)
 - [styled-components](https://styled-components.com/)
-- [@tailwindcss/jit](https://github.com/tailwindlabs/tailwindcss-jit#readme)
+- [next-themes](https://github.com/pacocoursey/next-themes)
 - [leerob](https://leerob.io/blog)

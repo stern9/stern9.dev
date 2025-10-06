@@ -26,13 +26,8 @@ const about = () => {
                     This is my own personal and tiny space on the web where I
                     can share projects and the things I like to do. More
                     information about me can be found on my{" "}
-                    <Link href="https://www.cv.stern9.dev/">
-                      <a
-                        target="_blank"
-                        className="underline font-bold text-secondary hover:bg-secondary hover:text-white"
-                      >
-                        resumé.
-                      </a>
+                    <Link href="https://www.cv.stern9.dev/" target="_blank" className="underline font-bold text-secondary hover:bg-secondary hover:text-white">
+                      resumé.
                     </Link>
                   </p>
                   <p className="text-2xl py-4">
@@ -40,13 +35,8 @@ const about = () => {
                     build hosted on Github and to be honest not that great. But
                     hey we have to start somewhere right? - if you want to see
                     some of my first projects go ahead and{" "}
-                    <Link href="http://stern9.github.io/">
-                      <a
-                        target="_blank"
-                        className="underline font-bold text-secondary hover:bg-secondary hover:text-white"
-                      >
-                        check it out.
-                      </a>
+                    <Link href="http://stern9.github.io/" target="_blank" className="underline font-bold text-secondary hover:bg-secondary hover:text-white">
+                      check it out.
                     </Link>
                   </p>
                   <p className="text-1xl py-4">

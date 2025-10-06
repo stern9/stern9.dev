@@ -2,7 +2,14 @@ import { getTopTracks } from "../../utils/spotify";
 
 export default async (_, res) => {
   const response = await getTopTracks();
-  const { items } = await response.json();
+
+  if (response.status !== 200) {
+    console.error('Spotify API error:', response.status, await response.text());
+    return res.status(200).json({ tracks: [] });
+  }
+
+  const data = await response.json();
+  const items = data.items || [];
 
   const tracks = items.slice(0, 10).map((track) => ({
     artist: track.artists.map((_artist) => _artist.name).join(", "),
