@@ -97,3 +97,10 @@
     opacity: 0;
   }
 }
+
+/* Show code exactly as typed: no ligatures (e.g. "<!--" or "=>" merging). */
+code,
+pre,
+.font-mono {
+  font-variant-ligatures: none;
+}
