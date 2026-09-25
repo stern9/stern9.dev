@@ -8,6 +8,7 @@
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0",
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.21",
     "gray-matter": "^4.0.3",
