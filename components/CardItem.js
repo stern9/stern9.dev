@@ -11,10 +11,13 @@ const CardItem = ({
   description,
   stack = [],
 }) => {
+  // Projects whose demo is offline have no previewURL: link to the source.
+  const href = previewURL || codeURL;
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900/40 dark:hover:border-zinc-700">
       <a
-        href={previewURL}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className="block overflow-hidden border-b border-zinc-200 dark:border-zinc-800"
@@ -53,14 +56,16 @@ const CardItem = ({
           </ul>
         )}
         <div className="mt-5 flex gap-4 text-sm font-medium">
-          <a
-            href={previewURL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-zinc-900 hover:text-accent dark:text-zinc-100 dark:hover:text-accent-light"
-          >
-            Live site <HiArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+          {previewURL && (
+            <a
+              href={previewURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-zinc-900 hover:text-accent dark:text-zinc-100 dark:hover:text-accent-light"
+            >
+              Live site <HiArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          )}
           <a
             href={codeURL}
             target="_blank"
