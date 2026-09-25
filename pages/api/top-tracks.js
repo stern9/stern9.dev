@@ -1,10 +1,20 @@
 import { getTopTracks } from "../../utils/spotify";
 
-export default async (_, res) => {
-  const response = await getTopTracks();
+export default async function handler(_, res) {
+  let response;
+  try {
+    response = await getTopTracks();
+  } catch (error) {
+    console.error(error.message);
+    return res.status(200).json({ tracks: [] });
+  }
 
-  if (response.status !== 200) {
-    console.error("Spotify API error:", response.status, await response.text());
+  if (!response.ok) {
+    console.error(
+      "Spotify top-tracks error:",
+      response.status,
+      await response.text(),
+    );
     return res.status(200).json({ tracks: [] });
   }
 
@@ -23,4 +33,4 @@ export default async (_, res) => {
   );
 
   return res.status(200).json({ tracks });
-};
+}

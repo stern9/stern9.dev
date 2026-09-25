@@ -1,4 +1,12 @@
 import { Resend } from "resend";
+import { clientIp, createRateLimiter } from "../../lib/rateLimit";
+
+// Stops scripts from flooding the inbox or using up the Resend quota.
+const allowSend = createRateLimiter({
+  max: 5,
+  windowMs: 60 * 60 * 1000,
+  dailyMax: 50,
+});
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -27,7 +35,10 @@ export default async function handler(req, res) {
     return res.status(500).send("Email service not configured.");
   }
 
-  const fullName = String(req.body?.fullName ?? "").trim();
+  // Line breaks aren't valid in a name, and would end up in the email subject.
+  const fullName = String(req.body?.fullName ?? "")
+    .replace(/[\r\n]+/g, " ")
+    .trim();
   const email = String(req.body?.email ?? "").trim();
   const message = String(req.body?.message ?? "").trim();
   const honeypot = String(req.body?.company ?? "");
@@ -44,6 +55,11 @@ export default async function handler(req, res) {
   }
   if (fullName.length > 100 || email.length > 200 || message.length > 5000) {
     return res.status(400).send("Your message is too long.");
+  }
+  if (!allowSend(clientIp(req))) {
+    return res
+      .status(429)
+      .send("Too many messages for now. Please try again in a little while.");
   }
 
   const resend = new Resend(RESEND_API_KEY);

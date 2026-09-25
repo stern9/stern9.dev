@@ -8,20 +8,9 @@ import {
   tiredReply,
   systemPrompt,
 } from "../../lib/doofus";
+import { clientIp } from "../../lib/rateLimit";
 
 const client = process.env.ANTHROPIC_API_KEY ? new Anthropic() : null;
-
-// Behind Nginx, the real client IP is the last X-Forwarded-For entry
-// (the one Nginx appends); earlier entries can be spoofed by the client.
-const clientIp = (req) => {
-  const forwarded = String(req.headers["x-forwarded-for"] || "")
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-  return (
-    forwarded.at(-1) || req.headers["x-real-ip"] || req.socket.remoteAddress
-  );
-};
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
