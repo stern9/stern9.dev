@@ -1,89 +1,98 @@
-import { useState } from "react";
-import { Turn as Hamburger } from "hamburger-react";
-import ToggleDarkMode from "./ToggleDarkMode";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { HiOutlineMenuAlt4, HiOutlineX } from "react-icons/hi";
+import ToggleDarkMode from "./ToggleDarkMode";
+
+const links = [
+  { href: "/blog", label: "Blog" },
+  { href: "/portfolio", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const close = () => setOpen(false);
+    router.events.on("routeChangeStart", close);
+    return () => router.events.off("routeChangeStart", close);
+  }, [router.events]);
+
+  const isActive = (href) =>
+    router.pathname === href || router.pathname.startsWith(`${href}/`);
 
   return (
-    <div className="py-10">
-      <nav className="bg-primary dark:bg-secondary py-3 fixed top-0 inset-x-0 z-50 text-white">
-        <div className="px-8 mx-auto">
-          <div className="flex justify-between">
-            <div className="flex space-x-4">
-              <div>
-                <Link href="/" className="flex items-center hover:text-secondary dark:hover:text-primary">
-                  <svg
-                    className="w-6 h-6 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                    ></path>
-                  </svg>
-                  <h1 className="text-3xl bold">
-                    Avram Stern{" "}
-                    <span className="block text-base">
-                      Full Stack Developer
-                    </span>
-                  </h1>
-                </Link>
-              </div>
-            </div>
+    <header className="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/80 backdrop-blur-md dark:border-zinc-800/70 dark:bg-zinc-950/80">
+      <nav className="mx-auto flex h-16 max-w-3xl items-center justify-between px-5 sm:px-6">
+        <Link
+          href="/"
+          className="text-[15px] font-semibold tracking-tight text-zinc-900 dark:text-zinc-100"
+        >
+          Avram Stern
+        </Link>
 
-            <div className="hidden md:flex items-center space-x-3">
-              <Link href="/about" className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
-                About
-              </Link>
-              <Link href="/portfolio" className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
-                Portfolio
-              </Link>
-              <Link href="/contact" className="p-1 sm:p-4 hover:text-secondary dark:hover:text-primary">
-                Contact
-              </Link>
-              <ToggleDarkMode />
-            </div>
-
-            {/* hamburger menu icon */}
-            <div className="md:hidden flex items-center">
-              <button
-                className="mobile-menu-button"
-                onClick={() => {
-                  const btn = document.querySelector(
-                    "button.mobile-menu-button"
-                  );
-                  const menu = document.querySelector(".mobile-menu");
-                  menu.classList.toggle("hidden");
-                }}
-              >
-                <Hamburger toggled={isOpen} toggle={setOpen} />
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* mobile menu */}
-        <div className="mobile-menu hidden md:hidden text-center">
-          <Link href="/about" className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
-            About
-          </Link>
-          <Link href="/portfolio" className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
-            Portfolio
-          </Link>
-          <Link href="/contact" className="block py-4 px-4 text-md hover:text-secondary dark:hover:text-primary">
-            Contact
-          </Link>
+        <div className="hidden items-center gap-1 md:flex">
+          {links.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              aria-current={isActive(href) ? "page" : undefined}
+              className={`rounded-md px-3 py-2 text-sm transition-colors ${
+                isActive(href)
+                  ? "font-medium text-zinc-900 dark:text-zinc-100"
+                  : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+              }`}
+            >
+              {label}
+            </Link>
+          ))}
           <ToggleDarkMode />
         </div>
+
+        <div className="flex items-center md:hidden">
+          <ToggleDarkMode />
+          <button
+            type="button"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((open) => !open)}
+            className="rounded-md p-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            {isOpen ? (
+              <HiOutlineX className="h-5 w-5" />
+            ) : (
+              <HiOutlineMenuAlt4 className="h-5 w-5" />
+            )}
+          </button>
+        </div>
       </nav>
-    </div>
+
+      {isOpen && (
+        <div
+          id="mobile-menu"
+          className="border-t border-zinc-200 px-5 pb-4 pt-2 md:hidden dark:border-zinc-800"
+        >
+          {links.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              aria-current={isActive(href) ? "page" : undefined}
+              className={`block rounded-md py-3 text-base ${
+                isActive(href)
+                  ? "font-medium text-zinc-900 dark:text-zinc-100"
+                  : "text-zinc-600 dark:text-zinc-400"
+              }`}
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </header>
   );
 };
 

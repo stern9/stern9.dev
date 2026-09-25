@@ -1,152 +1,129 @@
 import { useState } from "react";
-import { HiOutlineChatAlt2 } from "react-icons/hi";
+
+const emptyInputs = { fullName: "", email: "", message: "", company: "" };
+
+const inputClass =
+  "mt-1.5 block w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 transition-colors focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-secondary/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500";
+
+const labelClass = "text-sm font-medium text-zinc-700 dark:text-zinc-300";
 
 const Form = () => {
-  const [status, setStatus] = useState({
-    submitted: false,
-    submitting: false,
-    info: { error: false, msg: null },
-  });
-
-  const [inputs, setInputs] = useState({
-    fullName: "",
-    email: "",
-    message: "",
-  });
-
-  const handleResponse = (status, msg) => {
-    if (status === 200) {
-      setStatus({
-        submitted: true,
-        submitting: false,
-        info: { error: false, msg: msg },
-      });
-      setInputs({
-        fullName: "",
-        email: "",
-        message: "",
-      });
-    } else {
-      setStatus({
-        info: { error: true, msg: msg },
-      });
-    }
-  };
+  const [inputs, setInputs] = useState(emptyInputs);
+  // idle | submitting | success | error
+  const [status, setStatus] = useState("idle");
+  const [message, setMessage] = useState("");
 
   const handleOnChange = (e) => {
-    e.persist();
-    setInputs((prev) => ({
-      ...prev,
-      [e.target.id]: e.target.value,
-    }));
-    setStatus({
-      submitted: false,
-      submitting: false,
-      info: { error: false, msg: null },
-    });
+    setInputs((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    if (status === "success" || status === "error") setStatus("idle");
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
-    const res = await fetch("/api/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputs),
-    });
-    const text = await res.text();
-    handleResponse(res.status, text);
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inputs),
+      });
+      const text = await res.text();
+      if (!res.ok) throw new Error(text || "Message not sent.");
+      setInputs(emptyInputs);
+      setMessage("Thanks! Your message is on its way. I'll reply soon.");
+      setStatus("success");
+    } catch (error) {
+      setMessage(error.message || "Something went wrong. Please try again.");
+      setStatus("error");
+    }
   };
 
   return (
-    <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-4 sm:py-2 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 bg-gray-500 dark:bg-gray-900 text-white-300 dark:text-red-100">
-      <div className="flex flex-col">
-        <HiOutlineChatAlt2 className="w-60 h-60 text-secondary" />
-      </div>
-      <form onSubmit={handleOnSubmit} noValidate="" className="space-y-6">
+    <form onSubmit={handleOnSubmit} className="max-w-xl space-y-5">
+      <div className="grid gap-5 sm:grid-cols-2">
         <div>
-          <label
-            htmlFor="fullName"
-            className="text-sm text-secondary dark:text-white"
-          >
-            Full name
+          <label htmlFor="fullName" className={labelClass}>
+            Name
           </label>
           <input
-            className="w-full p-3 rounded border-2 border-primary dark:border-secondary"
+            className={inputClass}
             id="fullName"
             type="text"
-            placeholder="Name..."
+            autoComplete="name"
+            placeholder="Jane Doe"
             onChange={handleOnChange}
             required
+            maxLength={100}
             value={inputs.fullName}
           />
         </div>
         <div>
-          <label
-            htmlFor="email"
-            className="text-sm text-secondary dark:text-white"
-          >
+          <label htmlFor="email" className={labelClass}>
             Email
           </label>
           <input
-            className="w-full p-3 rounded border-2 border-primary dark:border-secondary"
+            className={inputClass}
             id="email"
             type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
             onChange={handleOnChange}
             required
-            placeholder="your@email.com"
+            maxLength={200}
             value={inputs.email}
           />
         </div>
-        <div>
-          <label
-            htmlFor="message"
-            className="text-sm text-secondary dark:text-white"
-          >
-            Message
-          </label>
-          <textarea
-            className="w-full p-3 rounded border-2 border-primary dark:border-secondary"
-            id="message"
-            rows="3"
-            id="message"
-            onChange={handleOnChange}
-            required
-            value={inputs.message}
-            placeholder="Your message..."
-          ></textarea>
-        </div>
+      </div>
+      <div>
+        <label htmlFor="message" className={labelClass}>
+          Message
+        </label>
+        <textarea
+          className={inputClass}
+          id="message"
+          rows={6}
+          onChange={handleOnChange}
+          required
+          maxLength={5000}
+          value={inputs.message}
+          placeholder="What would you like to talk about?"
+        />
+      </div>
+
+      {/* Honeypot: hidden from people, bots tend to fill it in. */}
+      <div aria-hidden className="absolute -left-[9999px]">
+        <label htmlFor="company">Company</label>
+        <input
+          id="company"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          onChange={handleOnChange}
+          value={inputs.company}
+        />
+      </div>
+
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         <button
-          className="w-full mt-10 py-2 px-4 border-2 border-primary dark:border-secondary text-primary dark:text-white dark:hover:text-primary dark:hover:bg-secondary hover:bg-primary hover:text-white uppercase text-sm tracking-24 transition duration-150 ease-in-out"
+          className="rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
           type="submit"
-          disabled={status.submitting}
+          disabled={status === "submitting"}
         >
-          {!status.submitting
-            ? !status.submitted
-              ? "Send"
-              : "Sent"
-            : "Sending..."}
+          {status === "submitting" ? "Sending…" : "Send message"}
         </button>
-        <div className="mt-4">
-          {status.info.error && (
-            <div className="bg-red-200 border-red-600 text-red-600 border-l-4 p-4">
-              <p className="font-bold">
-                Ooops - something not ideal might be happening.{" "}
-              </p>
-              <p>{status.info.msg}</p>
-            </div>
-          )}
-          {!status.info.error && status.info.msg && (
-            <div className="bg-green-200 border-green-600 text-green-600 border-l-4 p-4">
-              <p className="font-bold">Success</p>
-              <p>{status.info.msg}</p>
-            </div>
-          )}
-        </div>
-      </form>
-    </div>
+        <p
+          role="status"
+          aria-live="polite"
+          className={`text-sm ${
+            status === "error"
+              ? "text-red-600 dark:text-red-400"
+              : "text-green-700 dark:text-green-400"
+          }`}
+        >
+          {(status === "success" || status === "error") && message}
+        </p>
+      </div>
+    </form>
   );
 };
 

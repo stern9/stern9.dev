@@ -1,3 +1,99 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-secondary/30;
+  }
+}
+
+/* ---- Blog post content ---- */
+
+/* Inline code */
+.prose :not(pre) > code {
+  @apply rounded-md border border-zinc-200 bg-zinc-100 px-1.5 py-0.5 text-[0.875em] font-medium text-zinc-800;
+}
+.dark .prose :not(pre) > code {
+  @apply border-zinc-800 bg-zinc-900 text-zinc-200;
+}
+
+/* Code blocks (rehype-pretty-code + shiki, dual theme) */
+.prose figure[data-rehype-pretty-code-figure] {
+  @apply my-7;
+}
+.prose pre {
+  @apply overflow-x-auto rounded-xl border border-zinc-200 px-0 py-4 text-[0.875rem] leading-relaxed;
+}
+.dark .prose pre {
+  @apply border-zinc-800;
+}
+.prose pre > code {
+  @apply grid;
+}
+.prose pre [data-line] {
+  @apply px-5;
+}
+.prose pre [data-highlighted-line] {
+  @apply border-l-2 border-secondary bg-secondary/10;
+}
+.prose [data-rehype-pretty-code-title] {
+  @apply mb-0 rounded-t-xl border border-b-0 border-zinc-200 bg-zinc-50 px-5 py-2 font-mono text-xs text-zinc-500;
+}
+.dark .prose [data-rehype-pretty-code-title] {
+  @apply border-zinc-800 bg-zinc-900 text-zinc-400;
+}
+.prose [data-rehype-pretty-code-title] + pre {
+  @apply mt-0 rounded-t-none;
+}
+
+/* Shiki emits both themes as CSS variables; pick one per color scheme. */
+.prose pre,
+.prose pre span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+.dark .prose pre,
+.dark .prose pre span {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+/* Heading anchor links */
+.prose .anchor {
+  @apply no-underline;
+}
+.prose .anchor:hover::after {
+  content: "#";
+  @apply ml-2 text-zinc-400;
+}
+
+/* ---- Home cover art ---- */
+.cover-code pre {
+  margin: 0;
+  background-color: transparent !important;
+}
+.cover-code-focus .line:last-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1.15em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background-color: #6fb3cc;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cover-code-focus .line:last-child::after {
+    animation: cover-blink 1.1s steps(1) infinite;
+  }
+}
+@keyframes cover-blink {
+  50% {
+    opacity: 0;
+  }
+}

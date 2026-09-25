@@ -43,6 +43,7 @@
 - [Node.js](https://nodejs.org/en/)
 - [TailwindCSS 3](https://tailwindcss.com/docs)
 - [SWR](https://swr.vercel.app/)
+- [unified](https://unifiedjs.com/) / remark / rehype + [Shiki](https://shiki.style/) - Markdown blog
 - [Resend](https://resend.com/) - Email service
 - [Spotify API](https://developer.spotify.com/documentation/web-api/)
 - [PostCSS](https://postcss.org/)
@@ -70,6 +71,30 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm run dev
    ```
+
+## Writing blog posts
+
+Posts are Markdown files in `content/blog/`. The file name is the URL slug:
+`content/blog/my-first-post.md` → `/blog/my-first-post`.
+
+```md
+---
+title: "My first post"          # required
+date: 2026-09-24                # required (YYYY-MM-DD)
+description: "Shown in lists, RSS and link previews."
+tags: ["javascript"]
+draft: true                     # optional: visible in `npm run dev` only
+---
+
+Your post in Markdown…
+```
+
+- Supports GitHub-flavored Markdown (tables, task lists, strikethrough), heading anchors
+  and syntax-highlighted code blocks (` ```js title="file.js" {2} ` for a title and highlighted lines).
+- Put images in `public/blog/<slug>/` and reference them as `/blog/<slug>/image.png`.
+- See `content/blog/markdown-style-guide.md` (a draft) for every supported feature.
+- Posts are rendered at build time, so run `npm run build` and restart after adding one.
+- RSS feed at `/rss.xml`, sitemap at `/sitemap.xml`.
 
 ## Acknowledgements
 

@@ -4,7 +4,7 @@ export default async (_, res) => {
   const response = await getTopTracks();
 
   if (response.status !== 200) {
-    console.error('Spotify API error:', response.status, await response.text());
+    console.error("Spotify API error:", response.status, await response.text());
     return res.status(200).json({ tracks: [] });
   }
 
@@ -16,6 +16,11 @@ export default async (_, res) => {
     songUrl: track.external_urls.spotify,
     title: track.name,
   }));
+
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=86400, stale-while-revalidate=43200",
+  );
 
   return res.status(200).json({ tracks });
 };

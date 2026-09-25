@@ -1,66 +1,52 @@
-import NowPlaying from "./NowPlaying";
 import Link from "next/link";
 import {
   FaGithub,
   FaInstagram,
   FaLinkedinIn,
-  FaTwitter,
   FaFacebook,
+  FaRss,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import NowPlaying from "./NowPlaying";
+import { site } from "../lib/site";
+
+const socials = [
+  { href: site.social.github, label: "GitHub", Icon: FaGithub },
+  { href: site.social.linkedin, label: "LinkedIn", Icon: FaLinkedinIn },
+  { href: site.social.x, label: "X (Twitter)", Icon: FaXTwitter },
+  { href: site.social.instagram, label: "Instagram", Icon: FaInstagram },
+  { href: site.social.facebook, label: "Facebook", Icon: FaFacebook },
+];
 
 const Footer = () => {
   return (
-    <footer className="text-primary dark:text-white body-font">
-      <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <footer className="mx-auto w-full max-w-3xl px-5 pb-10 pt-16 sm:px-6">
+      <div className="border-t border-zinc-200 pt-8 dark:border-zinc-800">
         <NowPlaying />
-        <p className="text-sm text-gray-900 dark:text-gray-100 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
-          © 2025 —
-          <Link
-            href="https://stern9.dev"
-            className="text-gray-900 dark:text-gray-100 ml-1"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            stern9
-          </Link>
-        </p>
-        <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-          <Link
-            href="https://github.com/stern9"
-            className="hover:text-primary-gray-20"
-            target="_blank"
-          >
-            <FaGithub />
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/stern9/"
-            className="ml-4 hover:text-primary-gray-20"
-            target="_blank"
-          >
-            <FaLinkedinIn />
-          </Link>
-          <Link
-            href="https://www.facebook.com/avramstern"
-            className="ml-4 hover:text-primary-gray-20"
-            target="_blank"
-          >
-            <FaFacebook />
-          </Link>
-          <Link
-            href="https://twitter.com/avramstern"
-            className="ml-4 hover:text-primary-gray-20"
-            target="_blank"
-          >
-            <FaTwitter />
-          </Link>
-          <Link
-            href="https://www.instagram.com/stern9/"
-            className="ml-4 hover:text-primary-gray-20"
-            target="_blank"
-          >
-            <FaInstagram />
-          </Link>
-        </span>
+        <div className="mt-6 flex flex-col-reverse gap-4 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between dark:text-zinc-400">
+          <p>© {new Date().getFullYear()} Avram Stern</p>
+          <div className="flex items-center gap-4">
+            {socials.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+            <Link
+              href="/rss.xml"
+              aria-label="RSS feed"
+              className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
+            >
+              <FaRss className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stern9.dev/sitemap.xml

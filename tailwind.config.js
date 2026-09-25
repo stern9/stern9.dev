@@ -4,25 +4,40 @@ module.exports = {
   darkMode: "class",
   content: ["./pages/**/*.js", "./components/**/*.js", "./lib/**/*.js"],
   theme: {
-    colors: {
-      primary: "#0e213c",
-      secondary: "#4b92ac",
-      white: "#ffffff",
-      gray: {
-        200: "#e5e7eb",
-        300: "#d1d5db",
-        500: "#6b7280",
-        800: "#1f2937",
-      },
-      green: {
-        760: "#1ED760",
-      },
-    },
     extend: {
-      fontFamily: {
-        sans: ["Nunito", ...fontFamily.sans],
+      colors: {
+        // Brand colors. Extended (not replaced) so Tailwind's default palette
+        // (zinc, red, green, ...) keeps working.
+        primary: "#0e213c",
+        secondary: "#4b92ac",
+        accent: {
+          DEFAULT: "#2f7a96",
+          light: "#6fb3cc",
+        },
       },
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+        mono: ["var(--font-mono)", ...fontFamily.mono],
+      },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            "--tw-prose-links": theme("colors.accent.DEFAULT"),
+            "--tw-prose-invert-links": theme("colors.accent.light"),
+            a: {
+              textDecoration: "underline",
+              textDecorationThickness: "1px",
+              textUnderlineOffset: "3px",
+              fontWeight: "500",
+            },
+            "a:hover": { textDecorationThickness: "2px" },
+            "code::before": { content: "none" },
+            "code::after": { content: "none" },
+            "h2, h3, h4": { scrollMarginTop: "6rem" },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

@@ -1,18 +1,22 @@
 export default function Track(track) {
   return (
-    <div className="flex flex-row items-baseline border-b border-secondary max-w-3xl w-full mt-8">
-      <p className="text-md font-bold ">{track.ranking}</p>
-      <div className="flex flex-col pl-3">
+    <li className="flex items-baseline gap-4 py-3">
+      <span className="w-5 shrink-0 text-right font-mono text-sm tabular-nums text-zinc-400">
+        {track.ranking}
+      </span>
+      <div className="min-w-0">
         <a
-          className="font-medium truncate w-60 sm:w-96 md:w-full"
+          className="block truncate font-medium text-zinc-900 hover:underline dark:text-zinc-100"
           href={track.songUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
           {track.title}
         </a>
-        <p className="mb-4 truncate w-60 sm:w-96 md:w-full">{track.artist}</p>
+        <p className="truncate text-sm text-zinc-500 dark:text-zinc-400">
+          {track.artist}
+        </p>
       </div>
-    </div>
+    </li>
   );
 }
