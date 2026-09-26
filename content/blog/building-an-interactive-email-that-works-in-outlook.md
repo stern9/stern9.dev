@@ -3,26 +3,18 @@ title: "Building an interactive email that still works in Outlook"
 date: 2026-09-25
 description: "A look back at a personalized, interactive email I built for a card-member campaign: a CSS-only carousel, AMPscript personalization and a fallback for every inbox."
 tags: ["email", "html", "css", "case study"]
-draft: true
+draft: false
 ---
 
-<!--
-  TODO before publishing (delete this comment when done):
-  - Fill in every "TODO" below with your own details.
-  - Check you're comfortable naming the client/agency (and that your agreement allows it).
-    If not, swap the names for "a major credit card company" / "the agency I worked at".
-  - Optional: add a screenshot with logos/card art blurred, in public/blog/building-an-interactive-email-that-works-in-outlook/
--->
+Most web developers never have to think about Outlook's rendering engine. For a big part of my career, I did. This post looks back at one project I'm still proud of: an interactive, personalized email I built in late 2020 for American Express Business Gold Card Members while working with Digitas.
 
-Most web developers never have to think about Outlook's rendering engine. For a big part of my career, I did. This post looks back at one project I'm still proud of: an interactive, personalized email I built in late 2020 for American Express Business Gold Card Members while working at **TODO: company (Prodigious? and the agency, if any)**.
-
-**TODO:** one or two sentences on your role (e.g. "I was the lead developer on the email team...") and who you worked with.
+It was me against the clock. After a lot of planning, I told our project manager the interactive version was possible, and it got sold to the client with more promised than the timeline really allowed. Building the email was only half the job. For every client that couldn't handle the interactive parts, I also had to work out what it should show instead, and then propose those fallbacks so everyone could sign off on them. Ugh, email.
 
 ## The brief
 
 The goal was education: help Card Members understand how to earn more Membership Rewards points with their card, and where those points could go. That meant a lot of content: several reward categories, each with its own visuals, in a single email that had to feel personal and look polished everywhere.
 
-**TODO:** anything else about the goal, the audience or the constraints (timeline, send volume, number of variants).
+It went out to a large list of Card Members, and a lot of people had a say in it. On the agency side it was me, a creative designer, a copywriter and a project manager. On the client side there was another PM, a scrum master, the product team, the art director lead and the legal team. Every one of them had to be happy with how the email looked and behaved in every inbox, not just the best one.
 
 ## Constraint #1: no JavaScript, anywhere
 
@@ -83,22 +75,34 @@ SET @subject = CONCAT(@firstname, ", get the most from your card.")
 
 That fallback matters more than it looks. Personalization that fails ("Hi , ...") is worse than none at all.
 
-**TODO:** any other personalization (dynamic content blocks per segment, and so on) you remember.
+And it went well beyond the subject line. Each email was built for its recipient, with content pulled from the client's Salesforce data, so the interactive experience was personal as well as clickable. Because that meant handling real Card Member data, the integration also had to pass a security audit, and it did.
 
 ## How we tested it
 
-**TODO:** your testing process, e.g. Litmus or Email on Acid previews, seed lists, device labs, QA rounds, and how many client/device combinations you checked.
+Nothing reached a real Card Member until it had cleared three gates:
+
+1. **Internal QA** on the agency side: previews in Litmus and Email on Acid, plus a bunch of real phones, tablets and desktops.
+2. **A client review pass.**
+3. **Dogfooding**: the stakeholders themselves received the email on their own devices before the real send, Windows machines running desktop Outlook included.
+
+That last one mattered. Previews are useful, but nothing humbles you like desktop Outlook on a real Windows PC, still rendering email with Word's layout engine.
+
+Each round was a chance to catch a client that rendered something differently, or a fallback that didn't hold up.
 
 ## Results
 
-**TODO:** anything you can share: engagement, click rate compared with the static version, awards, stakeholder feedback. If you can't share numbers, say what went well and what you'd do differently.
+I don't have send numbers to share, but the project did what it set out to do. The Salesforce integration and the security audit went through cleanly, the email passed every QA round, and the stakeholders loved it. The client was happy, and so was I, given where the timeline started.
 
 ## What I took away
 
-Email development taught me habits I still use building for the web:
+Email development taught me habits I still use building software and working in huge codebases:
 
 - **Progressive enhancement for real.** Start with something that works everywhere, then layer on the fancy parts.
 - **Test on the actual targets.** Assumptions about "how browsers work" don't survive contact with Outlook.
 - **Fallbacks are features.** The empty-name case, the no-GIF case, the no-interactivity case: that's where quality shows.
 
-**TODO:** a closing thought in your own voice, and maybe a line inviting people to [get in touch](/contact).
+I like solving problems, and I have a hard time accepting "no" or "it can't be done" as an answer. This project was a good reminder of why. If you're determined and willing to keep trying, you can usually find a way.
+
+It's also a reminder of how different writing code was not long ago. There was no ChatGPT, Codex or Claude Code to lean on, just a client deadline and Stack Overflow: old posts, and whatever the community had already figured out. Test it, break it, test it again. That loop came with a sense of accomplishment I think we've lost a little of today. Overall, it was a great experience, and one of the projects I'm proudest of.
+
+Work with real ones: professionals who don't take "it can't be done" for an answer. If you need one, you know where to [find me](/contact). 😉

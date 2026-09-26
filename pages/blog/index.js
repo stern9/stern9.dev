@@ -17,7 +17,7 @@ export default function Blog({ posts }) {
           Blog
         </h1>
         <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-400">
-          Thoughts on web development, the things I build and what I learn along
+          Thoughts on software engineering, the things I build and what I learn along
           the way.
         </p>
       </header>
