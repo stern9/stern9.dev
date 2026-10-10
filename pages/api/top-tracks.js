@@ -1,4 +1,5 @@
 import { getTopTracks } from "../../utils/spotify";
+import { getTrackBlurb } from "../../lib/trackBlurb";
 
 export default async function handler(_, res) {
   let response;
@@ -27,10 +28,20 @@ export default async function handler(_, res) {
     title: track.name,
   }));
 
+  const blurb = getTrackBlurb(tracks);
+
   res.setHeader(
     "Cache-Control",
-    "public, s-maxage=86400, stale-while-revalidate=43200",
+    // While the first blurb is being written the page polls for it, so that
+    // response must not be cached.
+    blurb.pending
+      ? "no-store"
+      : "public, s-maxage=86400, stale-while-revalidate=43200",
   );
 
-  return res.status(200).json({ tracks });
+  return res.status(200).json({
+    tracks,
+    blurb: blurb.text,
+    blurbPending: blurb.pending,
+  });
 }
