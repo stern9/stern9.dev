@@ -3,7 +3,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 const emptyInputs = { fullName: "", email: "", message: "", company: "" };
 
 const inputClass =
-  "mt-1.5 block w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 transition-colors focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-secondary/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500";
+  "mt-1.5 block w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-2.5 text-[15px] text-zinc-900 placeholder:text-zinc-400 transition-colors focus:border-zinc-500 focus:outline-hidden focus:ring-2 focus:ring-secondary/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500";
 
 const labelClass = "text-sm font-medium text-zinc-700 dark:text-zinc-300";
 
@@ -97,7 +97,7 @@ const Form = () => {
       </div>
 
       {/* Honeypot: hidden from people, bots tend to fill it in. */}
-      <div aria-hidden className="absolute -left-[9999px]">
+      <div aria-hidden className="absolute left-[-9999px]">
         <label htmlFor="company">Company</label>
         <input
           id="company"

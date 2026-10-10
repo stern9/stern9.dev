@@ -42,7 +42,7 @@
 - [TypeScript](https://www.typescriptlang.org/)
 - [React 19](https://reactjs.org/docs/)
 - [Node.js](https://nodejs.org/en/)
-- [TailwindCSS 3](https://tailwindcss.com/docs)
+- [TailwindCSS 4](https://tailwindcss.com/docs)
 - [SWR](https://swr.vercel.app/)
 - [unified](https://unifiedjs.com/) / remark / rehype + [Shiki](https://shiki.style/) - Markdown blog
 - [Resend](https://resend.com/) - Email service

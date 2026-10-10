@@ -45,7 +45,7 @@ export default function Home({
         <p className="font-mono text-sm text-accent dark:text-accent-light">
           Full stack developer · Costa Rica
         </p>
-        <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
+        <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl sm:leading-none">
           Writing code,
           <span className="block text-zinc-400 dark:text-zinc-500">
             and writing about it.

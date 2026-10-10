@@ -22,7 +22,7 @@ export default function TopTracks() {
           </blockquote>
           <figcaption className="mt-2 flex flex-wrap items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
             <span>&mdash; Claude, an AI with opinions about my playlist</span>
-            <span className="rounded border border-zinc-300 px-1.5 py-0.5 font-mono text-xs uppercase tracking-wide dark:border-zinc-700">
+            <span className="rounded-sm border border-zinc-300 px-1.5 py-0.5 font-mono text-xs uppercase tracking-wide dark:border-zinc-700">
               AI-generated
             </span>
           </figcaption>

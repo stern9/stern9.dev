@@ -31,7 +31,7 @@ const CardItem = ({
           width={600}
           height={500}
           sizes="(min-width: 640px) 360px, 100vw"
-          className="aspect-[16/10] w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+          className="aspect-16/10 w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
         />
       </a>
       <div className="flex flex-1 flex-col p-5">

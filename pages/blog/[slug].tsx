@@ -38,7 +38,7 @@ export default function Post({ post, newer, older }: Props) {
         </Link>
 
         <header className="mb-10 mt-8">
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
+          <h1 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl sm:leading-10">
             {post.title}
             {post.draft && <DraftBadge />}
           </h1>

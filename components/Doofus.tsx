@@ -91,7 +91,7 @@ const Doofus = () => {
         <section
           role="dialog"
           aria-label="Chat with Doofus"
-          className="flex h-[28rem] max-h-[calc(100vh-7rem)] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl shadow-zinc-900/10 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40"
+          className="flex h-112 max-h-[calc(100vh-7rem)] w-[min(22rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-2xl shadow-zinc-900/10 dark:border-zinc-800 dark:bg-zinc-950 dark:shadow-black/40"
         >
           <header className="flex items-start justify-between border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
             <div>
@@ -162,7 +162,7 @@ const Doofus = () => {
               maxLength={500}
               autoComplete="off"
               placeholder="Ask me anything (results may vary)"
-              className="min-w-0 flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-none focus:ring-2 focus:ring-secondary/30 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder:text-zinc-500"
+              className="min-w-0 flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-hidden focus:ring-2 focus:ring-secondary/30 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder:text-zinc-500"
             />
             <button
               type="submit"
