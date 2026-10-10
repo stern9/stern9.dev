@@ -7,7 +7,9 @@ const ToggleDarkMode = () => {
   const { resolvedTheme, setTheme } = useTheme();
   useEffect(() => setMounted(true), []);
 
-  const isDark = resolvedTheme === "dark";
+  // The theme is only known in the browser: render the light-mode default
+  // until mounted so the server and client HTML match.
+  const isDark = mounted && resolvedTheme === "dark";
 
   return (
     <button
