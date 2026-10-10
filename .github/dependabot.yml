@@ -1,0 +1,20 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 5
+    groups:
+      # One PR for all the routine bumps instead of one per package.
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Tailwind 4 is a manual migration (config moves into CSS).
+      - dependency-name: tailwindcss
+        update-types: [version-update:semver-major]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
