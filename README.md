@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://stern9.dev/">
-    <img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/microsoft/106/bearded-person_emoji-modifier-fitzpatrick-type-1-2_1f9d4-1f3fb_1f3fb.png" alt="Logo" width="80" height="80">
+    <img src="public/img/me.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">stern9.dev</h3>
