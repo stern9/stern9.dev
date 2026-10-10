@@ -1,9 +1,10 @@
+import type { GetServerSideProps } from "next";
 import { getAllPosts } from "../lib/posts";
 import { site } from "../lib/site";
 
 const staticPaths = ["", "/blog", "/portfolio", "/about", "/contact"];
 
-export async function getServerSideProps({ res }) {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const posts = getAllPosts().filter((post) => !post.draft);
 
   const urls = [
@@ -25,7 +26,7 @@ ${urls}
 </urlset>`);
 
   return { props: {} };
-}
+};
 
 export default function Sitemap() {
   return null;

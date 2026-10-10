@@ -1,7 +1,14 @@
+import type { ReactNode } from "react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
-const Layout = ({ children, cover }) => {
+const Layout = ({
+  children,
+  cover,
+}: {
+  children: ReactNode;
+  cover?: ReactNode;
+}) => {
   return (
     <div className="flex min-h-screen flex-col">
       <a

@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import Anthropic from "@anthropic-ai/sdk";
 import {
   DOOFUS_MODEL,
@@ -12,17 +13,21 @@ import { clientIp } from "../../lib/rateLimit";
 
 const client = process.env.ANTHROPIC_API_KEY ? new Anthropic() : null;
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const sleep = (ms: number) =>
+  new Promise<void>((resolve) => setTimeout(resolve, ms));
 
 // "Type out" a canned reply so it feels like the real thing.
-async function writeSlowly(res, text) {
+async function writeSlowly(res: NextApiResponse, text: string) {
   for (const word of text.split(/(?<= )/)) {
     res.write(word);
     await sleep(35);
   }
 }
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).send("Method not allowed.");

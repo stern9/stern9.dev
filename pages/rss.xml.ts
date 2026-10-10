@@ -1,20 +1,19 @@
+import type { GetServerSideProps } from "next";
 import { getAllPosts } from "../lib/posts";
 import { site } from "../lib/site";
 
-const escapeXml = (str) =>
-  str.replace(
-    /[<>&'"]/g,
-    (c) =>
-      ({
-        "<": "&lt;",
-        ">": "&gt;",
-        "&": "&amp;",
-        "'": "&apos;",
-        '"': "&quot;",
-      })[c],
-  );
+const XML_ENTITIES: Record<string, string> = {
+  "<": "&lt;",
+  ">": "&gt;",
+  "&": "&amp;",
+  "'": "&apos;",
+  '"': "&quot;",
+};
 
-export async function getServerSideProps({ res }) {
+const escapeXml = (str: string) =>
+  str.replace(/[<>&'"]/g, (c) => XML_ENTITIES[c]);
+
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const posts = getAllPosts().filter((post) => !post.draft);
 
   const items = posts
@@ -50,7 +49,7 @@ export async function getServerSideProps({ res }) {
   res.end(xml);
 
   return { props: {} };
-}
+};
 
 export default function Rss() {
   return null;

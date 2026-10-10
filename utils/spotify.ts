@@ -2,11 +2,43 @@ const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-pla
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks?limit=10`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
+// What the site's API routes send to the browser.
+export type Track = { artist: string; songUrl: string; title: string };
+
+export type TopTracksData = {
+  tracks: Track[];
+  blurb?: string | null;
+  blurbPending?: boolean;
+};
+
+export type NowPlayingData =
+  | { isPlaying: false; songUrl?: undefined }
+  | {
+      isPlaying: boolean;
+      album: string;
+      albumImageUrl: string | null;
+      artist: string;
+      songUrl: string;
+      title: string;
+    };
+
+// The parts of Spotify's track object that the site reads.
+export type SpotifyTrack = {
+  type: string;
+  name: string;
+  artists: { name: string }[];
+  album: { name: string; images: { url: string }[] };
+  external_urls: { spotify: string };
+};
+
 // Access tokens last an hour; reuse one instead of fetching a new token on
 // every request (which could get us rate-limited by Spotify).
-let cached = { token: null, expiresAt: 0 };
+let cached: { token: string | null; expiresAt: number } = {
+  token: null,
+  expiresAt: 0,
+};
 
-const getAccessToken = async () => {
+const getAccessToken = async (): Promise<string> => {
   if (cached.token && Date.now() < cached.expiresAt) return cached.token;
 
   const {
@@ -14,6 +46,9 @@ const getAccessToken = async () => {
     SPOTIFY_CLIENT_SECRET: client_secret,
     SPOTIFY_REFRESH_TOKEN: refresh_token,
   } = process.env;
+  if (!client_id || !client_secret || !refresh_token) {
+    throw new Error("Spotify credentials are not configured");
+  }
   const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
 
   const response = await fetch(TOKEN_ENDPOINT, {
@@ -34,15 +69,16 @@ const getAccessToken = async () => {
     );
   }
 
+  const token: string = data.access_token;
   cached = {
-    token: data.access_token,
+    token,
     // Refresh a minute early to avoid using a token right as it expires.
     expiresAt: Date.now() + (data.expires_in - 60) * 1000,
   };
-  return cached.token;
+  return token;
 };
 
-const spotifyGet = async (url) => {
+const spotifyGet = async (url: string) => {
   const response = await fetch(url, {
     headers: { Authorization: `Bearer ${await getAccessToken()}` },
   });

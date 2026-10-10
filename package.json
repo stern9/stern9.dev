@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "typecheck": "tsc --noEmit",
     "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
@@ -30,5 +31,11 @@
     "swr": "^2.5.1",
     "tailwindcss": "^3.4.19",
     "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
   }
 }

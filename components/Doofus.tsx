@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { TbMoodCrazyHappy, TbSend2, TbX } from "react-icons/tb";
 
 const GREETING =
   "Hi! I'm Doofus. I know almost everything about this website. Well, some things. Ask me anything!";
 
+type ChatMessage = { role: "user" | "assistant"; content: string };
+
 // Turn site paths Doofus mentions (/blog, /contact, ...) into links.
 const PATHS = /(\/(?:blog|portfolio|about|contact)\b)/g;
-const linkify = (text) =>
+const linkify = (text: string) =>
   text.split(PATHS).map((part, i) =>
     i % 2 ? (
       <Link
@@ -24,13 +26,13 @@ const linkify = (text) =>
 
 const Doofus = () => {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<ChatMessage[]>([
     { role: "assistant", content: GREETING },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
-  const listRef = useRef(null);
-  const inputRef = useRef(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight });
@@ -40,21 +42,24 @@ const Doofus = () => {
     if (open) inputRef.current?.focus();
   }, [open]);
 
-  const send = async (e) => {
+  const send = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const question = input.trim();
     if (!question || busy) return;
 
     // The greeting is UI-only; the API conversation starts with the visitor.
-    const history = [...messages, { role: "user", content: question }];
+    const history: ChatMessage[] = [
+      ...messages,
+      { role: "user", content: question },
+    ];
     setMessages([...history, { role: "assistant", content: "" }]);
     setInput("");
     setBusy(true);
 
-    const appendToReply = (text) =>
+    const appendToReply = (text: string) =>
       setMessages((prev) => {
         const next = [...prev];
-        const last = next.at(-1);
+        const last = next[next.length - 1];
         next[next.length - 1] = { ...last, content: last.content + text };
         return next;
       });

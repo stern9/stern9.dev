@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { formatDate } from "../lib/format";
+import type { PostMeta } from "../lib/posts";
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts }: { posts: PostMeta[] }) => {
   return (
     <ul className="-mx-3">
       {posts.map((post) => (

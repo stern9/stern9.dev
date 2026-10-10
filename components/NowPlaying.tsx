@@ -1,9 +1,10 @@
 import useSWR from "swr";
 import { FaSpotify } from "react-icons/fa";
 import fetcher from "../utils/fetcher";
+import type { NowPlayingData } from "../utils/spotify";
 
 const NowPlaying = () => {
-  const { data } = useSWR("/api/now-playing", fetcher);
+  const { data } = useSWR<NowPlayingData>("/api/now-playing", fetcher);
 
   return (
     <div className="flex min-w-0 items-center gap-2 text-sm">

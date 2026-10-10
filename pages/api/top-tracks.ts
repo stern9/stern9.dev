@@ -1,12 +1,20 @@
-import { getTopTracks } from "../../utils/spotify";
+import type { NextApiRequest, NextApiResponse } from "next";
+import {
+  getTopTracks,
+  type SpotifyTrack,
+  type TopTracksData,
+} from "../../utils/spotify";
 import { getTrackBlurb } from "../../lib/trackBlurb";
 
-export default async function handler(_, res) {
-  let response;
+export default async function handler(
+  _: NextApiRequest,
+  res: NextApiResponse<TopTracksData>,
+) {
+  let response: Response;
   try {
     response = await getTopTracks();
   } catch (error) {
-    console.error(error.message);
+    console.error(error instanceof Error ? error.message : error);
     return res.status(200).json({ tracks: [] });
   }
 
@@ -19,7 +27,7 @@ export default async function handler(_, res) {
     return res.status(200).json({ tracks: [] });
   }
 
-  const data = await response.json();
+  const data: { items?: SpotifyTrack[] } = await response.json();
   const items = data.items || [];
 
   const tracks = items.slice(0, 10).map((track) => ({

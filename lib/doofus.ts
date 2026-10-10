@@ -1,5 +1,6 @@
 // Server-only: persona, canned replies and limits for Doofus, the site's
 // intentionally not-very-bright chat assistant.
+import type Anthropic from "@anthropic-ai/sdk";
 import { createRateLimiter } from "./rateLimit";
 
 export const DOOFUS_MODEL = "claude-haiku-4-5";
@@ -58,7 +59,7 @@ const TIRED = [
   "I've talked so much today that my one brain cell went home early. Try again later, or reach Avram on /contact!",
 ];
 
-const pick = (list) => list[Math.floor(Math.random() * list.length)];
+const pick = (list: string[]) => list[Math.floor(Math.random() * list.length)];
 export const cannedReply = () => pick(CANNED);
 export const tiredReply = () => pick(TIRED);
 
@@ -68,11 +69,11 @@ export const checkLimits = createRateLimiter({
 });
 
 // Validate and trim the conversation the browser sends.
-export function cleanMessages(input) {
+export function cleanMessages(input: unknown): Anthropic.MessageParam[] | null {
   if (!Array.isArray(input)) return null;
   const messages = input
     .filter(
-      (m) =>
+      (m): m is { role: "user" | "assistant"; content: string } =>
         m &&
         (m.role === "user" || m.role === "assistant") &&
         typeof m.content === "string" &&
@@ -86,6 +87,6 @@ export function cleanMessages(input) {
 
   // The API needs the conversation to start with a user turn and end with one.
   while (messages.length && messages[0].role !== "user") messages.shift();
-  if (!messages.length || messages.at(-1).role !== "user") return null;
+  if (messages.at(-1)?.role !== "user") return null;
   return messages;
 }

@@ -1,4 +1,14 @@
-export const projects = [
+export type Project = {
+  title: string;
+  year: number;
+  image: string;
+  previewURL: string | null;
+  codeURL: string;
+  description: string;
+  stack?: string[];
+};
+
+export const projects: Project[] = [
   {
     title: "Code Snippets CRUD",
     year: 2021,

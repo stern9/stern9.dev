@@ -21,7 +21,7 @@ const Navbar = () => {
     return () => router.events.off("routeChangeStart", close);
   }, [router.events]);
 
-  const isActive = (href) =>
+  const isActive = (href: string) =>
     router.pathname === href || router.pathname.startsWith(`${href}/`);
 
   return (

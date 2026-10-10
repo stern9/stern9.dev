@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { FaGithub } from "react-icons/fa";
+import type { Project } from "../lib/projects";
 
 const CardItem = ({
   title,
@@ -10,7 +11,7 @@ const CardItem = ({
   codeURL,
   description,
   stack = [],
-}) => {
+}: Project) => {
   // Projects whose demo is offline have no previewURL: link to the source.
   const href = previewURL || codeURL;
 

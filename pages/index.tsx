@@ -5,11 +5,19 @@ import CoverArt from "../components/CoverArt";
 import Seo from "../components/Seo";
 import PostList from "../components/PostList";
 import Projects from "../components/Projects";
-import { getAllPosts } from "../lib/posts";
+import { getAllPosts, type PostMeta } from "../lib/posts";
 import { getCoverCode } from "../lib/cover";
 import { site } from "../lib/site";
 
-const SectionHeader = ({ title, href, cta }) => (
+const SectionHeader = ({
+  title,
+  href,
+  cta,
+}: {
+  title: string;
+  href: string;
+  cta: string;
+}) => (
   <div className="mb-4 flex items-baseline justify-between">
     <h2 className="text-sm font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
       {title}
@@ -23,7 +31,13 @@ const SectionHeader = ({ title, href, cta }) => (
   </div>
 );
 
-export default function Home({ posts, coverCode }) {
+export default function Home({
+  posts,
+  coverCode,
+}: {
+  posts: PostMeta[];
+  coverCode: string[];
+}) {
   return (
     <Layout cover={<CoverArt code={coverCode} />}>
       <Seo />

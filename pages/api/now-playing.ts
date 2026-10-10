@@ -1,11 +1,19 @@
-import { getNowPlaying } from "../../utils/spotify";
+import type { NextApiRequest, NextApiResponse } from "next";
+import {
+  getNowPlaying,
+  type NowPlayingData,
+  type SpotifyTrack,
+} from "../../utils/spotify";
 
-export default async function handler(_, res) {
-  let response;
+export default async function handler(
+  _: NextApiRequest,
+  res: NextApiResponse<NowPlayingData>,
+) {
+  let response: Response;
   try {
     response = await getNowPlaying();
   } catch (error) {
-    console.error(error.message);
+    console.error(error instanceof Error ? error.message : error);
     return res.status(200).json({ isPlaying: false });
   }
 
@@ -22,7 +30,8 @@ export default async function handler(_, res) {
     return res.status(200).json({ isPlaying: false });
   }
 
-  const song = await response.json();
+  const song: { is_playing: boolean; item: SpotifyTrack | null } =
+    await response.json();
 
   // `item` is null for ads, and podcast episodes have no artists/album.
   if (!song.item || song.item.type !== "track") {

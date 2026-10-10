@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { Resend } from "resend";
 import { clientIp, createRateLimiter } from "../../lib/rateLimit";
 
@@ -10,16 +11,21 @@ const allowSend = createRateLimiter({
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const escapeHtml = (str) =>
-  str.replace(
-    /[&<>"']/g,
-    (c) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
-        c
-      ],
-  );
+const HTML_ENTITIES: Record<string, string> = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+};
 
-export default async function handler(req, res) {
+const escapeHtml = (str: string) =>
+  str.replace(/[&<>"']/g, (c) => HTML_ENTITIES[c]);
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
     return res.status(405).send("Method not allowed.");
@@ -31,7 +37,7 @@ export default async function handler(req, res) {
     FROM_EMAIL_ADDRESS: from_email,
   } = process.env;
 
-  if (!RESEND_API_KEY) {
+  if (!RESEND_API_KEY || !to_email || !from_email) {
     return res.status(500).send("Email service not configured.");
   }
 
@@ -65,7 +71,7 @@ export default async function handler(req, res) {
   const resend = new Resend(RESEND_API_KEY);
 
   // Resend returns errors instead of throwing, so check `error` explicitly.
-  let error;
+  let error: unknown;
   try {
     ({ error } = await resend.emails.send({
       from: from_email,

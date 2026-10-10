@@ -1,7 +1,7 @@
 import CardItem from "./CardItem";
 import { projects } from "../lib/projects";
 
-const Projects = ({ limit }) => {
+const Projects = ({ limit }: { limit?: number }) => {
   // A limited list (the home page) features projects with a working demo.
   const list = limit
     ? [

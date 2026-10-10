@@ -1,9 +1,9 @@
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
 import PostList from "../../components/PostList";
-import { getAllPosts } from "../../lib/posts";
+import { getAllPosts, type PostMeta } from "../../lib/posts";
 
-export default function Blog({ posts }) {
+export default function Blog({ posts }: { posts: PostMeta[] }) {
   const years = [...new Set(posts.map((post) => post.date.slice(0, 4)))];
 
   return (
@@ -17,8 +17,8 @@ export default function Blog({ posts }) {
           Blog
         </h1>
         <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-400">
-          Thoughts on software engineering, the things I build and what I learn along
-          the way.
+          Thoughts on software engineering, the things I build and what I learn
+          along the way.
         </p>
       </header>
 

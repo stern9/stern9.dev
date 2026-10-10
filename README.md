@@ -38,7 +38,8 @@
 
 ### Built With
 
-- [Next.js 15](https://nextjs.org/)
+- [Next.js 16](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 - [React 19](https://reactjs.org/docs/)
 - [Node.js](https://nodejs.org/en/)
 - [TailwindCSS 3](https://tailwindcss.com/docs)

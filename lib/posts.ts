@@ -17,15 +17,27 @@ const WORDS_PER_MINUTE = 230;
 // Drafts are visible while running `npm run dev`, hidden in production builds.
 const showDrafts = process.env.NODE_ENV !== "production";
 
-const toISODate = (value, file) => {
-  const date = value instanceof Date ? value : new Date(value);
+export type PostMeta = {
+  slug: string;
+  title: string;
+  date: string; // YYYY-MM-DD
+  description: string;
+  tags: string[];
+  draft: boolean;
+  readingTime: number; // minutes
+};
+
+export type Post = PostMeta & { html: string };
+
+const toISODate = (value: unknown, file: string) => {
+  const date = value instanceof Date ? value : new Date(String(value));
   if (Number.isNaN(date.getTime())) {
     throw new Error(`${file}: invalid or missing "date" in frontmatter`);
   }
   return date.toISOString().slice(0, 10);
 };
 
-const readPostFile = (file) => {
+const readPostFile = (file: string): { meta: PostMeta; content: string } => {
   const slug = file.replace(/\.md$/, "");
   const raw = fs.readFileSync(path.join(POSTS_DIR, file), "utf8");
   const { data, content } = matter(raw);
@@ -55,7 +67,7 @@ const postFiles = () =>
     ? fs.readdirSync(POSTS_DIR).filter((file) => file.endsWith(".md"))
     : [];
 
-export function getAllPosts() {
+export function getAllPosts(): PostMeta[] {
   return postFiles()
     .map((file) => readPostFile(file).meta)
     .filter((post) => showDrafts || !post.draft)
@@ -78,7 +90,7 @@ const processor = unified()
   })
   .use(rehypeStringify);
 
-export async function getPostBySlug(slug) {
+export async function getPostBySlug(slug: string): Promise<Post | null> {
   const file = `${slug}.md`;
   if (!postFiles().includes(file)) return null;
 

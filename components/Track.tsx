@@ -1,4 +1,6 @@
-export default function Track(track) {
+import type { Track as TrackData } from "../utils/spotify";
+
+export default function Track(track: TrackData & { ranking: number }) {
   return (
     <li className="flex items-baseline gap-4 py-3">
       <span className="w-5 shrink-0 text-right font-mono text-sm tabular-nums text-zinc-400">

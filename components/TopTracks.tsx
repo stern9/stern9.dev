@@ -1,9 +1,10 @@
 import useSWR from "swr";
 import fetcher from "../utils/fetcher";
 import Track from "../components/Track";
+import type { TopTracksData } from "../utils/spotify";
 
 export default function TopTracks() {
-  const { data } = useSWR("/api/top-tracks", fetcher, {
+  const { data } = useSWR<TopTracksData>("/api/top-tracks", fetcher, {
     // The first blurb is written in the background: check back until it lands.
     refreshInterval: (latest) => (latest?.blurbPending ? 3000 : 0),
   });

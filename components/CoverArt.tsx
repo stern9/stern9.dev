@@ -2,7 +2,7 @@
 // snippet is in focus; the side ones are dimmed and fade into the edges.
 // Purely decorative (aria-hidden).
 
-const CoverArt = ({ code = [] }) => {
+const CoverArt = ({ code = [] }: { code?: string[] }) => {
   const [left, focus, right] = code;
 
   return (

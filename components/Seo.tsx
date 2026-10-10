@@ -7,6 +7,11 @@ const Seo = ({
   description = site.description,
   type = "website",
   date,
+}: {
+  title?: string;
+  description?: string;
+  type?: "website" | "article";
+  date?: string;
 }) => {
   const { asPath } = useRouter();
   const url = `${site.url}${asPath === "/" ? "" : asPath.split(/[?#]/)[0]}`;

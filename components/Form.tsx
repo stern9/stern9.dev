@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 const emptyInputs = { fullName: "", email: "", message: "", company: "" };
 
@@ -9,16 +9,19 @@ const labelClass = "text-sm font-medium text-zinc-700 dark:text-zinc-300";
 
 const Form = () => {
   const [inputs, setInputs] = useState(emptyInputs);
-  // idle | submitting | success | error
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
   const [message, setMessage] = useState("");
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setInputs((prev) => ({ ...prev, [e.target.id]: e.target.value }));
     if (status === "success" || status === "error") setStatus("idle");
   };
 
-  const handleOnSubmit = async (e) => {
+  const handleOnSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
     try {
@@ -33,7 +36,10 @@ const Form = () => {
       setMessage("Thanks! Your message is on its way. I'll reply soon.");
       setStatus("success");
     } catch (error) {
-      setMessage(error.message || "Something went wrong. Please try again.");
+      setMessage(
+        (error instanceof Error && error.message) ||
+          "Something went wrong. Please try again.",
+      );
       setStatus("error");
     }
   };

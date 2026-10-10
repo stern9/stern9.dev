@@ -1,12 +1,26 @@
+import type { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { HiArrowLeft } from "react-icons/hi";
 import Layout from "../../components/Layout";
 import Seo from "../../components/Seo";
 import { DraftBadge } from "../../components/PostList";
-import { getAllPosts, getPostBySlug } from "../../lib/posts";
+import {
+  getAllPosts,
+  getPostBySlug,
+  type Post as PostData,
+  type PostMeta,
+} from "../../lib/posts";
 import { formatDate } from "../../lib/format";
 
-export default function Post({ post, newer, older }) {
+type PostLink = Pick<PostMeta, "slug" | "title">;
+
+type Props = {
+  post: PostData;
+  newer: PostLink | null;
+  older: PostLink | null;
+};
+
+export default function Post({ post, newer, older }: Props) {
   return (
     <Layout>
       <Seo
@@ -66,7 +80,15 @@ export default function Post({ post, newer, older }) {
   );
 }
 
-const PostNavLink = ({ post, label, alignRight }) => (
+const PostNavLink = ({
+  post,
+  label,
+  alignRight,
+}: {
+  post: PostLink;
+  label: string;
+  alignRight?: boolean;
+}) => (
   <Link
     href={`/blog/${post.slug}`}
     className={`group rounded-lg border border-zinc-200 p-4 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-700 ${
@@ -82,20 +104,23 @@ const PostNavLink = ({ post, label, alignRight }) => (
   </Link>
 );
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: getAllPosts().map((post) => ({ params: { slug: post.slug } })),
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  const post = await getPostBySlug(params.slug);
+export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
+  params,
+}) => {
+  const post = params ? await getPostBySlug(params.slug) : null;
   if (!post) return { notFound: true };
 
   const posts = getAllPosts();
   const index = posts.findIndex((p) => p.slug === post.slug);
-  const pick = (p) => (p ? { slug: p.slug, title: p.title } : null);
+  const pick = (p?: PostMeta): PostLink | null =>
+    p ? { slug: p.slug, title: p.title } : null;
 
   return {
     props: {
@@ -104,4 +129,4 @@ export async function getStaticProps({ params }) {
       older: pick(posts[index + 1]),
     },
   };
-}
+};

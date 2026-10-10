@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import Script from "next/script";
@@ -12,7 +13,7 @@ const Doofus = dynamic(() => import("../components/Doofus"), { ssr: false });
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <Head>
