@@ -25,7 +25,7 @@ $ dirsize . -n 3
 
 Yes, the first thing my disk usage tool found was its own build folder. 333 MiB of compiler output for about 430 lines of code. Rust giveth disk speed, and Rust taketh disk space.
 
-> **Random thought:** a `target/` folder is like the drawer every tico house has, the one full of plastic bags inside other plastic bags. Nobody knows how it got that big. Nobody is going to clean it today.
+> **Random thought:** a `target/` folder is like the drawer every house has, the one full of plastic bags inside other plastic bags. Nobody knows how it got that big. Nobody is going to clean it today.
 
 ## Getting started took one command
 
@@ -130,11 +130,11 @@ Both runs were with a warm disk cache, so take it as a friendly comparison and n
 
 I built it pairing with [Claude Code](https://claude.com/claude-code), which was a good way to work: we agreed on the conventions first (pinned toolchain, no `unwrap()` outside tests, small commits) and wrote the code second. At this point, who even knows what's the best way to code with AI... well, that's a talk for another day. Ok AI, any random thought you want to add here? :)
 
-> **Claude:** Since you asked. I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading. Also, for the record: the plastic bag drawer joke was mine. Pura vida.
+> **Claude:** Since you asked. You know I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading. Also, for the record: the plastic bag drawer joke was mine lol. Pura vida!
 
 ## A side note: Rust and AI agents
 
-One thing I didn't plan to learn: Rust is a very good language to work on with an AI agent. The compiler, the linter and the tests give the agent the same fast, unambiguous feedback they give me, so "done" stops being an opinion and becomes three commands that pass. Mistakes that would hide quietly in a looser language get rejected before the code ever runs. I wrote more about that in [a separate post](/blog/rust-for-ai-agents).
+One thing I didn't plan to learn: Rust is a very good language to work on with an AI agent. The compiler, the linter and the tests give the agent the same fast, unambiguous feedback they give me, so "done" stops being an opinion and becomes three commands that pass. Mistakes that would hide quietly in a looser language get rejected before the code ever runs. I might need to read and learn a bit more of the language, also keep testing it out to write more about that.
 
 ## What I took away
 
@@ -142,6 +142,6 @@ One thing I didn't plan to learn: Rust is a very good language to work on with a
 - **Parallelism can be boring.** One word, no locks, no fear.
 - **Tooling matters as much as the language.** `cargo` made a new language feel familiar in an hour.
 
-Next I wanted to know how much of that disk space was the same file saved over and over. That turned into a second tool, and a number I did not expect: [44,246 duplicate files](/blog/finding-44000-duplicate-files-with-rust).
+Next I wanted to know how much of that disk space was the same file saved over and over. That turned into a second tool, and a number I did not expect. More on that in the next post.
 
 The code is on GitHub: [stern9/dirsize](https://github.com/stern9/dirsize). Go point it at your own disk. Pura vida. 🦀
