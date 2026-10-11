@@ -71,7 +71,7 @@ Rust doesn't let that program compile. The compiler tracks who owns each piece o
 
 The obvious design is one shared list of errors that every thread pushes into. Rust's rules push you toward something simpler: each call **returns** its own errors, and the parent merges them. No locks, no shared state, nothing to get wrong.
 
-> **Random thought:** the Rust compiler is like a tica abuela at the door. "¿Ya comiste? ¿Llevás suéter? ¿Ese vector tiene dueño?" You are not leaving the house until everything is in order. And, al chile, she is right every single time.
+> **Random thought:** the Rust compiler is like your mum at the door. "¿Ya comiste? ¿Llevás suéter? ¿Ese vector tiene dueño?" You are not leaving the house until everything is in order. And, al chile, she is right every single time.
 
 ## Errors are just values
 
@@ -107,7 +107,7 @@ My first version of that test used one long multi-line string, and three tests f
 
 ## So, is it fast?
 
-I ran it on my code folder: **5.3 GiB across about 153,000 files**, on an 18-core laptop.
+I ran it on my code sandbox folder: **5.3 GiB across about 153,000 files**, on an 18-core laptop.
 
 | | |
 | --- | ---: |
@@ -119,7 +119,7 @@ Both runs were with a warm disk cache, so take it as a friendly comparison and n
 
 (The two tools disagree slightly on the total, 5.3 versus 5.6 GiB. That's expected: `dirsize` adds up file lengths, while `du` counts blocks on disk.)
 
-> **Random thought:** 0.27 seconds. That is less time than it takes someone in San José to say "voy saliendo" when they haven't showered yet.
+> **Random thought:** 0.27 seconds. That is less time than it takes someone in San José to say "me quedé dormido, voy saliendo" when they haven't showered yet.
 
 ## What ended up in the repo
 
@@ -128,7 +128,13 @@ Both runs were with a warm disk cache, so take it as a friendly comparison and n
 - **17 tests:** 8 unit tests on the rendering, and 9 integration tests that run the real binary against a temporary folder.
 - **CI on Linux and macOS** running the formatter, the linter and the tests on every push.
 
-I built it pairing with [Claude Code](https://claude.com/claude-code), which was a good way to work: we agreed on the conventions first (pinned toolchain, no `unwrap()` outside tests, small commits) and wrote the code second.
+I built it pairing with [Claude Code](https://claude.com/claude-code), which was a good way to work: we agreed on the conventions first (pinned toolchain, no `unwrap()` outside tests, small commits) and wrote the code second. At this point, who even knows what's the best way to code with AI... well, that's a talk for another day. Ok AI, any random thought you want to add here? :)
+
+> **Claude:** Since you asked. I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading. Also, for the record: the plastic bag drawer joke was mine. Pura vida.
+
+## A side note: Rust and AI agents
+
+One thing I didn't plan to learn: Rust is a very good language to work on with an AI agent. The compiler, the linter and the tests give the agent the same fast, unambiguous feedback they give me, so "done" stops being an opinion and becomes three commands that pass. Mistakes that would hide quietly in a looser language get rejected before the code ever runs. I wrote more about that in [a separate post](/blog/rust-for-ai-agents).
 
 ## What I took away
 
