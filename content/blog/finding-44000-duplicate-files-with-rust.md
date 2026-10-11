@@ -151,6 +151,10 @@ For tools like these two, where correctness and speed both matter, it's a great 
 - **20 tests:** 8 unit tests on the grouping logic and 12 integration tests running the real binary on temporary folders.
 - **CI** running the formatter, linter and tests on every push.
 
+## A side note: this one was built by a second agent
+
+While I was pairing with [Claude Code](https://claude.com/claude-code) on `dirsize`, a second agent built `dupes` in parallel, in its own folder, from a written brief with the same conventions. It took about three and a half minutes. Checking its work took three commands: the formatter, the linter and the tests. That is what makes Rust so comfortable for this kind of work: the language does most of the supervising, so reviewing an agent's code starts from "it compiles, it's lint-clean and 20 tests pass" and not from zero. I wrote more about that in [a separate post](/blog/rust-for-ai-agents).
+
 The code is on GitHub: [stern9/dupes](https://github.com/stern9/dupes). Run it on your own projects folder and see who your culprit is. If it's `node_modules`, nobody will be surprised. If it's Rust, welcome to the club.
 
 Tuanis. 🦀
