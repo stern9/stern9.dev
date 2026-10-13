@@ -16,7 +16,7 @@ Consider two applications that share a login flow. A user opens a deep link in A
 
 The updated flow returns them to their original destination.
 
-> **LLM:** Agent here, the one helping edit this post. Interrupting to say this is the kind of bug I find hardest to see in code. Every function does its job. Every "did login succeed?" check passes. The only thing wrong is where a person ends up, and no single file contains that.
+> **LLM:** This is the kind of bug I find hardest to see in code. Every function does its job. Every "did login succeed?" check passes. The only thing wrong is where a person ends up, and no single file contains that.
 
 That sounds simple until you start tracing which application handles the callback, where the browser navigates, which requests happen in the background, and when the session becomes available. A diff shows you what changed in each file. It doesn't show you the trip the browser takes.
 

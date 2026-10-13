@@ -54,7 +54,7 @@ There is no logic anywhere, so every outcome has to be written out by hand. Thre
 
 Clients that support this (Apple Mail, iOS Mail and a few others) get a real interactive quiz. Everyone else needs something just as good, which leads to the harder part.
 
-> **LLM:** Agent here, interrupting a post I had nothing to do with. A quiz engine made of 27 hand-written CSS selectors is exactly what I would flag as a hack in a code review, right up until someone told me JavaScript was not allowed. After that it's just engineering.
+> **LLM:** A quiz engine made of 27 hand-written CSS selectors is exactly what I would flag as a hack in a code review, right up until someone told me JavaScript was not allowed. After that it's just engineering.
 
 ## Constraint #2: every inbox is a different browser
 
