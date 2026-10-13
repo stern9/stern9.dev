@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import TopTracks from "../components/TopTracks";
@@ -46,10 +47,22 @@ const about = () => {
 
         <h2>Currently learning</h2>
         <p>
-          TypeScript, React Native, Docker and more about how the cloud works
-          (AWS, I see you!). Eventually I want to give Rust a try, and of course
-          keep going with JavaScript. You can never stop learning about this
-          wonderful and complex language.
+          How to build software with AI agents and still know exactly what got
+          built. These days that means writing the brief and the conventions
+          before any code, running agents in parallel, trying new skills and new
+          kinds of models on real problems, and reviewing everything that comes
+          back. The stack is getting huge, with all the awesome tools we have
+          available now, so there is always something new to try.
+        </p>
+        <p>
+          I also finally gave Rust a try, and{" "}
+          <Link href="/blog/building-dirsize-a-disk-usage-tool-in-rust">
+            wrote about it
+          </Link>
+          . It turns out a strict compiler is a great supervisor for an agent.
+          TypeScript and JavaScript are still home. And I keep learning how the
+          cloud works, with more focus on security now. The internet is becoming
+          a dangerous place, and we should all use it responsibly.
         </p>
 
         <h2>About this site</h2>
@@ -58,6 +71,11 @@ const about = () => {
           Markdown and rendered at build time, and a couple of APIs connect
           things like Spotify. It&apos;s hosted on a server I set up myself with
           Node.js and Nginx on an Ubuntu cloud machine.
+        </p>
+        <p>
+          I write the posts, and I build and edit with AI tools. Anything on
+          this site written by a model carries an &ldquo;AI-generated&rdquo;
+          badge, so you always know who is talking.
         </p>
 
         <h2>On repeat</h2>

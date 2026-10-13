@@ -52,9 +52,10 @@ export default function Home({
           </span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
-          I build web applications end to end and learn by creating. This is my
-          corner of the web: I write about development and the things I build,
-          and keep a collection of projects I&apos;ve shipped over the years.
+          I build software and solutions, end to end. I learn by creating. This
+          is my corner of the web: I write about development and the things I
+          build. I also keep a collection of projects I&apos;ve shipped over the
+          years.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
