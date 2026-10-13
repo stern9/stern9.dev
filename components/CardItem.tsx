@@ -7,6 +7,7 @@ const CardItem = ({
   title,
   year,
   image,
+  terminal,
   previewURL,
   codeURL,
   description,
@@ -25,14 +26,24 @@ const CardItem = ({
         tabIndex={-1}
         aria-hidden
       >
-        <Image
-          src={image}
-          alt=""
-          width={600}
-          height={500}
-          sizes="(min-width: 640px) 360px, 100vw"
-          className="aspect-16/10 w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
-        />
+        {image ? (
+          <Image
+            src={image}
+            alt=""
+            width={600}
+            height={500}
+            sizes="(min-width: 640px) 360px, 100vw"
+            className="aspect-16/10 w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        ) : (
+          <div className="relative aspect-16/10 w-full overflow-hidden bg-[#07111f]">
+            <pre className="p-4 font-mono text-[10px] leading-[1.6] text-zinc-300 sm:text-[11px]">
+              {terminal}
+            </pre>
+            <div className="absolute inset-y-0 right-0 w-10 bg-linear-to-l from-[#07111f] to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-8 bg-linear-to-t from-[#07111f] to-transparent" />
+          </div>
+        )}
       </a>
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-baseline justify-between gap-3">

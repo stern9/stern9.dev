@@ -17,6 +17,13 @@ const portfolio = () => {
           A selection of personal and work projects I&apos;ve built over the
           years.
         </p>
+        <p className="mt-3 max-w-2xl text-zinc-600 dark:text-zinc-400">
+          You&apos;ll notice a jump from 2021 to 2026. I was building the whole
+          time, just not in public: with Gorilla Logic, on client teams at
+          Panasonic Well, Cyngn, HIMSS and The Pro&apos;s Closet, and on
+          automation projects for a few clients of my own. That work lives in
+          private repositories and isn&apos;t mine to publish.
+        </p>
       </header>
       <Projects />
     </Layout>
