@@ -1,6 +1,6 @@
 ---
 title: "Markdown style guide"
-date: 2026-10-13
+date: 2021-03-27
 description: "A reference post showing every formatting feature the blog supports. Copy it to start a new post."
 tags: ["meta", "markdown"]
 draft: true
