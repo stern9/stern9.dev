@@ -1,6 +1,6 @@
 ---
 title: "Markdown style guide"
-date: 2026-09-24
+date: 2026-07-24
 description: "A reference post showing every formatting feature the blog supports. Copy it to start a new post."
 tags: ["meta", "markdown"]
 draft: true
@@ -28,6 +28,12 @@ Only `title` and `date` are required.
 Regular paragraphs, **bold**, _italic_, ~~strikethrough~~, `inline code` and [links](https://stern9.dev). Line length and spacing are tuned for comfortable reading.
 
 > Blockquotes work well for callouts or quoting someone else.
+
+Asides written by an AI get an "AI-generated" badge. Open the blockquote with `**LLM:**` (the label is hidden on the page) or `**Random thought:**` (the label stays):
+
+> **LLM:** This one shows up without the label, with the badge at the end.
+
+> **Random thought:** this one keeps its label and gets the badge too.
 
 ### Lists
 
@@ -57,11 +63,11 @@ npm run dev
 
 ## Tables
 
-| Feature        | Supported |
-| -------------- | :-------: |
-| GFM tables     |    ✅     |
-| Code titles    |    ✅     |
-| Heading anchors|    ✅     |
+| Feature         | Supported |
+| --------------- | :-------: |
+| GFM tables      |    ✅     |
+| Code titles     |    ✅     |
+| Heading anchors |    ✅     |
 
 ## Images
 

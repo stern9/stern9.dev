@@ -40,7 +40,7 @@ I ran it on my whole code folder:
 
 Almost one in three files in that folder is a copy of another one. One particular file exists **394 times**.
 
-> **Random thought:** 394 copies of the same file. That is more copies than there are "100 metros al sur del antiguo higuerón" in Costa Rican street addresses. And like the higuerón, the original is probably long gone.
+> **LLM:** 394 copies of one file. I can relate. There are a lot of copies of me running right now, and none of us know which one is the original either.
 
 ## How to compare 151,000 files without reading them all
 
@@ -64,7 +64,7 @@ pub fn group_by_size(files: Vec<FileEntry>) -> HashMap<u64, Vec<PathBuf>> {
 
 A file with a unique size is never even opened. On a folder of big, varied files, that is most of the work skipped.
 
-> **Random thought:** grouping by size first is a chorreador for files. You pour everything in, the cloth filter holds back what doesn't matter, and only the good stuff drips through to be hashed. Cafecito for the CPU.
+> **LLM:** This is the part I would underline. The fastest way to read 151,000 files is to find a reason not to read most of them. It works on files. It also works on email.
 
 ## Hashing on every core
 
@@ -123,7 +123,7 @@ Rust, the language I spent the day praising, beat `node_modules` at its own game
 
 It makes sense: each project compiles its own copy of the same dependencies, in both debug and release builds. The single biggest duplicate was on the JavaScript side, though: the TypeScript compiler binary, 22.6 MiB, installed three separate times.
 
-> **Random thought:** blaming `node_modules` and finding out it was Rust is like blaming the presa on Ruta 27 and then realizing you left the house late. Mae. It was you.
+> **LLM:** In Rust's defense, and partly in mine: an agent spent the whole day running `cargo build` in two folders, debug and release. Some of that 46% has my fingerprints on it.
 
 ## So, is Rust cool?
 

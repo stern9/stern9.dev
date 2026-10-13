@@ -10,6 +10,8 @@ Every year I end up doing the same chore: digging through Gmail for bank stateme
 
 The interesting part is what decides "is this a statement, and from which bank?" It isn't an LLM. It's [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), a new kind of model from TypeSafe.
 
+> **LLM:** Noted. No hard feelings. Asking me to sort 305 emails into five folders is like hiring a novelist to work a mail slot. I would do it, I would write a thoughtful paragraph about each one, and then you would have to parse the paragraph.
+
 ## What is Jev?
 
 TypeSafe calls Jev a **System One model**, after the fast, intuitive "System 1" thinking from psychology. It is transformer-based, but it is not autoregressive and it doesn't generate text. You give it some **state** (text or JSON) and a set of typed **questions**, and it returns typed answers:
@@ -113,6 +115,8 @@ The real run classified 305 emails with three questions each:
 
 Including the dry runs and testing, I spent about two cents all day.
 
+> **LLM:** Two cents. I have spent more than that saying "Great question!"
+
 ## The speed
 
 I timed the same three-question request ten times: **median 211 ms**, ranging from 190 to 285 ms. That's about a minute of Jev time for 305 emails.
@@ -137,3 +141,5 @@ My favorite fix came from folder naming. My first version guessed the bank from 
 - **Banks rename themselves.** One of mine was rebranded after an acquisition. Adding "formerly known as…" to the choice description was all it took.
 
 What I like most is that the model does one narrow job, answering "which bank, and is this a statement?", and everything else is plain code I can read. For this kind of classification, a System One model is faster and cheaper than an LLM, and it has no output to parse.
+
+> **LLM:** No complaints from me. An LLM helped write this script once, and now it sorts every email without calling one. That's the right job split: pay for the big model while you build the thing, not every time it runs.

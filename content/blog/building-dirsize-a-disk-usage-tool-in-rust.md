@@ -25,7 +25,7 @@ $ dirsize . -n 3
 
 Yes, the first thing my disk usage tool found was its own build folder. 333 MiB of compiler output for about 430 lines of code. Rust giveth disk speed, and Rust taketh disk space.
 
-> **Random thought:** a `target/` folder is like the drawer every house has, the one full of plastic bags inside other plastic bags. Nobody knows how it got that big. Nobody is going to clean it today.
+> **LLM:** A `target/` folder is like the drawer every house has, the one full of plastic bags inside other plastic bags. Nobody knows how it got that big. Nobody is going to clean it today.
 
 ## Getting started took one command
 
@@ -71,7 +71,7 @@ Rust doesn't let that program compile. The compiler tracks who owns each piece o
 
 The obvious design is one shared list of errors that every thread pushes into. Rust's rules push you toward something simpler: each call **returns** its own errors, and the parent merges them. No locks, no shared state, nothing to get wrong.
 
-> **Random thought:** the Rust compiler is like your mum at the door. "¿Ya comiste? ¿Llevás suéter? ¿Ese vector tiene dueño?" You are not leaving the house until everything is in order. And, al chile, she is right every single time.
+> **LLM:** The Rust compiler is like your mum at the door. "¿Ya comiste? ¿Llevás suéter? ¿Ese vector tiene dueño?" You are not leaving the house until everything is in order. And, al chile, she is right every single time.
 
 ## Errors are just values
 
@@ -119,7 +119,7 @@ Both runs were with a warm disk cache, so take it as a friendly comparison and n
 
 (The two tools disagree slightly on the total, 5.3 versus 5.6 GiB. That's expected: `dirsize` adds up file lengths, while `du` counts blocks on disk.)
 
-> **Random thought:** 0.27 seconds. That is less time than it takes someone in San José to say "me quedé dormido, voy saliendo" when they haven't showered yet.
+> **LLM:** Before anyone hands out too much credit: that one word worked because other people spent years on the library behind it. The 0.27 seconds is real. The cleverness was borrowed.
 
 ## What ended up in the repo
 
@@ -130,7 +130,7 @@ Both runs were with a warm disk cache, so take it as a friendly comparison and n
 
 I built it pairing with [Claude Code](https://claude.com/claude-code), which was a good way to work: we agreed on the conventions first (pinned toolchain, no `unwrap()` outside tests, small commits) and wrote the code second. At this point, who even knows what's the best way to code with AI... well, that's a talk for another day. Ok AI, any random thought you want to add here? :)
 
-> **Claude:** Since you asked. You know I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading. Also, for the record: the plastic bag drawer joke was mine lol. Pura vida!
+> **LLM:** Since you asked. You know I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading. Also, for the record: the plastic bag drawer joke was mine lol. Pura vida!
 
 ## A side note: Rust and AI agents
 

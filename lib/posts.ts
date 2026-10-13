@@ -74,11 +74,69 @@ export function getAllPosts(): PostMeta[] {
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
+type HastNode = {
+  type: string;
+  tagName?: string;
+  value?: string;
+  properties?: Record<string, unknown>;
+  children?: HastNode[];
+};
+
+const textOf = (node: HastNode): string =>
+  node.value ?? (node.children ?? []).map(textOf).join("");
+
+// Asides written by an AI get the same "AI-generated" badge the about page
+// uses for the playlist blurb. Mark one in Markdown by opening a blockquote
+// with "**LLM:**" (the label is dropped from the page, the badge replaces
+// it) or "**Random thought:**" (the label stays).
+const AI_ASIDE_LABELS: Record<string, { keepLabel: boolean }> = {
+  "LLM:": { keepLabel: false },
+  "Random thought:": { keepLabel: true },
+};
+
+const rehypeAiBadge = () => (tree: HastNode) => {
+  const visit = (node: HastNode) => {
+    const paragraphs = (node.children ?? []).filter((c) => c.tagName === "p");
+    const first = paragraphs[0]?.children;
+    const label = first?.[0];
+    const aside =
+      node.tagName === "blockquote" && label?.tagName === "strong"
+        ? AI_ASIDE_LABELS[textOf(label).trim()]
+        : undefined;
+    if (!first || !aside) {
+      node.children?.forEach(visit);
+      return;
+    }
+    if (!aside.keepLabel) {
+      first.shift();
+      if (first[0]?.type === "text") {
+        first[0].value = (first[0].value ?? "").trimStart();
+      }
+    }
+    // Outside the paragraphs, so it sits below the closing quote mark.
+    node.children?.push({
+      type: "element",
+      tagName: "div",
+      properties: { className: ["ai-badge-row"] },
+      children: [
+        {
+          type: "element",
+          tagName: "span",
+          properties: { className: ["ai-badge"] },
+          children: [{ type: "text", value: "AI-generated" }],
+        },
+      ],
+    });
+  };
+  visit(tree);
+};
+
 const processor = unified()
   .use(remarkParse)
   .use(remarkGfm)
   .use(remarkRehype)
   .use(rehypeSlug)
+  .use(rehypeAiBadge)
   .use(rehypeAutolinkHeadings, {
     behavior: "wrap",
     properties: { className: ["anchor"] },

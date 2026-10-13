@@ -41,6 +41,17 @@
   @apply border-zinc-800 bg-zinc-900 text-zinc-200;
 }
 
+/* "AI-generated" badge on Claude's asides (matches the about page blurb) */
+.prose .ai-badge {
+  @apply inline-block whitespace-nowrap rounded-sm border border-zinc-300 px-1.5 py-0.5 align-middle font-mono text-xs font-normal uppercase not-italic tracking-wide text-zinc-500;
+}
+.prose .ai-badge-row {
+  @apply -mt-3 leading-none;
+}
+.dark .prose .ai-badge {
+  @apply border-zinc-700 text-zinc-400;
+}
+
 /* Code blocks (rehype-pretty-code + shiki, dual theme) */
 .prose figure[data-rehype-pretty-code-figure] {
   @apply my-7;

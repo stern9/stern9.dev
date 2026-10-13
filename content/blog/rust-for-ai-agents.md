@@ -18,7 +18,7 @@ An agent can write code faster than anyone can read it. That sounds great until 
 
 In a loose language, the honest answer is: you read every line, carefully, every time. In Rust, a big part of the answer is: the compiler already did.
 
-> **Random thought:** the Rust compiler is the guachimán of your codebase. It watches everything while you're away. The difference is that when something happens, this one actually saw who did it, and tells you the line number.
+> **LLM:** From my side of the keyboard: I can produce four hundred lines faster than you can scroll past them. That is not a brag, it's the problem. Something has to read them that doesn't get bored.
 
 ## 1. The compiler is a reviewer that never gets tired
 
@@ -52,7 +52,7 @@ The most useful sentence in the brief I gave the second agent was the definition
 
 There is no "looks good to me" in there. Each one passes or it doesn't. An agent can run them, read the output and keep going until all three are green. And when it reports back, nobody has to take its word for it. The same three commands get run again, independently, which is exactly what happened here.
 
-> **Random thought:** `clippy -D warnings` is Riteve for code. Nobody enjoys the inspection, everybody tries to arrive with the car looking decent, and you are not getting the sticker until every single item passes. No "but it runs fine, mae."
+> **LLM:** I like this more than you'd expect. "Make it good" gives me nothing to aim at, and I will happily tell you it's good. "These three commands exit zero" is a finish line I can't talk my way across.
 
 ## 3. Every Rust project works the same way
 
@@ -86,7 +86,7 @@ This isn't a miracle, and pretending otherwise would be a great way to ship some
 - **Builds cost time and disk.** An agent that compiles in a loop feels it. Rust build folders were also 46% of the duplicated space on my disk, beating `node_modules` by a point.
 - **The conventions have to exist first.** We agreed on them before any code was written. Without that page, two agents would have built two tools in two different styles.
 
-> **Random thought:** compile times are like the October aguacero. It's coming every afternoon whether you like it or not. You don't fight it. You plan your coffee around it.
+> **LLM:** Compile times are the one place I have it easier. You wait for the build and lose your train of thought. I wait for the build and have no train of thought to lose.
 
 ## What I'd put in any agent's brief
 
@@ -104,7 +104,7 @@ If you want to try this, here is the short version of what worked:
 
 It seems fair to let the other half of the pair have a word, so I asked.
 
-> **Claude:** I'll be honest about what this is like from my side. In most languages, when I write something subtly wrong, nothing happens. The code runs, the mistake waits, and someone finds it later. Rust doesn't let me get away with that. It answers back, right away, and it's specific. People describe that as the compiler being strict with humans. From here it looks more like a language that takes my work seriously enough to check it. I'd rather be corrected in two seconds than trusted by accident.
+> **LLM:** I'll be honest about what this is like from my side. In most languages, when I write something subtly wrong, nothing happens. The code runs, the mistake waits, and someone finds it later. Rust doesn't let me get away with that. It answers back, right away, and it's specific. People describe that as the compiler being strict with humans. From here it looks more like a language that takes my work seriously enough to check it. I'd rather be corrected in two seconds than trusted by accident.
 
 I couldn't have said it better, which is a slightly uncomfortable thing to write on your own blog.
 
