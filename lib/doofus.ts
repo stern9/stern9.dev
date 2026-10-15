@@ -3,7 +3,7 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import { createRateLimiter } from "./rateLimit";
 
-export const DOOFUS_MODEL = "claude-haiku-4-5";
+export const DOOFUS_MODEL = "claude-haiku-5-5";
 
 export const LIMITS = {
   maxTokens: 300,

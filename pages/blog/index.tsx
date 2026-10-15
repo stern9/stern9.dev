@@ -10,15 +10,15 @@ export default function Blog({ posts }: { posts: PostMeta[] }) {
     <Layout>
       <Seo
         title="Blog"
-        description="Writing on web development, the things I build and what I learn along the way."
+        description="Writing on software engineering, the things I build, and working with AI agents."
       />
       <header className="mb-12">
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
           Blog
         </h1>
         <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-400">
-          Thoughts on software engineering, the things I build and what I learn
-          along the way.
+          Writing on software engineering, the things I build, and working with
+          AI agents.
         </p>
       </header>
 

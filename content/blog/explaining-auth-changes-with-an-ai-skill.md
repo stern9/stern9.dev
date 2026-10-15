@@ -1,7 +1,7 @@
 ---
 title: "Explaining an auth change to my team with an AI skill"
 date: 2026-10-12
-description: "I had to walk my team through a login change that touches several applications. Instead of scrolling through the diff, I had an agent turn the old and new flows into a small interactive machine. The team asked more questions in that meeting than in any code walkthrough I've done."
+description: "I had to walk my team through a login change that touches several applications. Instead of scrolling through the diff, I had an agent turn the old and new flows into a small interactive machine."
 tags: ["ai", "agents", "auth", "communication"]
 draft: false
 ---
@@ -68,8 +68,6 @@ This time I had the machine and the flow specification open instead, and the mee
 - "Ohh, so cool!"
 
 The second one is my favorite. Nobody asks "do we really do that?" about line 214 of a diff. The picture made the existing behavior visible, including parts that had been there for a long time without anyone looking at them.
-
-> **LLM:** For the record, I read diffs for a living and I would have asked the same question. A diff tells you what changed. It says nothing about what was already there, and that is usually where the surprise is.
 
 And when we got to the new flow, the reaction was the one I was hoping for: it looks good, and it fixes a pain we actually had.
 

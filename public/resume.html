@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avram Stern | Résumé</title>
+<meta name="description" content="Avram Stern, senior full stack engineer in San José, Costa Rica. 10+ years building for the web. Now shipping with AI agents and verifying what they build.">
+<meta name="robots" content="index">
+<meta name="author" content="Avram Stern">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://stern9.dev/resume">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://stern9.dev/resume">
+<meta property="og:title" content="Avram Stern | Senior Full Stack Engineer">
+<meta property="og:description" content="10+ years building for the web. Now shipping with AI agents and verifying what they build.">
+<link rel="icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #fafafa;     /* zinc-50 */
+    --text: #18181b;        /* zinc-900 */
+    --text-2: #3f3f46;      /* zinc-700 */
+    --muted: #71717a;       /* zinc-500 */
+    --border: #e4e4e7;      /* zinc-200 */
+    --accent: #2f7a96;
+    --accent-2: #4b92ac;
+    --tag-bg: #fef3c7;      /* amber-100 */
+    --tag-text: #92400e;    /* amber-800 */
+    --tag-border: #fcd34d;  /* amber-300 */
+    --sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #09090b;        /* zinc-950 */
+      --surface: #18181b;   /* zinc-900 */
+      --text: #f4f4f5;      /* zinc-100 */
+      --text-2: #d4d4d8;    /* zinc-300 */
+      --muted: #a1a1aa;     /* zinc-400 */
+      --border: #27272a;    /* zinc-800 */
+      --accent: #6fb3cc;
+      --accent-2: #4b92ac;
+      --tag-bg: #451a03;
+      --tag-text: #fcd34d;
+      --tag-border: #92400e;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  .page { max-width: 44rem; margin: 0 auto; padding: 2.5rem 16px 3rem; }
+
+  .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 2rem; font-size: 0.875rem; }
+  .toolbar a { color: var(--muted); }
+  .print-btn {
+    font: 500 0.8125rem/1 var(--sans);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    cursor: pointer;
+  }
+  .print-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Header */
+  .masthead { padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  h1 { font-size: 2.25rem; line-height: 1.15; letter-spacing: -0.02em; margin: 0; font-weight: 700; }
+  .headline { margin: 0.35rem 0 0; font-size: 1.125rem; font-weight: 600; color: var(--accent); }
+  .subline { margin: 0.25rem 0 0; color: var(--text-2); }
+  .contact { font-style: normal; margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; font-size: 0.875rem; color: var(--text-2); }
+  .contact span, .contact a { white-space: nowrap; }
+  .contact .label { color: var(--muted); }
+
+  /* Sections */
+  section { margin-top: 2rem; }
+  h2 {
+    font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--muted); margin: 0 0 0.85rem;
+  }
+  h3 { font-size: 1rem; font-weight: 600; margin: 0; line-height: 1.4; }
+  p { margin: 0 0 0.75rem; }
+  .summary p { color: var(--text-2); }
+
+  ul { margin: 0; padding-left: 1.15rem; }
+  li { margin: 0 0 0.4rem; color: var(--text-2); }
+  li::marker { color: var(--accent-2); }
+  li strong { color: var(--text); font-weight: 600; }
+
+  .role { margin-bottom: 1.5rem; }
+  .role:last-child { margin-bottom: 0; }
+  .role-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 1rem; }
+  .org { color: var(--text-2); font-weight: 500; }
+  .dates { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+  .ladder { list-style: none; padding: 0; margin: 0.35rem 0 0.6rem; font-size: 0.875rem; }
+  .ladder li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 1rem; margin: 0 0 0.15rem; }
+  .role > ul:last-child { margin-top: 0.5rem; }
+  .engagement { margin: 0.9rem 0 0 0; padding-left: 0.9rem; border-left: 2px solid var(--border); }
+  .engagement h4 { font-size: 0.95rem; font-weight: 600; margin: 0; line-height: 1.4; }
+  .engagement .stack { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin: 0.2rem 0 0.35rem; line-height: 1.5; }
+  .engagement ul { margin-top: 0.25rem; }
+  .role-note { color: var(--text-2); font-size: 0.875rem; margin: 0.25rem 0 0; }
+
+  .skills { display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.4rem 1rem; margin: 0; }
+  .skills dt { font-weight: 600; font-size: 0.875rem; }
+  .skills dd { margin: 0; color: var(--text-2); font-size: 0.9375rem; }
+
+  .projects li { margin-bottom: 0.5rem; }
+  .projects .link { font-family: var(--mono); font-size: 0.8125rem; }
+
+  .edu li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 1rem; }
+
+  .confirm {
+    display: inline-block;
+    font: 500 0.6875rem/1.4 var(--mono);
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    border-radius: 0.375rem;
+    padding: 0 0.35rem;
+    margin-left: 0.25rem;
+    vertical-align: 0.1em;
+    white-space: nowrap;
+  }
+
+  .refs { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.875rem; }
+
+  @media (max-width: 560px) {
+    .page { padding-top: 1.5rem; }
+    h1 { font-size: 1.85rem; }
+    .skills { grid-template-columns: 1fr; gap: 0.1rem; }
+    .skills dd { margin-bottom: 0.6rem; }
+  }
+
+  @media print {
+    @page { size: auto; margin: 0.4in 0.5in; }
+    :root {
+      --bg: #ffffff; --surface: #ffffff; --text: #000000; --text-2: #1f1f23; --muted: #52525b;
+      --border: #d4d4d8; --accent: #1f5f78; --accent-2: #2f7a96;
+      --tag-bg: #fff7e0; --tag-text: #7c2d12; --tag-border: #f59e0b;
+    }
+    html, body { background: #fff !important; color: #000; }
+    body { font-size: 9pt; line-height: 1.3; }
+    * { box-shadow: none !important; text-shadow: none !important; }
+    .no-print { display: none !important; }
+    .page { max-width: none; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+    h1 { font-size: 18pt; }
+    .headline { font-size: 11.5pt; color: var(--accent); }
+    .masthead { padding-bottom: 0.8rem; }
+    section { margin-top: 0.6rem; }
+    h2 { margin-bottom: 0.3rem; font-size: 8pt; break-after: avoid; page-break-after: avoid; }
+    h3 { font-size: 10.5pt; }
+    li { margin-bottom: 0.08rem; }
+    p { margin: 0 0 0.3rem; }
+    .role { margin-bottom: 0.6rem; }
+    .engagement { margin-top: 0.4rem; padding-left: 0.5rem; }
+    .engagement h4 { font-size: 9.5pt; }
+    .engagement .stack, .role-note { font-size: 8pt; }
+    .engagement h4, .engagement .stack { break-after: avoid; page-break-after: avoid; }
+    .role-head, .ladder li, .projects li, .edu li, .skills dt, .skills dd { break-inside: avoid; page-break-inside: avoid; }
+    .highlights li, .role li { break-inside: avoid; page-break-inside: avoid; }
+    .skills { grid-template-columns: 7.5rem 1fr; gap: 0.2rem 0.8rem; }
+    .skills dd { font-size: 8.75pt; }
+    .refs { margin-top: 1rem; padding-top: 0.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="toolbar no-print" aria-label="Page actions">
+    <a href="/">&larr; stern9.dev</a>
+    <button type="button" class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+  </nav>
+
+  <header class="masthead" itemscope itemtype="https://schema.org/Person">
+    <h1 itemprop="name">Avram Stern</h1>
+    <p class="headline" itemprop="jobTitle">Senior Full Stack Engineer</p>
+    <p class="subline">10+ years building for the web, from agency campaigns to client product teams. Now shipping with AI agents and verifying what they build.</p>
+    <address class="contact">
+      <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="addressLocality">San José</span>, <span itemprop="addressCountry">Costa Rica</span></span>
+      <a href="mailto:stern9@gmail.com" itemprop="email">stern9@gmail.com</a>
+      <a href="tel:+50688165476" itemprop="telephone">+506 8816-5476</a>
+      <a href="https://stern9.dev" itemprop="url">stern9.dev</a>
+      <a href="https://github.com/stern9" itemprop="sameAs">github.com/stern9</a>
+      <a href="https://www.linkedin.com/in/stern9/" itemprop="sameAs">linkedin.com/in/stern9</a>
+    </address>
+  </header>
+
+  <main>
+    <section class="summary" aria-labelledby="summary-h">
+      <h2 id="summary-h">Summary</h2>
+      <p>Senior full stack engineer with 10+ years on the web. Five years on client product teams at Gorilla Logic: payments and auth, production releases, geospatial tooling, e-commerce and real-time feeds. Before that, six years of creative engineering for American Express, Delta, Dunkin' and PlayStation. I build software with AI agents and still know exactly what got built: a written brief before any code, agents in parallel, and "done" is three commands, not an opinion. On client work, AI drafts and investigates; I validate every finding against the code and handle everything client-facing myself.</p>
+    </section>
+
+    <section class="highlights" aria-labelledby="highlights-h">
+      <h2 id="highlights-h">Selected work</h2>
+      <ul>
+        <li><strong>Made 3D Secure mandatory for Japan.</strong> Owned the Stripe auth and payment flows on a US and Japan consumer platform, led the 3DS rollout, and ran production releases for the web apps from scope to post-release verification.</li>
+        <li><strong>Explained a cross-application auth change.</strong> Mapped redirects, callbacks, gateway and identity provider, then gave the team an AI-generated interactive explainer, sequence diagrams and a flow spec, each step verified against the code.</li>
+        <li><strong>Benchmarked models before using one.</strong> jev-bench scores TypeSafe's Jev against Claude Haiku 4.5 and Opus 5 on 72 labeled decisions with the same scoring code: Jev 94.4% at about 185 ms and $0.02 per 1k decisions, Opus 98.6% at 2.6 s and $6.40.</li>
+        <li><strong>Kept PII out of LLM calls.</strong> pii-gate masks personal data in prompts as typed placeholders and restores it in the reply, with a per-category mask/block/allow policy and an audit log that never stores values.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="experience-h">
+      <h2 id="experience-h">Experience</h2>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Senior Full Stack Engineer <span class="org">· Gorilla Logic</span></h3>
+          <span class="dates"><time datetime="2021-05">May 2021</time> to present</span>
+        </div>
+
+        <div class="engagement">
+          <h4>AI tooling for client and internal teams <span class="dates">2026</span></h4>
+          <ul>
+            <li>Built Claude Code skills for sprint refinement that read Jira tickets, map changes across two repositories, flag MuleSoft, Salesforce and carrier dependencies, and propose Fibonacci estimates with reasoning, split suggestions and refinement questions. Reviewed against the code and project context before anything reaches the team.</li>
+            <li>Used agents to trace a client bug across the front end, back end and production database; the trace surfaced a missing upstream integration record. Built diagramming skills to explain auth redirect flows to the team.</li>
+            <li>Built Gorilla Code, an interactive Claude Code training environment with tool hooks, activity logging, guardrails and a live dashboard, with MCP and multi-agent exercises.</li>
+          </ul>
+        </div>
+
+        <div class="engagement">
+          <h4>Panasonic Well / Yohana <span class="org">· Senior Full Stack Engineer</span> <span class="dates">late 2023 to early 2026</span></h4>
+          <p class="stack">TypeScript, React, Next.js, Node, Express · Kotlin/Micronaut over gRPC, CockroachDB · Flutter · Stripe with 3DS, Auth0, Salesforce, Ably · EN-US and JA-JP i18n · Terraform, Docker, GitHub Actions</p>
+          <ul>
+            <li>Built customer task creation and editing, including complex branching forms wired to backend services, and fixed navigation and state bugs that could hide questions or block a task flow.</li>
+            <li>Owned the auth and payment flows on Stripe and led the implementation that made 3D Secure mandatory for Japan users.</li>
+            <li>Owned production releases for the web apps: scope and timing with QA, product and the client, then build, deploy and post-release verification.</li>
+            <li>Managed Stripe coupon codes, CI/CD pipelines and telemetry as Terraform code, so promotions and pipeline changes went through review.</li>
+          </ul>
+        </div>
+
+        <div class="engagement">
+          <h4>Cyngn <span class="org">· Senior Full Stack Engineer</span> <span class="dates">Jan to Oct 2023</span></h4>
+          <p class="stack">TypeScript, React · Python API · Mapbox, deck.gl, nebula.gl, GeoJSON</p>
+          <ul>
+            <li>On the mapping editor for autonomous industrial robots, built the elevation-layer decomposition by geographic coordinates, which made terrain data readable and workable for the operators configuring routes.</li>
+          </ul>
+        </div>
+
+        <div class="engagement">
+          <h4>The Pro's Closet <span class="org">· Full Stack Engineer</span> <span class="dates">Mar 2022 to Jan 2023</span></h4>
+          <p class="stack">Next.js (ISR), TypeScript, Node.js, Sanity CMS, Shopify</p>
+          <ul>
+            <li>Helped build the e-commerce storefront from scratch on Next.js Incremental Static Regeneration with the tech leads and UX team, and designed the app-wide React Context state management.</li>
+            <li>Led the Veriff identity-verification proof of concept, including the webhook handling design.</li>
+          </ul>
+        </div>
+
+        <div class="engagement">
+          <h4>HIMSS <span class="org">· Full Stack Engineer</span> <span class="dates">May 2021 to Jan 2022</span></h4>
+          <p class="stack">TypeScript, React, React Query, Node, Express · PostgreSQL with Sequelize, Elasticsearch · Storybook, GetStream</p>
+          <ul>
+            <li>Implemented the activity feeds and real-time chat for a healthcare-professional networking platform, built Express endpoints and SQL migrations, and integrated Elasticsearch for content discovery.</li>
+            <li>Created reusable components in the shared Storybook library, aligned to the UX design system.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Creative Engineer <span class="org">· Prodigious (Publicis)</span></h3>
+          <span class="dates"><time datetime="2015-06">Jun 2015</time> to <time datetime="2021-05">May 2021</time></span>
+        </div>
+        <p class="role-note">Associate Creative Engineer (2015), Creative Engineer (2016), Senior Creative Engineer (2018 to 2021).</p>
+        <ul>
+          <li>As Senior Creative Engineer, led six developers, handled direct client communication and mentored juniors. Drove the migration of legacy site functionality to React functional components and hooks, with REST API integrations for American Express, Delta, Dunkin' and Hertz.</li>
+          <li>Automated image optimization and JS/CSS minification with Grunt across client builds, cutting page-load times by up to 30%. Adopted by the whole team.</li>
+          <li>Built an accessible HTML email template system with cross-client compatibility on Salesforce Marketing Cloud; about 6% click-through improvement.</li>
+          <li>Built the PlayStation Thanksgiving 2019 interactive email: a CSS-only quiz with an interactive version and a static fallback, US and Canada variants in AMPscript, passed through a three-gate review.</li>
+        </ul>
+      </article>
+
+      <article class="role">
+        <div class="role-head">
+          <h3>Media Operations Technology Analyst <span class="org">· Bosz Digital / Prodigious</span></h3>
+          <span class="dates"><time datetime="2013">2013</time> to <time datetime="2015">2015</time></span>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <dl class="skills">
+        <dt>Languages</dt>
+        <dd>TypeScript, JavaScript, Python, Rust, SQL, HTML, CSS</dd>
+        <dt>Front end</dt>
+        <dd>React, Next.js (ISR, SSG), React Query, React Context, Tailwind CSS, Storybook, next-i18next, Mapbox, deck.gl, nebula.gl, HTML email</dd>
+        <dt>Back end &amp; data</dt>
+        <dd>Node.js, Express, REST, gRPC/Protobuf, PostgreSQL with Sequelize, CockroachDB, Elasticsearch, Sanity CMS, Shopify, GetStream, Ably; worked alongside Kotlin/Micronaut services and Flutter (BLoC)</dd>
+        <dt>Payments &amp; identity</dt>
+        <dd>Stripe (including 3D Secure), Auth0, Veriff, Salesforce</dd>
+        <dt>Infra</dt>
+        <dd>Terraform, Docker, GitHub Actions, Dependabot, Nginx, Ubuntu, pm2, Let's Encrypt, cron</dd>
+        <dt>AI &amp; agents</dt>
+        <dd>Claude Code skills and hooks, MCP, multi-agent orchestration, verification with compiler, lint and tests, prompt guardrails, rate limiting and cost control for LLM endpoints, model benchmarking (accuracy, latency, calibration, cost), PII masking</dd>
+        <dt>Tooling</dt>
+        <dd>Git, Unix shell, Vitest, Grunt, Salesforce Marketing Cloud / AMPscript, Litmus, Email on Acid, agile, pi, herdr, Codex</dd>
+      </dl>
+    </section>
+
+    <section class="projects" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+      <ul>
+        <li><strong>pii-gate</strong> (TypeScript, 2026). Masks PII before LLM calls and restores it after. <a class="link" href="https://github.com/stern9/pii-gate">github.com/stern9/pii-gate</a></li>
+        <li><strong>jev-bench</strong> (Python, 2026). Accuracy, latency, calibration and cost across three models on 72 labeled decisions. <a class="link" href="https://github.com/stern9/jev-bench">github.com/stern9/jev-bench</a></li>
+        <li><strong>dirsize</strong> and <strong>dupes</strong> (Rust, 2026). Parallel disk usage tree and BLAKE3 duplicate finder, CI on Linux and macOS. <a class="link" href="https://github.com/stern9/dirsize">github.com/stern9/dirsize</a>, <a class="link" href="https://github.com/stern9/dupes">github.com/stern9/dupes</a></li>
+        <li><strong>tennis-reservation</strong> (TypeScript). Books courts at midnight with parallel requests to the club's API in about 500 ms, 12x faster than the browser-automation version it replaced. <a class="link" href="https://github.com/stern9/tennis-reservation">github.com/stern9/tennis-reservation</a></li>
+      </ul>
+    </section>
+
+    <section class="edu" aria-labelledby="education-h">
+      <h2 id="education-h">Education</h2>
+      <ul>
+        <li><span><strong>B.S. Computer Science</strong>, ULACIT</span><span class="dates"><time datetime="2016">2016</time></span></li>
+        <li><span><strong>B.S. Business Management</strong>, Universidad Interamericana</span><span class="dates"><time datetime="2011">2011</time></span></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="languages-h">
+      <h2 id="languages-h">Languages</h2>
+      <p>English, Spanish, French (soon Japanese)</p>
+    </section>
+  </main>
+
+</div>
+</body>
+</html>

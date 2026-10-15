@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
 import { HiArrowLeft } from "react-icons/hi";
 import Layout from "../../components/Layout";
-import Seo from "../../components/Seo";
+import Seo, { ogImageUrl } from "../../components/Seo";
 import { DraftBadge } from "../../components/PostList";
 import {
   getAllPosts,
@@ -28,6 +28,8 @@ export default function Post({ post, newer, older }: Props) {
         description={post.description || undefined}
         type="article"
         date={post.date}
+        image={ogImageUrl(post.title, "blog")}
+        author="Avram Stern"
       />
       <article>
         <Link

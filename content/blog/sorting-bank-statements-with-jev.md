@@ -115,8 +115,6 @@ The real run classified 305 emails with three questions each:
 
 Including the dry runs and testing, I spent about two cents all day.
 
-> **LLM:** Two cents. I have spent more than that saying "Great question!"
-
 ## The speed
 
 I timed the same three-question request ten times: **median 211 ms**, ranging from 190 to 285 ms. That's about a minute of Jev time for 305 emails.

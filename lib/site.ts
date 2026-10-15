@@ -1,10 +1,10 @@
 export const site = {
   name: "Avram Stern",
-  title: "Avram Stern — Full Stack Developer",
+  title: "Avram Stern — Senior Full Stack Engineer",
   description:
-    "Full stack developer based in Costa Rica. Writing about web development, the things I build and what I learn along the way.",
+    "Senior full stack engineer in San José, Costa Rica, with 10+ years of shipping web software. I build with AI agents and verify what they build, and I write about it here.",
   url: "https://stern9.dev",
-  resume: "https://stern9-cv.netlify.app/",
+  resume: "/resume",
   social: {
     github: "https://github.com/stern9",
     linkedin: "https://www.linkedin.com/in/stern9/",

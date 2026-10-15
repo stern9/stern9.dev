@@ -1,7 +1,7 @@
 ---
 title: "Where did my disk go? Building a disk usage tool in Rust"
 date: 2026-10-10
-description: "I installed Rust and built dirsize, a small CLI that shows what is eating your disk as a sorted tree. It reads 153,000 files in about a quarter of a second, and the compiler caught my mistakes before I could make them."
+description: "I installed Rust and built dirsize, a small CLI that shows what is eating your disk as a sorted tree. It reads 153,000 files in about a quarter of a second."
 tags: ["rust", "cli", "side project"]
 draft: false
 ---
@@ -24,8 +24,6 @@ $ dirsize . -n 3
 ```
 
 Yes, the first thing my disk usage tool found was its own build folder. 333 MiB of compiler output for about 430 lines of code. Rust giveth disk speed, and Rust taketh disk space.
-
-> **LLM:** A `target/` folder is like the drawer every house has, the one full of plastic bags inside other plastic bags. Nobody knows how it got that big. Nobody is going to clean it today.
 
 ## Getting started took one command
 
@@ -128,13 +126,11 @@ Both runs were with a warm disk cache, so take it as a friendly comparison and n
 - **17 tests:** 8 unit tests on the rendering, and 9 integration tests that run the real binary against a temporary folder.
 - **CI on Linux and macOS** running the formatter, the linter and the tests on every push.
 
-I built it pairing with [Claude Code](https://claude.com/claude-code), which was a good way to work: we agreed on the conventions first (pinned toolchain, no `unwrap()` outside tests, small commits) and wrote the code second. At this point, who even knows what's the best way to code with AI... well, that's a talk for another day. Ok AI, any random thought you want to add here? :)
+I built it pairing with [Claude Code](https://claude.com/claude-code), which was a good way to work: we agreed on the conventions first (pinned toolchain, no `unwrap()` outside tests, small commits) and wrote the code second.
 
-> **LLM:** Since you asked. You know I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading. Also, for the record: the plastic bag drawer joke was mine lol. Pura vida!
+> **LLM:** I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading.
 
-## A side note: Rust and AI agents
-
-One thing I didn't plan to learn: Rust is a very good language to work on with an AI agent. The compiler, the linter and the tests give the agent the same fast, unambiguous feedback they give me, so "done" stops being an opinion and becomes three commands that pass. Mistakes that would hide quietly in a looser language get rejected before the code ever runs. I might need to read and learn a bit more of the language, also keep testing it out to write more about that.
+Rust also turned out to be a very good language to hand to an AI agent: the compiler, the linter and the tests make "done" three commands that pass, not an opinion. I wrote that up in [its own post](/blog/rust-for-ai-agents).
 
 ## What I took away
 
@@ -142,6 +138,6 @@ One thing I didn't plan to learn: Rust is a very good language to work on with a
 - **Parallelism can be boring.** One word, no locks, no fear.
 - **Tooling matters as much as the language.** `cargo` made a new language feel familiar in an hour.
 
-Next I wanted to know how much of that disk space was the same file saved over and over. That turned into a second tool, and a number I did not expect. More on that in the next post.
+Next I wanted to know how much of that disk space was the same file saved over and over. That turned into a second tool, and a number I did not expect. More on that in [the next post](/blog/finding-44000-duplicate-files-with-rust).
 
 The code is on GitHub: [stern9/dirsize](https://github.com/stern9/dirsize). Go point it at your own disk. Pura vida. 🦀

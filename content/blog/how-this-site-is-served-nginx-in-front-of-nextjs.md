@@ -1,12 +1,12 @@
 ---
 title: "How this site is served: Nginx in front of a Next.js app"
-date: 2022-03-27
+date: 2026-10-13
 description: "This site runs on one small cloud server that I set up myself. Here is what happens between your browser and the Node.js process, and the five jobs Nginx does in the middle."
 tags: ["nginx", "nextjs", "self-hosting", "devops"]
 draft: false
 ---
 
-This site could live on a platform that handles hosting for me. Push the code, get a URL, done. It lives on a small Ubuntu server that I set up myself, because I wanted to understand the parts those platforms hide.
+This site could live on a platform that handles hosting for me. Push the code, get a URL, done. It lives on a small Ubuntu server that I set up myself, because I wanted to understand the parts those platforms hide. I set this server up in 2022 and have kept it since; this is how it works today.
 
 The most interesting of those parts is Nginx. It sits between the internet and my app, and it does more jobs than I expected when I started. This post walks through them.
 
@@ -142,8 +142,6 @@ None of these are secrets. They are the kind of defaults I'd want on any server:
 - **Don't advertise versions.** Both Nginx and Next.js can announce what they are and which version. Both can be told not to.
 - **Let the certificate renew itself.** An expired certificate is the most avoidable outage there is.
 - **Keep what is specific to your server out of your blog posts.** Yes, including this one.
-
-> **LLM:** The most useful security advice in this post is also the least exciting: one door, kept shut, with the lights off. Nobody writes thrillers about that, which is the point.
 
 ## Was it worth it?
 

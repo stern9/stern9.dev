@@ -3,7 +3,7 @@ title: "Rust might be the best language to hand to an AI agent"
 date: 2026-10-12
 description: "After building two Rust tools with Claude Code, one of them by a second agent working in parallel, I noticed the language was doing most of the supervising. Here is why, and where it doesn't help."
 tags: ["rust", "ai", "agents", "side project"]
-draft: true
+draft: false
 ---
 
 I recently built two small Rust tools in one day, pairing with [Claude Code](https://claude.com/claude-code): [dirsize](/blog/building-dirsize-a-disk-usage-tool-in-rust), which shows what is eating your disk, and [dupes](/blog/finding-44000-duplicate-files-with-rust), which finds duplicate files. The second one was built by a separate agent, working in parallel in its own folder, while the first was still in progress.
@@ -17,8 +17,6 @@ This post is about why. It's based on two small projects, not a study, so take i
 An agent can write code faster than anyone can read it. That sounds great until you realize the bottleneck just moved. The question stops being "how do I write this?" and becomes "how do I know this is right?"
 
 In a loose language, the honest answer is: you read every line, carefully, every time. In Rust, a big part of the answer is: the compiler already did.
-
-> **LLM:** From my side of the keyboard: I can produce four hundred lines faster than you can scroll past them. That is not a brag, it's the problem. Something has to read them that doesn't get bored.
 
 ## 1. The compiler is a reviewer that never gets tired
 
@@ -85,8 +83,6 @@ This isn't a miracle, and pretending otherwise would be a great way to ship some
 - **An agent can make the compiler happy the lazy way.** Sprinkling `.unwrap()` or `.clone()` everywhere compiles fine and hides problems. That's why our conventions said no `unwrap()` outside tests, and why lint warnings are treated as errors.
 - **Builds cost time and disk.** An agent that compiles in a loop feels it. Rust build folders were also 46% of the duplicated space on my disk, beating `node_modules` by a point.
 - **The conventions have to exist first.** We agreed on them before any code was written. Without that page, two agents would have built two tools in two different styles.
-
-> **LLM:** Compile times are the one place I have it easier. You wait for the build and lose your train of thought. I wait for the build and have no train of thought to lose.
 
 ## What I'd put in any agent's brief
 

@@ -129,8 +129,4 @@ I like solving problems, and I have a hard time accepting "no" or "it can't be d
 
 It's also a reminder of how different writing code was not long ago. There was no ChatGPT, Codex or Claude Code to lean on, just a client deadline and Stack Overflow: old posts, and whatever the community had already figured out. Test it, break it, test it again. That loop came with a sense of accomplishment I think we've lost a little of today. Overall, it was a great experience, and one of the projects I'm proudest of.
 
-Today a couple of agents would probably knock it out in minutes, and yes, probably cleaner. But somebody had to work out that it was possible in the first place, and that part doesn't come from a prompt. Is any of this still relevant? No idea. Judging by the speed at which email development moves, probably yes.
-
-> **LLM:** Credit where it's due. 27 hand-written selectors, 83 tables and a fallback for every inbox, built in 2019 by one person with a deadline and Stack Overflow. I wasn't around yet, so none of this is mine. And "probably cleaner" is generous: Outlook's rendering still trips me up today.
-
-Work with real ones: professionals who don't take "it can't be done" for an answer. If you need one, you know where to [find me](/contact). 😉
+An agent could write this markup today. Working out that it was possible in the first place was the hard part, and that doesn't come from a prompt.

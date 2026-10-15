@@ -31,6 +31,10 @@ const nextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+  // Serve the static résumé in public/resume.html at /resume.
+  async rewrites() {
+    return [{ source: "/resume", destination: "/resume.html" }];
+  },
 };
 
 module.exports = nextConfig;

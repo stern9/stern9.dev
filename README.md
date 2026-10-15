@@ -47,10 +47,14 @@
 - [unified](https://unifiedjs.com/) / remark / rehype + [Shiki](https://shiki.style/) - Markdown blog
 - [Resend](https://resend.com/) - Email service
 - [Spotify API](https://developer.spotify.com/documentation/web-api/)
+- [Anthropic SDK](https://github.com/anthropics/anthropic-sdk-typescript) (`@anthropic-ai/sdk`) - Doofus chat assistant and the playlist blurb
 - [PostCSS](https://postcss.org/)
-- [Ubuntu](https://ubuntu.com/server)
-- [Nginx](https://www.nginx.com/)
-- [pm2](https://pm2.keymetrics.io/)
+
+### Hosting
+
+Self-hosted on [Ubuntu](https://ubuntu.com/server) with [Nginx](https://nginx.org/) in front of a custom Node server (`server.js`) run by [pm2](https://pm2.keymetrics.io/).
+
+The résumé is served at `/resume` from `public/resume.html`.
 
 ## Getting Started
 
@@ -67,7 +71,7 @@ To get a local copy up and running follow these simple steps.
    ```sh
    npm install
    ```
-3. Create `.env` file with required API keys (see `.env` example in repo)
+3. Copy `.env.example` to `.env` and fill in the API keys (each variable is described there)
 4. Run dev server at localhost:3000
    ```sh
    npm run dev
@@ -103,6 +107,5 @@ Your post in Markdown…
 - [Resend](https://resend.com/)
 - [react-icons](https://react-icons.github.io/react-icons/)
 - [heroicons](https://heroicons.dev/)
-- [styled-components](https://styled-components.com/)
 - [next-themes](https://github.com/pacocoursey/next-themes)
 - [leerob](https://leerob.io/blog)

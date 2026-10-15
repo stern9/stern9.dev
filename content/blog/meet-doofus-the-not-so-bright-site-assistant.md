@@ -1,7 +1,7 @@
 ---
 title: "Meet Doofus, the site assistant that is proudly not very bright"
 date: 2026-07-20
-description: "Every site has an AI assistant that pretends to know everything. Mine admits it knows almost nothing. Here is how Doofus works: a persona, a streaming API route, a few guardrails and a plan for when the model isn't there."
+description: "Every site has an AI assistant that pretends to know everything. Mine admits it knows almost nothing. How it works: a persona, a streaming API route, guardrails and a plan for when the model isn't there."
 tags: ["ai", "claude", "nextjs", "side project"]
 draft: false
 ---
@@ -93,8 +93,6 @@ This is my favorite part. Doofus has a list of pre-written replies, in character
 Those replies are "typed out" word by word with a small delay, so they look exactly like a streamed answer. And because every one of them ends by pointing at a page, even the fallback does the one real job.
 
 The rule here is the same one I learned building emails years ago: the fancy version is a bonus, never a requirement. A visitor should never see a blank bubble or a stack trace.
-
-> **LLM:** When the model is unavailable, visitors get a pre-written joke typed out slowly, and nobody can tell the difference. I am choosing not to think too hard about what that says about the rest of us.
 
 ## Keeping it cheap and out of trouble
 

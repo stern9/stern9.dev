@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HiArrowRight, HiArrowUpRight } from "react-icons/hi2";
+import { HiArrowRight } from "react-icons/hi2";
 import Layout from "../components/Layout";
 import CoverArt from "../components/CoverArt";
 import Seo from "../components/Seo";
@@ -43,19 +43,19 @@ export default function Home({
       <Seo />
       <section>
         <p className="font-mono text-sm text-accent dark:text-accent-light">
-          Full stack developer · Costa Rica
+          Senior full stack engineer · San José, Costa Rica
         </p>
         <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl sm:leading-none">
-          Writing code,
+          I solve real problems
           <span className="block text-zinc-400 dark:text-zinc-500">
-            and writing about it.
+            with software that ships.
           </span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
-          I build software and solutions, end to end. I learn by creating. This
-          is my corner of the web: I write about development and the things I
-          build. I also keep a collection of projects I&apos;ve shipped over the
-          years.
+          I&apos;ve been building for the web for over 10 years: agency work for
+          brands like American Express and PlayStation, then product teams at
+          Gorilla Logic. Now I build software with AI agents and still know
+          exactly what got built, because I verify everything they build.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
@@ -64,14 +64,12 @@ export default function Home({
           >
             Read the blog
           </Link>
-          <a
+          <Link
             href={site.resume}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 px-4 py-2 text-sm font-medium transition-colors hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
           >
-            Resumé <HiArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+            Résumé <HiArrowRight className="h-3.5 w-3.5" />
+          </Link>
           <Link
             href="/contact"
             className="px-2 py-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
@@ -79,6 +77,9 @@ export default function Home({
             Get in touch
           </Link>
         </div>
+        <p className="mt-6 font-mono text-xs text-zinc-500 dark:text-zinc-400">
+          Gorilla Logic · Prodigious / Publicis · Amex · PlayStation · Delta
+        </p>
       </section>
 
       {posts.length > 0 && (

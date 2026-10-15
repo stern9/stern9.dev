@@ -92,4 +92,33 @@ const CardItem = ({
   );
 };
 
+// Compact row for archived projects: title, year, one line and the source.
+export const CompactCardItem = ({
+  title,
+  year,
+  codeURL,
+  description,
+}: Pick<Project, "title" | "year" | "codeURL" | "description">) => (
+  <li className="flex flex-col gap-1 py-3 sm:flex-row sm:items-baseline sm:gap-4">
+    <div className="flex items-baseline gap-2 sm:w-48 sm:shrink-0">
+      <h3 className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+        {title}
+      </h3>
+      <span className="text-xs tabular-nums text-zinc-400">{year}</span>
+    </div>
+    <p className="flex-1 text-sm text-zinc-500 dark:text-zinc-400">
+      {description}
+    </p>
+    <a
+      href={codeURL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${title} source on GitHub`}
+      className="inline-flex shrink-0 items-center gap-1.5 text-sm text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+    >
+      <FaGithub className="h-3.5 w-3.5" /> Source
+    </a>
+  </li>
+);
+
 export default CardItem;

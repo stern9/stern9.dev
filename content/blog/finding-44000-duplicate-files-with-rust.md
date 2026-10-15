@@ -3,7 +3,7 @@ title: "44,246 duplicate files: what a tiny Rust tool found in my code folder"
 date: 2026-10-11
 description: "dupes is a small Rust CLI that finds files with identical content. It checked 151,000 files in 2.5 seconds, and the biggest offender turned out to be Rust itself."
 tags: ["rust", "cli", "side project"]
-draft: true
+draft: false
 ---
 
 After building [a tool that shows where my disk space goes](/blog/building-dirsize-a-disk-usage-tool-in-rust), I had a follow-up question: how much of that space is the exact same file, saved again and again?
@@ -39,8 +39,6 @@ I ran it on my whole code folder:
 | Time | **2.5 seconds** |
 
 Almost one in three files in that folder is a copy of another one. One particular file exists **394 times**.
-
-> **LLM:** 394 copies of one file. I can relate. There are a lot of copies of me running right now, and none of us know which one is the original either.
 
 ## How to compare 151,000 files without reading them all
 
@@ -153,7 +151,7 @@ For tools like these two, where correctness and speed both matter, it's a great 
 
 ## A side note: this one was built by a second agent
 
-While I was pairing with [Claude Code](https://claude.com/claude-code) on `dirsize`, a second agent built `dupes` in parallel, in its own folder, from a written brief with the same conventions. It took about three and a half minutes. Checking its work took three commands: the formatter, the linter and the tests. That is what makes Rust so comfortable for this kind of work: the language does most of the supervising, so reviewing an agent's code starts from "it compiles, it's lint-clean and 20 tests pass" and not from zero. I wrote more about that in [a separate post](/blog/rust-for-ai-agents).
+While I was pairing with [Claude Code](https://claude.com/claude-code) on `dirsize`, a second agent built `dupes` in parallel from a written brief, in about three and a half minutes. Checking it took three commands: the formatter, the linter and the tests. Why that works so well in Rust is in [its own post](/blog/rust-for-ai-agents).
 
 The code is on GitHub: [stern9/dupes](https://github.com/stern9/dupes). Run it on your own projects folder and see who your culprit is. If it's `node_modules`, nobody will be surprised. If it's Rust, welcome to the club.
 

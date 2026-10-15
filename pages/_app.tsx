@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import Script from "next/script";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { GA_TRACKING_ID } from "../utils/gtag";
 
@@ -14,6 +15,9 @@ const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  // Keep articles distraction-free: no chat bubble on blog posts.
+  const showDoofus = useRouter().pathname !== "/blog/[slug]";
+
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <Head>
@@ -37,7 +41,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       )}
       <div className={`${sans.variable} ${mono.variable} font-sans`}>
         <Component {...pageProps} />
-        <Doofus />
+        {showDoofus && <Doofus />}
       </div>
     </ThemeProvider>
   );

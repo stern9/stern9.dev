@@ -2,7 +2,7 @@ import type { GetServerSideProps } from "next";
 import { getAllPosts } from "../lib/posts";
 import { site } from "../lib/site";
 
-const staticPaths = ["", "/blog", "/portfolio", "/about", "/contact"];
+const staticPaths = ["", "/blog", "/portfolio", "/about", "/contact", "/resume"];
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const posts = getAllPosts().filter((post) => !post.draft);
