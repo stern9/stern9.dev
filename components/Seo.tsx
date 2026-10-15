@@ -51,7 +51,7 @@ const Seo = ({
       "@context": "https://schema.org",
       ...person,
       jobTitle: "Senior Full Stack Engineer",
-      image: `${site.url}/img/me.png`,
+      image: `${site.url}/img/avram.jpg`,
       sameAs: Object.values(site.social),
     };
   } else if (type === "article") {
