@@ -3,7 +3,7 @@ title: "44,246 duplicate files: what a tiny Rust tool found in my code folder"
 date: 2026-10-11
 description: "dupes is a small Rust CLI that finds files with identical content. It checked 151,000 files in 2.5 seconds, and the biggest offender turned out to be Rust itself."
 tags: ["rust", "cli", "side project"]
-draft: false
+draft: true
 ---
 
 After building [a tool that shows where my disk space goes](/blog/building-dirsize-a-disk-usage-tool-in-rust), I had a follow-up question: how much of that space is the exact same file, saved again and again?
