@@ -78,7 +78,7 @@ export default function Home({
           </Link>
         </div>
         <p className="mt-6 font-mono text-xs text-zinc-500 dark:text-zinc-400">
-          Gorilla Logic · Prodigious / Publicis · Amex · PlayStation · Delta
+          Gorilla Logic · Prodigious / Publicis · Digitas · Amex · PlayStation · Delta
         </p>
       </section>
 
