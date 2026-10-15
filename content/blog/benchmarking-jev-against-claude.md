@@ -1,6 +1,6 @@
 ---
 title: "Jev beat Claude Haiku on 72 decisions, 7 times faster, for two cents per thousand"
-date: 2026-10-14
+date: 2026-10-28
 description: "I benchmarked TypeSafe's Jev against Claude on 72 labeled decisions. Jev: 94.4% at ~185 ms. Haiku 4.5: 91.7% at ~1.2 s. Opus 5: 98.6% at ~2.6 s, for over 300 times Jev's cost."
 tags: ["ai", "benchmarks", "python", "side project"]
 draft: true

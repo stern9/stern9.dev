@@ -1,6 +1,6 @@
 ---
 title: "44,246 duplicate files: what a tiny Rust tool found in my code folder"
-date: 2026-10-11
+date: 2026-10-24
 description: "dupes is a small Rust CLI that finds files with identical content. It checked 151,000 files in 2.5 seconds, and the biggest offender turned out to be Rust itself."
 tags: ["rust", "cli", "side project"]
 draft: true

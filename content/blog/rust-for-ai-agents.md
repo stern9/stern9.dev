@@ -1,6 +1,6 @@
 ---
 title: "Rust might be the best language to hand to an AI agent"
-date: 2026-10-12
+date: 2026-10-21
 description: "After building two Rust tools with Claude Code, one of them by a second agent working in parallel, I noticed the language was doing most of the supervising. Here is why, and where it doesn't help."
 tags: ["rust", "ai", "agents", "side project"]
 draft: true
