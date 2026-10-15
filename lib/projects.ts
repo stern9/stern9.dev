@@ -10,6 +10,7 @@ export type Project = {
   image?: string;
   terminal?: string;
   previewURL: string | null;
+  previewLabel?: string; // defaults to "Live site"
   codeURL: string;
   description: string;
   stack?: string[];
@@ -97,7 +98,9 @@ incident_severity 86.4%     81.8%       95.5%`,
     title: "typed-env",
     group: "recent",
     year: 2026,
-    terminal: `export const env = loadEnv({
+    terminal: `import { loadEnv, port, bool, url, oneOf, str } from "@stern9/typed-env";
+
+export const env = loadEnv({
   PORT: port({ default: 3000 }),
   DEBUG: bool({ default: false }),
   DATABASE_URL: url(),
@@ -107,10 +110,11 @@ incident_severity 86.4%     81.8%       95.5%`,
 
 // env.PORT: number
 // env.SENTRY_DSN: string | undefined`,
-    previewURL: null,
+    previewURL: "https://www.npmjs.com/package/@stern9/typed-env",
+    previewLabel: "npm",
     codeURL: "https://github.com/stern9/typed-env",
     description:
-      "Validates environment variables against a schema and returns a typed, frozen config, with one error that lists every problem. Zero dependencies.",
+      "Validates environment variables against a schema and returns a typed, frozen config, with one error that lists every problem. Zero dependencies, published as @stern9/typed-env.",
     stack: ["TypeScript"],
   },
   {

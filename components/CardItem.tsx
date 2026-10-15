@@ -9,6 +9,7 @@ const CardItem = ({
   image,
   terminal,
   previewURL,
+  previewLabel = "Live site",
   codeURL,
   description,
   stack = [],
@@ -75,7 +76,7 @@ const CardItem = ({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-zinc-900 hover:text-accent dark:text-zinc-100 dark:hover:text-accent-light"
             >
-              Live site <HiArrowUpRight className="h-3.5 w-3.5" />
+              {previewLabel} <HiArrowUpRight className="h-3.5 w-3.5" />
             </a>
           )}
           <a
