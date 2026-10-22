@@ -4,6 +4,8 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Redeploys main without a new commit
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -20,3 +22,37 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm run build
+
+  # The SSH key can only run scripts/deploy.sh on the droplet (forced command in
+  # authorized_keys); that script holds the build, the health check and the rollback.
+  # The one thing sent is the commit to deploy.
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # Each run deploys its own commit, so a waiting deploy is never cancelled
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - name: Run the deploy script on the droplet
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_SHA: ${{ github.sha }}
+        run: |
+          if [ -z "$DEPLOY_SSH_KEY" ] || [ -z "$DEPLOY_KNOWN_HOSTS" ] || [ -z "$DEPLOY_HOST" ]; then
+            echo "::error::DEPLOY_SSH_KEY, DEPLOY_KNOWN_HOSTS and DEPLOY_HOST must all be set"
+            exit 1
+          fi
+          install -d -m 700 ~/.ssh
+          install -m 600 /dev/null ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          # The forced command accepts one full sha and nothing else; its exit code is the step's
+          ssh -T -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes -o ServerAliveInterval=30 "stern9@$DEPLOY_HOST" "$DEPLOY_SHA"
+      - name: Check the site from outside
+        run: curl -fsS -o /dev/null https://stern9.dev/
