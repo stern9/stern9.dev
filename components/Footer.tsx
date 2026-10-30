@@ -37,9 +37,11 @@ const Footer = () => {
                 <Icon className="h-4 w-4" />
               </a>
             ))}
-            {/* Plain <a>: the feed is raw XML, not a page Next.js can render client-side. */}
+            {/* Plain <a> in a new tab: the feed is raw XML, not a page Next.js can render client-side. */}
             <a
               href="/rss.xml"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="RSS feed"
               className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
             >
