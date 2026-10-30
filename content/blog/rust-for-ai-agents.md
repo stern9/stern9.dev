@@ -1,12 +1,12 @@
 ---
 title: "Rust might be the best language to hand to an AI agent"
-date: 2026-10-21
+date: 2026-10-29
 description: "After building two Rust tools with Claude Code, one of them by a second agent working in parallel, I noticed the language was doing most of the supervising. Here is why, and where it doesn't help."
 tags: ["rust", "ai", "agents", "side project"]
-draft: true
+draft: false
 ---
 
-I recently built two small Rust tools in one day, pairing with [Claude Code](https://claude.com/claude-code): [dirsize](/blog/building-dirsize-a-disk-usage-tool-in-rust), which shows what is eating your disk, and [dupes](/blog/finding-44000-duplicate-files-with-rust), which finds duplicate files. The second one was built by a separate agent, working in parallel in its own folder, while the first was still in progress.
+I recently built two small Rust tools in one day, pairing with [Claude Code](https://claude.com/claude-code): [dirsize](/blog/building-dirsize-a-disk-usage-tool-in-rust), which shows what is eating your disk, and dupes, which finds duplicate files. The second one was built by a separate agent, working in parallel in its own folder, while the first was still in progress.
 
 Somewhere in the middle of that I noticed something. Checking the work was taking less effort than I expected, and I trusted the result more. It wasn't because the agent was magic. It was because the language was doing a lot of the supervising for me.
 

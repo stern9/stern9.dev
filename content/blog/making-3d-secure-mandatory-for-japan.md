@@ -1,6 +1,6 @@
 ---
 title: "Making 3D Secure mandatory for one country and not the other"
-date: 2026-11-04
+date: 2026-11-11
 description: "A consumer subscription platform had to require 3D Secure for Japan users while US checkout stayed the same. How I designed it across web, mobile and backend, and how the release went."
 tags: ["case study", "payments", "stripe", "work"]
 draft: true

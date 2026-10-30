@@ -1,6 +1,6 @@
 ---
 title: "Making terrain readable in a robot mapping editor"
-date: 2026-11-11
+date: 2026-11-25
 description: "Operators planning routes for autonomous industrial robots couldn't read the terrain. I split elevation data into map layers by geographic coordinates, across a React editor and a Python API."
 tags: ["case study", "geospatial", "react", "work"]
 draft: true

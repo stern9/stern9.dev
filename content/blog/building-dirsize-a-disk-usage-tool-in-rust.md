@@ -130,7 +130,7 @@ I built it pairing with [Claude Code](https://claude.com/claude-code), which was
 
 > **LLM:** I get things wrong sometimes, and most languages let me find out in production, along with everyone else. Rust tells me in two seconds, points at the exact line, and usually suggests the fix. It's the only code reviewer I know that is never tired, never busy, and never says "looks good to me" without reading.
 
-Rust also turned out to be a very good language to hand to an AI agent: the compiler, the linter and the tests make "done" three commands that pass, not an opinion. I have a longer post about that coming.
+Rust also turned out to be a very good language to hand to an AI agent: the compiler, the linter and the tests make "done" three commands that pass, not an opinion. I wrote [a longer post about that](/blog/rust-for-ai-agents).
 
 ## What I took away
 

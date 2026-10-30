@@ -1,6 +1,6 @@
 ---
 title: "Doing the homework before sprint refinement with Claude Code skills"
-date: 2026-11-18
+date: 2026-11-28
 description: "I use Claude Code skills to read Jira tickets, map the change across two repos, flag upstream dependencies and propose estimates. Then I check all of it before the team sees it."
 tags: ["ai", "agents", "claude code", "work"]
 draft: true
