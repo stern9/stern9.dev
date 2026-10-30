@@ -24,7 +24,7 @@ const about = () => {
           the stack, from HTML email that renders in Outlook to authentication
           flows that span several applications, and these days I build with AI
           agents and verify what they ship. The full history is on my{" "}
-          <Link href={site.resume}>résumé</Link>.
+          <a href={site.resume}>résumé</a>.
         </p>
 
         <h2>Work</h2>

@@ -64,12 +64,12 @@ export default function Home({
           >
             Read the blog
           </Link>
-          <Link
+          <a
             href={site.resume}
             className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 px-4 py-2 text-sm font-medium transition-colors hover:border-zinc-300 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:bg-zinc-900"
           >
             Résumé <HiArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          </a>
           <Link
             href="/contact"
             className="px-2 py-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"

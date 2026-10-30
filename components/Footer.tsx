@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   FaGithub,
   FaInstagram,
@@ -38,13 +37,14 @@ const Footer = () => {
                 <Icon className="h-4 w-4" />
               </a>
             ))}
-            <Link
+            {/* Plain <a>: the feed is raw XML, not a page Next.js can render client-side. */}
+            <a
               href="/rss.xml"
               aria-label="RSS feed"
               className="transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
             >
               <FaRss className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>
