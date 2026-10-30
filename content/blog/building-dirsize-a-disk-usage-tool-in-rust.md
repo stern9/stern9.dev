@@ -138,6 +138,6 @@ Rust also turned out to be a very good language to hand to an AI agent: the comp
 - **Parallelism can be boring.** One word, no locks, no fear.
 - **Tooling matters as much as the language.** `cargo` made a new language feel familiar in an hour.
 
-Next I wanted to know how much of that disk space was the same file saved over and over. That turned into a second tool, and a number I did not expect. More on that in the next post.
+Next I wanted to know how much of that disk space was the same file saved over and over. That turned into a second tool, and a number I did not expect. More on that in [the next post](/blog/finding-44000-duplicate-files-with-rust).
 
 The code is on GitHub: [stern9/dirsize](https://github.com/stern9/dirsize). Go point it at your own disk. Pura vida. 🦀
