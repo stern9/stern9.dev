@@ -5,8 +5,8 @@ import { ImageResponse } from "next/og";
 import { site } from "../../lib/site";
 import { getAllPosts } from "../../lib/posts";
 
-// Runs on the default Node.js runtime so it works under the custom server
-// (server.js). Fonts are read once from public/og/.
+// Runs on the default Node.js runtime (not edge) so the fonts can be read
+// from public/og/ once, when the module first loads.
 const fontDir = join(process.cwd(), "public", "og");
 const inter = readFileSync(join(fontDir, "Inter-SemiBold.woff"));
 const mono = readFileSync(join(fontDir, "JetBrainsMono-Regular.woff"));
