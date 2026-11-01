@@ -46,8 +46,8 @@ export default async function handler(
   res.setHeader(
     "Cache-Control",
     // While the first blurb is being written the page polls for it, so that
-    // response must not be cached. Otherwise let the browser reuse it briefly
-    // (there's no shared cache in front of the server to honour s-maxage).
+    // response must not be cached. Otherwise max-age covers browsers, and
+    // s-maxage applies if a shared cache is ever added in front.
     blurb.pending
       ? "no-store"
       : "public, max-age=30, s-maxage=86400, stale-while-revalidate=43200",
