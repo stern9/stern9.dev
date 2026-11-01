@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: 24.22.1
           cache: npm
-      - run: npm ci
+      - run: npm ci --no-audit --no-fund
       # Blocks on high/critical advisories in production deps; dev-only tooling never ships
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
