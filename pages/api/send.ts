@@ -22,6 +22,10 @@ const HTML_ENTITIES: Record<string, string> = {
 const escapeHtml = (str: string) =>
   str.replace(/[&<>"']/g, (c) => HTML_ENTITIES[c]);
 
+// The contact form is at most ~5,000 characters; refuse anything bigger
+// before parsing.
+export const config = { api: { bodyParser: { sizeLimit: "16kb" } } };
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
