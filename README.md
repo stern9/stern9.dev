@@ -52,7 +52,7 @@
 
 ### Hosting
 
-Self-hosted on [Ubuntu](https://ubuntu.com/server) with [Nginx](https://nginx.org/) in front of a custom Node server (`server.js`) run by [pm2](https://pm2.keymetrics.io/).
+Self-hosted on [Ubuntu](https://ubuntu.com/server) with [Nginx](https://nginx.org/) in front of `next start`, bound to 127.0.0.1:3000 and run by [pm2](https://pm2.keymetrics.io/) via `npm start`.
 
 The résumé is served at `/resume` from `public/resume.html`.
 
