@@ -1,3 +1,5 @@
+import type { NextConfig } from "next";
+
 // Security headers sent with every response.
 const securityHeaders = [
   // Always use HTTPS for this domain and its subdomains (2 years).
@@ -22,8 +24,7 @@ const securityHeaders = [
   },
 ];
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
@@ -37,4 +38,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
