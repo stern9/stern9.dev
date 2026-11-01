@@ -54,7 +54,7 @@ export const visitorKey = (ip: string): string => {
   const addr = ip.replace(/%.*$/, ""); // drop any zone id (fe80::1%eth0)
   if (isIPv4(addr)) return addr;
   const groups = ipv6Groups(addr);
-  if (!groups) return ip;
+  if (!groups) return addr;
   if (groups.slice(0, 5).every((g) => g === 0) && groups[5] === 0xffff) {
     const [hi, lo] = groups.slice(6);
     return [hi >> 8, hi & 255, lo >> 8, lo & 255].join(".");
