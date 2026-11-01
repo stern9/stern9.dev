@@ -6,9 +6,14 @@ import {
 } from "../../utils/spotify";
 
 export default async function handler(
-  _: NextApiRequest,
+  req: NextApiRequest,
   res: NextApiResponse<NowPlayingData>,
 ) {
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.setHeader("Allow", "GET, HEAD");
+    return res.status(405).end();
+  }
+
   let response: Response;
   try {
     response = await getNowPlaying();
@@ -46,7 +51,7 @@ export default async function handler(
 
   res.setHeader(
     "Cache-Control",
-    "public, s-maxage=60, stale-while-revalidate=30",
+    "public, max-age=30, s-maxage=60, stale-while-revalidate=30",
   );
 
   return res.status(200).json({

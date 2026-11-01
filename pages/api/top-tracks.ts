@@ -7,9 +7,14 @@ import {
 import { getTrackBlurb } from "../../lib/trackBlurb";
 
 export default async function handler(
-  _: NextApiRequest,
+  req: NextApiRequest,
   res: NextApiResponse<TopTracksData>,
 ) {
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.setHeader("Allow", "GET, HEAD");
+    return res.status(405).end();
+  }
+
   let response: Response;
   try {
     response = await getTopTracks();
@@ -41,10 +46,11 @@ export default async function handler(
   res.setHeader(
     "Cache-Control",
     // While the first blurb is being written the page polls for it, so that
-    // response must not be cached.
+    // response must not be cached. Otherwise let the browser reuse it briefly
+    // (there's no shared cache in front of the server to honour s-maxage).
     blurb.pending
       ? "no-store"
-      : "public, s-maxage=86400, stale-while-revalidate=43200",
+      : "public, max-age=30, s-maxage=86400, stale-while-revalidate=43200",
   );
 
   return res.status(200).json({
