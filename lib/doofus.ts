@@ -1,14 +1,14 @@
 // Server-only: persona, canned replies and limits for Doofus, the site's
 // intentionally not-very-bright chat assistant.
 import type Anthropic from "@anthropic-ai/sdk";
+import { HISTORY_LIMITS } from "./doofusHistory";
 import { createRateLimiter } from "./rateLimit";
 
 export const DOOFUS_MODEL = "claude-haiku-5-5";
 
 export const LIMITS = {
   maxTokens: 300,
-  maxInputChars: 500,
-  maxHistory: 6, // messages sent to the model (user + assistant)
+  ...HISTORY_LIMITS,
   perVisitor: { max: 10, windowMs: 10 * 60 * 1000 },
   dailyTotal: Number(process.env.DOOFUS_DAILY_LIMIT) || 200,
 };
