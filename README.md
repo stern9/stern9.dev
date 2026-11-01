@@ -52,7 +52,9 @@
 
 ### Hosting
 
-Self-hosted on [Ubuntu](https://ubuntu.com/server) with [Nginx](https://nginx.org/) in front of `next start`, bound to 127.0.0.1:3000 and run by [pm2](https://pm2.keymetrics.io/) via `npm start`.
+Self-hosted on [Ubuntu](https://ubuntu.com/server) with [Nginx](https://nginx.org/) in front of the Next.js standalone server, bound to 127.0.0.1:3000 and run by [pm2](https://pm2.keymetrics.io/) via `npm start` (`scripts/start.sh`).
+
+CI builds each commit on `main` once (`output: "standalone"`), packs it with `scripts/package-release.sh` and pipes it to `scripts/deploy.sh` on the droplet, which unpacks it into `releases/`, repoints the `current` symlink, restarts pm2, health-checks and puts the previous release back on failure. Nothing is installed or built on the droplet.
 
 The résumé is served at `/resume` from `public/resume.html`.
 
