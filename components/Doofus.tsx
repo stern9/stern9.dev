@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { TbMoodCrazyHappy, TbSend2, TbX } from "react-icons/tb";
+import { HISTORY_LIMITS, recentHistory } from "../lib/doofusHistory";
 
 const GREETING =
   "Hi! I'm Doofus. I know almost everything about this website. Well, some things. Ask me anything!";
@@ -68,7 +69,7 @@ const Doofus = () => {
       const res = await fetch("/api/doofus", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: history.slice(1) }),
+        body: JSON.stringify({ messages: recentHistory(history.slice(1)) }),
       });
       if (!res.ok || !res.body) throw new Error();
       const reader = res.body.getReader();
@@ -159,7 +160,7 @@ const Doofus = () => {
               id="doofus-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              maxLength={500}
+              maxLength={HISTORY_LIMITS.maxInputChars}
               autoComplete="off"
               placeholder="Ask me anything (results may vary)"
               className="min-w-0 flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm placeholder:text-zinc-400 focus:border-zinc-500 focus:outline-hidden focus:ring-2 focus:ring-secondary/30 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder:text-zinc-500"
