@@ -1,19 +1,17 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { ogImagePath } from "../lib/og";
 import { site } from "../lib/site";
 
 const OG_WIDTH = 1200;
 const OG_HEIGHT = 630;
 const TWITTER_HANDLE = "@avramstern";
 
-/** Absolute URL of the generated Open Graph card for a given title. */
-export const ogImageUrl = (title?: string, label?: string) => {
-  const params = new URLSearchParams();
-  if (title) params.set("title", title);
-  if (label) params.set("label", label);
-  const query = params.toString();
-  return `${site.url}/api/og${query ? `?${query}` : ""}`;
-};
+/**
+ * Absolute URL of the pre-rendered Open Graph card for a post slug, or of the
+ * site-wide card. The PNGs are generated at build time into public/og/.
+ */
+export const ogImageUrl = (slug?: string) => `${site.url}${ogImagePath(slug)}`;
 
 const Seo = ({
   title,
@@ -28,7 +26,7 @@ const Seo = ({
   description?: string;
   type?: "website" | "article";
   date?: string;
-  /** Absolute image URL; defaults to the generated card for `title`. */
+  /** Absolute image URL; defaults to the site-wide card. */
   image?: string;
   /** Article author name (used for BlogPosting JSON-LD). */
   author?: string;
@@ -37,7 +35,7 @@ const Seo = ({
   const { asPath, pathname } = useRouter();
   const url = `${site.url}${asPath === "/" ? "" : asPath.split(/[?#]/)[0]}`;
   const fullTitle = title ? `${title} | ${site.name}` : site.title;
-  const ogImage = image ?? ogImageUrl(title);
+  const ogImage = image ?? ogImageUrl();
 
   const person = {
     "@type": "Person",

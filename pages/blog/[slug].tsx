@@ -28,7 +28,7 @@ export default function Post({ post, newer, older }: Props) {
         description={post.description || undefined}
         type="article"
         date={post.date}
-        image={ogImageUrl(post.title, "blog")}
+        image={ogImageUrl(post.slug)}
         author="Avram Stern"
       />
       <article>
