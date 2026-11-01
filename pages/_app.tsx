@@ -11,8 +11,11 @@ import { GA_TRACKING_ID } from "../utils/gtag";
 // Loaded client-side only; mounted here so the chat survives page navigation.
 const Doofus = dynamic(() => import("../components/Doofus"), { ssr: false });
 
-const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
+const sans = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // Keep articles distraction-free: no chat bubble on blog posts.
