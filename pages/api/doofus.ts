@@ -24,6 +24,10 @@ async function writeSlowly(res: NextApiResponse, text: string) {
   }
 }
 
+// The chat history is a few short messages; refuse anything bigger before
+// parsing.
+export const config = { api: { bodyParser: { sizeLimit: "16kb" } } };
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
@@ -57,6 +61,9 @@ export default async function handler(
   const stream = client.messages.stream({
     model: DOOFUS_MODEL,
     max_tokens: LIMITS.maxTokens,
+    // Haiku thinks adaptively by default, and thinking shares max_tokens, so
+    // keep it brief or it can use up the budget before writing any reply.
+    output_config: { effort: "low" },
     system: systemPrompt(),
     messages,
   });
