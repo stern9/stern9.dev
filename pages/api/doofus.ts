@@ -24,8 +24,8 @@ async function writeSlowly(res: NextApiResponse, text: string) {
   }
 }
 
-// The chat history is a few short messages; refuse anything bigger before
-// parsing.
+// The widget sends at most the last few short messages (see recentHistory);
+// refuse anything bigger before parsing.
 export const config = { api: { bodyParser: { sizeLimit: "16kb" } } };
 
 export default async function handler(
@@ -62,7 +62,9 @@ export default async function handler(
     model: DOOFUS_MODEL,
     max_tokens: LIMITS.maxTokens,
     // Haiku thinks adaptively by default, and thinking shares max_tokens, so
-    // keep it brief or it can use up the budget before writing any reply.
+    // it could use up the budget before writing any reply. Doofus is a joke
+    // bot: turn thinking off (Haiku allows that at effort high or below).
+    thinking: { type: "disabled" },
     output_config: { effort: "low" },
     system: systemPrompt(),
     messages,
