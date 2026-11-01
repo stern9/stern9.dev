@@ -99,6 +99,8 @@ Your post in Markdown…
 - Put images in `public/blog/<slug>/` and reference them as `/blog/<slug>/image.png`.
 - See `content/blog/markdown-style-guide.md` (a draft) for every supported feature.
 - Posts are rendered at build time, so run `npm run build` and restart after adding one.
+  The build also renders each post's link-preview card into `public/og/blog/<slug>.png`
+  (`scripts/generate-og-images.mts`, run as `prebuild`; not run by `npm run dev`).
 - RSS feed at `/rss.xml`, sitemap at `/sitemap.xml`.
 
 ## Acknowledgements
