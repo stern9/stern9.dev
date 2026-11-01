@@ -27,6 +27,13 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // CI builds .next/standalone (server.js plus only the node_modules it needs);
+  // scripts/package-release.sh adds public/, .next/static and content/ and
+  // scripts/deploy.sh serves it on the droplet without installing or building there.
+  output: "standalone",
+  // Pin the tracing root to this directory so server.js sits at the top of
+  // .next/standalone even when a parent directory has its own lockfile.
+  outputFileTracingRoot: __dirname,
   images: {
     formats: ["image/avif", "image/webp"],
   },

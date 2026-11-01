@@ -11,6 +11,10 @@
 # next.js
 /.next/
 /.next.previous/
+# releases unpacked by scripts/deploy.sh on the droplet
+/releases/
+/current
+/current.next
 /out/
 
 # production
