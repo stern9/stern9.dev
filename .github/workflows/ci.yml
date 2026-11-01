@@ -7,19 +7,28 @@ on:
   # Redeploys main without a new commit
   workflow_dispatch:
 
+# Default for every job; each job also states its own so none relies on the repo default
 permissions:
   contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
+      # Pinned to commit SHAs; Dependabot (github-actions ecosystem) keeps them current
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24.22.1
           cache: npm
       - run: npm ci
+      # Blocks on high/critical advisories in production deps; dev-only tooling never ships
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
       - run: npm run typecheck
       - run: npm run build
 
@@ -31,6 +40,8 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # Needs only its secrets: no checkout, no API calls
+    permissions: {}
     # Each run deploys its own commit, so a waiting deploy is never cancelled
     concurrency:
       group: deploy-production
@@ -55,4 +66,9 @@ jobs:
           ssh -T -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -o BatchMode=yes \
             -o StrictHostKeyChecking=yes -o ServerAliveInterval=30 "stern9@$DEPLOY_HOST" "$DEPLOY_SHA"
       - name: Check the site from outside
-        run: curl -fsS -o /dev/null https://stern9.dev/
+        # Retries ride out a brief blip (DNS, TLS, a 5xx while the proxy settles) without
+        # hiding a real outage: about a minute in total before the step fails
+        run: >-
+          curl -fsS -o /dev/null --connect-timeout 10 --max-time 20
+          --retry 5 --retry-delay 5 --retry-all-errors
+          https://stern9.dev/

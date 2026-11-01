@@ -2,15 +2,20 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
+    # Weekly so fixes for production deps land within days, not up to a month
     schedule:
-      interval: monthly
+      interval: weekly
     open-pull-requests-limit: 5
     groups:
       # One PR for all the routine bumps instead of one per package.
       minor-and-patch:
         update-types: [minor, patch]
 
+  # Also keeps the commit-SHA pins in ci.yml (and their # vX.Y.Z comments) up to date
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
