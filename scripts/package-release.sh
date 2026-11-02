@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Pack the output of `npm run build` into the release tarball scripts/deploy.sh unpacks:
 # .next/standalone (server.js and the node_modules it traced) plus public/, .next/static and
-# content/, which standalone does not copy in full, and RELEASE_SHA naming the commit.
+# content/, which standalone does not copy in full, RELEASE_SHA naming the commit and
+# RELEASE_PLATFORM naming the OS and CPU it was built on.
 #   scripts/package-release.sh <full commit sha> <output .tgz>
 set -euo pipefail
 
@@ -27,6 +28,9 @@ rm -rf "$stage/public" "$stage/content" "$stage/.next/static"
 cp -a public content "$stage/"
 cp -a .next/static "$stage/.next/static"
 printf '%s\n' "$sha" > "$stage/RELEASE_SHA"
+# node_modules carries native binaries (sharp) for the machine that built it; deploy.sh refuses
+# anything not built on Linux x86_64, like the droplet
+uname -s -m > "$stage/RELEASE_PLATFORM"
 
 tar -C "$stage" -czf "$out" .
 echo "[Package] $out: $(du -h "$out" | cut -f1) for ${sha:0:7}"

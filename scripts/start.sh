@@ -9,4 +9,12 @@ if [ -f current/server.js ]; then
   # server.js listens on HOSTNAME:PORT; set both, since a shell may export its own HOSTNAME
   HOSTNAME=127.0.0.1 PORT=3000 exec node current/server.js
 fi
+if [ -L current ]; then
+  echo "start.sh: current -> $(readlink current) has no server.js; point it at a release: ln -sfn releases/<name> current" >&2
+  exit 1
+fi
+if [ ! -x node_modules/.bin/next ] || [ ! -f .next/BUILD_ID ]; then
+  echo "start.sh: no release (current) and no build in this checkout; on the droplet, point current at a release: ln -sfn releases/<name> current" >&2
+  exit 1
+fi
 exec next start -H 127.0.0.1 -p 3000
