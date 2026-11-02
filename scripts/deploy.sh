@@ -13,9 +13,25 @@
 # Layout in the checkout: releases/<UTC time>-<short sha>/ (the live release and the one before
 # it), current -> releases/<live>, and scripts/start.sh (npm start, run by pm2) serving
 # current/server.js. The checkout itself is fast-forwarded for this script and package.json.
-# Roll back by hand: ln -sfn releases/<previous> current && pm2 restart stern9.dev
+#
+# Deploy by hand (CI cannot reach the droplet): take the "release" artifact of a green CI run on
+# main (kept 7 days) for a commit at or after the checkout, and run this script with it as stern9:
+#   gh run download <run-id> -n release          # on your machine: writes release.tgz
+#   scp release.tgz stern9@<droplet>:/tmp/release.tgz
+#   cd ~/stern9.dev && scripts/deploy.sh <full sha of that run> < /tmp/release.tgz
+# To go back to an older commit, roll back instead.
+#
+# Roll back by hand: repoint current at the release before it, never remove current. After the
+# first release the in-place .next and node_modules are gone, so with no current start.sh has
+# nothing to run and pm2 keeps restarting a process that exits at once:
+#   cd ~/stern9.dev && ls releases/
+#   ln -sfn releases/<previous> current.next && mv -T current.next current && pm2 restart stern9.dev
+# The checkout's commit does not matter to the running site (it holds this script, start.sh and
+# package.json); leave it on main so the next deploy can fast-forward.
+#
 # Exit codes: 2 checkout not on main, commit not on origin/main or not a fast-forward, 3 release
-# missing, corrupt or built from another commit (2 and 3 leave the site untouched), 4 restart or
+# missing, corrupt, built from another commit or on another platform than Linux x86_64 (2 and 3
+# leave the site untouched), 4 restart or
 # health check failed (previous release put back), 5 another deploy held the lock for 15
 # minutes, 64 unexpected argument.
 set -euo pipefail
@@ -28,6 +44,8 @@ HEALTH_URL=http://127.0.0.1:3000/
 LOCK_FILE="${DEPLOY_LOCK_FILE:-/etc/ours-budget/deploy.lock}"
 # A release is about 25 MB; anything far bigger is not one
 MAX_RELEASE_BYTES=$((300 * 1024 * 1024))
+# `uname -s -m` of the droplet, which must match the machine that built the release
+RELEASE_PLATFORM="Linux x86_64"
 # Runtime secrets stay in the checkout; each release links to them (Next.js reads them from
 # server.js's directory)
 ENV_FILES=(.env .env.production .env.local .env.production.local)
@@ -93,7 +111,7 @@ unpack_release() {
     echo "[Deploy] the release does not unpack (corrupt or not a gzip tarball)" >&2
     return 1
   fi
-  for path in server.js package.json .next/BUILD_ID .next/static public content/blog RELEASE_SHA; do
+  for path in server.js package.json .next/BUILD_ID .next/static public content/blog RELEASE_SHA RELEASE_PLATFORM; do
     if [ ! -e "$new_release/$path" ]; then
       echo "[Deploy] the release has no $path" >&2
       return 1
@@ -101,6 +119,12 @@ unpack_release() {
   done
   if [ "$(cat "$new_release/RELEASE_SHA")" != "$sha" ]; then
     echo "[Deploy] the release was built from $(head -c 40 "$new_release/RELEASE_SHA"), not $sha" >&2
+    return 1
+  fi
+  # A release built elsewhere (a Mac, say) carries the wrong sharp binary: / would still answer
+  # 200 while /_next/image fails, so the health check cannot catch it
+  if [ "$(cat "$new_release/RELEASE_PLATFORM")" != "$RELEASE_PLATFORM" ]; then
+    echo "[Deploy] the release was built on $(head -c 64 "$new_release/RELEASE_PLATFORM"), not $RELEASE_PLATFORM" >&2
     return 1
   fi
   for name in "${ENV_FILES[@]}"; do
