@@ -17,10 +17,22 @@ What changes compared with the old file:
 - `/api/*`: 5 req/s per IP, burst 20, then 429. Bodies capped at 32k.
 - `/api/doofus` and `/api/send`: also 6 req/min per IP (burst 5) and 3
   concurrent requests per IP, then 429. No buffering, 300s read timeout.
-- `/api/now-playing`, `/api/top-tracks` and `/api/og`: shared cache that uses
-  only the app's `Cache-Control` (`s-maxage`, then `max-age`). `no-store`,
-  responses without cache headers and POSTs are never stored. Responses carry
-  `X-Cache-Status`.
+  Nginx's 429 is a plain HTML page, so a 7th Doofus message within a minute
+  shows the widget's generic error rather than a Doofus reply. That's
+  acceptable: the in-app limit normally answers first, in character.
+- `/api/now-playing` and `/api/top-tracks`: shared cache that uses only the
+  app's `Cache-Control` (`s-maxage`, then `max-age`). `no-store`, responses
+  without cache headers and POSTs are never stored. The key ignores the query
+  string, Accept-Encoding is cleared upstream and Next's `Vary:
+  Accept-Encoding` is ignored, so there is one uncompressed copy per endpoint. Responses carry `X-Cache-Status`. Freshness:
+  - now-playing: 15s, plus up to 15s stale while it refreshes in the
+    background, so a change shows within about 30s and Spotify sees at most
+    a few calls a minute. Failed Spotify calls send no cache header, so they
+    are never stored.
+  - top-tracks: up to a day (the blurb changes weekly). Never stored while
+    the blurb is pending (`no-store`).
+- `/api/og` is not cached here: after #12 it is a header-less redirect and the
+  images are static files under `location /`.
 - The proxy headers moved from `location /` to the server level so the new
   locations inherit them. Everything else is unchanged.
 
@@ -70,6 +82,9 @@ From a laptop. The 429 checks lock your own IP out briefly (a few seconds for
 # Cache-Control is no-store (blurb pending).
 for i in 1 2; do curl -s -o /dev/null -D - https://stern9.dev/api/now-playing | grep -iE '^(cache-control|x-cache-status)'; done
 for i in 1 2; do curl -s -o /dev/null -D - https://stern9.dev/api/top-tracks  | grep -iE '^(cache-control|x-cache-status)'; done
+# A query string or a different Accept-Encoding still gets a HIT.
+curl -s -o /dev/null -D - "https://stern9.dev/api/now-playing?x=$RANDOM" | grep -i '^x-cache-status'
+curl -s -o /dev/null -D - --compressed https://stern9.dev/api/now-playing | grep -i '^x-cache-status'
 
 # /api/ limit: about 21 x 200, then 429s.
 for i in $(seq 30); do curl -s -o /dev/null -w '%{http_code} ' https://stern9.dev/api/now-playing; done; echo
@@ -99,8 +114,8 @@ widget, and that ours-budget still loads.
 
 ## Purge the cache
 
-top-tracks may be cached for up to a day and `/api/og` for up to a week (their
-`s-maxage`). To drop everything now:
+top-tracks may be cached for up to a day (its `s-maxage`). To drop everything
+now:
 
 ```sh
 sudo find /var/cache/nginx/stern9 -type f -delete
@@ -119,6 +134,7 @@ sudo rm -rf /var/cache/nginx/stern9    # optional
 ## Testing locally
 
 The config was checked with the `nginx:1.24` Docker image (same version as the
-droplet), with dummy Certbot files and a stub app on 127.0.0.1:3000: `nginx -t`,
-429s, cache MISS/HIT/STALE, `no-store` never cached, POSTs never cached, and
-Doofus-style streaming arriving chunk by chunk.
+droplet), with dummy Certbot files and a stub app on 127.0.0.1:3000 that sends
+`Vary: Accept-Encoding` like Next: `nginx -t`, 429s, cache MISS/HIT/STALE
+(including across query strings and Accept-Encoding values), `no-store` never
+cached, POSTs never cached, and Doofus-style streaming arriving chunk by chunk.
