@@ -5,6 +5,12 @@ import {
   type SpotifyTrack,
 } from "../../utils/spotify";
 
+// Short enough that a finished track or a stopped player shows within ~30s,
+// long enough that Nginx's shared cache keeps Spotify calls to a few a minute.
+// Only set on real answers from Spotify, so a failed call isn't cached.
+const CACHE_CONTROL =
+  "public, max-age=15, s-maxage=15, stale-while-revalidate=15";
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<NowPlayingData>,
@@ -24,6 +30,7 @@ export default async function handler(
 
   // 204 means nothing is playing; anything else non-2xx is a real error.
   if (response.status === 204) {
+    res.setHeader("Cache-Control", CACHE_CONTROL);
     return res.status(200).json({ isPlaying: false });
   }
   if (!response.ok) {
@@ -40,6 +47,7 @@ export default async function handler(
 
   // `item` is null for ads, and podcast episodes have no artists/album.
   if (!song.item || song.item.type !== "track") {
+    res.setHeader("Cache-Control", CACHE_CONTROL);
     return res.status(200).json({ isPlaying: false });
   }
   const isPlaying = song.is_playing;
@@ -49,10 +57,7 @@ export default async function handler(
   const albumImageUrl = song.item.album.images[0]?.url ?? null;
   const songUrl = song.item.external_urls.spotify;
 
-  res.setHeader(
-    "Cache-Control",
-    "public, max-age=30, s-maxage=60, stale-while-revalidate=30",
-  );
+  res.setHeader("Cache-Control", CACHE_CONTROL);
 
   return res.status(200).json({
     album,
