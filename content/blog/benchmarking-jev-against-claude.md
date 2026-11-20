@@ -1,9 +1,9 @@
 ---
 title: "Jev beat Claude Haiku on 72 decisions, 7 times faster, for two cents per thousand"
-date: 2026-11-04
+date: 2026-11-08
 description: "I benchmarked TypeSafe's Jev against Claude on 72 labeled decisions. Jev: 94.4% at ~185 ms. Haiku 4.5: 91.7% at ~1.2 s. Opus 5: 98.6% at ~2.6 s, for over 300 times Jev's cost."
 tags: ["ai", "benchmarks", "python", "side project"]
-draft: true
+draft: false
 ---
 
 After my [bank statement script](/blog/sorting-bank-statements-with-jev) worked, I had a bigger question. Jev sorted 305 emails without a single mistake I could find. But that was one task, on my own inbox, with no labels to check against. Is Jev good enough to replace an LLM for the routine decisions software makes all day? Routing a ticket. Flagging a scam. Grading an alert.
