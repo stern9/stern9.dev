@@ -3,7 +3,7 @@
 import { codeToHtml } from "shiki";
 
 const snippets = [
-  // jev-bench, jevbench/runner.py, as shown in the jev-bench blog post.
+  // jev-bench, jevbench/runner.py, shortened to fit.
   {
     lang: "python",
     code: `def make_caller(model: str, stack: ExitStack) -> Callable:
