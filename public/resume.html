@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avram Stern | Résumé</title>
-<meta name="description" content="Avram Stern, senior full stack engineer in San José, Costa Rica. 10+ years building for the web. Now shipping with AI agents and verifying what they build.">
+<meta name="description" content="Avram Stern, senior full stack engineer in San José, Costa Rica. I build software with AI agents and verify what they build, with 10+ years of software engineering.">
 <meta name="robots" content="index">
 <meta name="author" content="Avram Stern">
 <meta name="color-scheme" content="light dark">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://stern9.dev/resume">
 <meta property="og:title" content="Avram Stern | Senior Full Stack Engineer">
-<meta property="og:description" content="10+ years building for the web. Now shipping with AI agents and verifying what they build.">
+<meta property="og:description" content="I build software with AI agents and verify what they build. 10+ years of software engineering.">
 <link rel="icon" href="/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,7 +193,7 @@
   <header class="masthead" itemscope itemtype="https://schema.org/Person">
     <h1 itemprop="name">Avram Stern</h1>
     <p class="headline" itemprop="jobTitle">Senior Full Stack Engineer</p>
-    <p class="subline">10+ years building for the web, from agency campaigns to client product teams. Now shipping with AI agents and verifying what they build.</p>
+    <p class="subline">I build software with AI agents and verify what they build. 10+ years of software engineering, from agency campaigns to client product teams.</p>
     <address class="contact">
       <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"><span itemprop="addressLocality">San José</span>, <span itemprop="addressCountry">Costa Rica</span></span>
       <a href="mailto:stern9@gmail.com" itemprop="email">stern9@gmail.com</a>
@@ -207,14 +207,14 @@
   <main>
     <section class="summary" aria-labelledby="summary-h">
       <h2 id="summary-h">Summary</h2>
-      <p>Senior full stack engineer with 10+ years on the web. Five years on client product teams at Gorilla Logic: payments and auth, production releases, geospatial tooling, e-commerce and real-time feeds. Before that, six years of creative engineering for American Express, Delta, Dunkin' and PlayStation. I build software with AI agents and still know exactly what got built: a written brief before any code, agents in parallel, and "done" is three commands, not an opinion. On client work, AI drafts and investigates; I validate every finding against the code and handle everything client-facing myself.</p>
+      <p>A written brief comes before any code, agents work in parallel, and "done" means the compiler, the linter and the tests pass, not an opinion. On client work, AI drafts and investigates; I validate every finding against the code and handle everything client-facing myself. Behind that are 10+ years of software engineering. Five years on client product teams at Gorilla Logic: payments and auth, production releases, geospatial tooling, e-commerce and real-time feeds. Before that, six years of creative engineering for American Express, Delta, Dunkin' and PlayStation.</p>
     </section>
 
     <section class="highlights" aria-labelledby="highlights-h">
       <h2 id="highlights-h">Selected work</h2>
       <ul>
-        <li><strong>Made 3D Secure mandatory for Japan.</strong> Owned the Stripe auth and payment flows on a US and Japan consumer platform, led the 3DS rollout, and ran production releases for the web apps from scope to post-release verification.</li>
-        <li><strong>Explained a cross-application auth change.</strong> Mapped redirects, callbacks, gateway and identity provider, then gave the team an AI-generated interactive explainer, sequence diagrams and a flow spec, each step verified against the code.</li>
+        <li><strong>Made 3D Secure mandatory in one market and not the other.</strong> On a membership service that handles everyday tasks for busy families in the US and Japan, owned the Stripe auth and payment flows, led the rollout that made 3D Secure mandatory at checkout in Japan while US checkout stayed unchanged, and ran production releases for the web apps from scope to post-release verification.</li>
+        <li><strong>Explained a login change that spans several applications.</strong> For an insurance agency client, mapped the redirects, callbacks, gateway and identity provider, then gave the team an AI-generated interactive explainer, sequence diagrams and a flow spec, each step verified against the code.</li>
         <li><strong>Benchmarked models before using one.</strong> jev-bench scores TypeSafe's Jev against ten other models (Claude, GPT and local) on 72 labeled decisions with the same scoring code: Jev 94.4% at 171 ms and about $0.02 per 1k decisions, Claude Opus 5.5 97.2% at 2.1 s and $4.33.</li>
         <li><strong>Kept PII out of LLM calls.</strong> pii-gate masks personal data in prompts as typed placeholders and restores it in the reply, with a per-category mask/block/allow policy and an audit log that never stores values.</li>
       </ul>
@@ -230,11 +230,18 @@
         </div>
 
         <div class="engagement">
-          <h4>AI tooling for client and internal teams <span class="dates">2026</span></h4>
+          <h4>Insurance agency client <span class="org">· Senior Full Stack Engineer</span> <span class="dates">2026 to present</span></h4>
           <ul>
-            <li>Built Claude Code skills for sprint refinement that read Jira tickets, map changes across two repositories, flag MuleSoft, Salesforce and carrier dependencies, and propose Fibonacci estimates with reasoning, split suggestions and refinement questions. Reviewed against the code and project context before anything reaches the team.</li>
+            <li>Built Claude Code skills for sprint refinement that read Jira tickets, map changes across two repositories, flag MuleSoft, Salesforce and carrier dependencies, and propose Fibonacci estimates with reasoning, split suggestions and refinement questions. I review every output against the code and project context before it reaches the team.</li>
             <li>Used agents to trace a client bug across the front end, back end and production database; the trace surfaced a missing upstream integration record. Built diagramming skills to explain auth redirect flows to the team.</li>
+          </ul>
+        </div>
+
+        <div class="engagement">
+          <h4>AI training and certification prep <span class="dates">2026</span></h4>
+          <ul>
             <li>Built Gorilla Code, an interactive Claude Code training environment with tool hooks, activity logging, guardrails and a live dashboard, with MCP and multi-agent exercises.</li>
+            <li>Preparing for the Claude Certified Architect exam with Architect Coach, a study tool I am building with AI, using the same APIs the exam covers: an MCP server with SQLite storage and full-text search over the official Claude docs, with every design decision recorded as an ADR.</li>
           </ul>
         </div>
 
@@ -243,7 +250,7 @@
           <p class="stack">TypeScript, React, Next.js, Node, Express · Kotlin/Micronaut over gRPC, CockroachDB · Flutter · Stripe with 3DS, Auth0, Salesforce, Ably · EN-US and JA-JP i18n · Terraform, Docker, GitHub Actions</p>
           <ul>
             <li>Built customer task creation and editing, including complex branching forms wired to backend services, and fixed navigation and state bugs that could hide questions or block a task flow.</li>
-            <li>Owned the auth and payment flows on Stripe and led the implementation that made 3D Secure mandatory for Japan users.</li>
+            <li>Owned the auth and payment flows on Stripe and led the implementation that made 3D Secure mandatory at checkout for the service's Japan customers. Built the Stripe webhook handlers in Node and Express, including their integration with the backend services, to confirm each payment's outcome before a subscription is activated or renewed.</li>
             <li>Owned production releases for the web apps: scope and timing with QA, product and the client, then build, deploy and post-release verification.</li>
             <li>Managed Stripe coupon codes, CI/CD pipelines and telemetry as Terraform code, so promotions and pipeline changes went through review.</li>
           </ul>
@@ -303,6 +310,8 @@
       <dl class="skills">
         <dt>Languages</dt>
         <dd>TypeScript, JavaScript, Python, Rust, SQL, HTML, CSS</dd>
+        <dt>AI &amp; agents</dt>
+        <dd>Claude Code skills and hooks, MCP, multi-agent orchestration, verification with compiler, lint and tests, prompt guardrails, rate limiting and cost control for LLM endpoints, model benchmarking (accuracy, latency, calibration, cost), PII masking</dd>
         <dt>Front end</dt>
         <dd>React, Next.js (ISR, SSG), React Query, React Context, Tailwind CSS, Storybook, next-i18next, Mapbox, deck.gl, nebula.gl, HTML email</dd>
         <dt>Back end &amp; data</dt>
@@ -311,10 +320,8 @@
         <dd>Stripe (including 3D Secure), Auth0, Veriff, Salesforce</dd>
         <dt>Infra</dt>
         <dd>Terraform, Docker, GitHub Actions, Dependabot, Nginx, Ubuntu, pm2, Let's Encrypt, cron</dd>
-        <dt>AI &amp; agents</dt>
-        <dd>Claude Code skills and hooks, MCP, multi-agent orchestration, verification with compiler, lint and tests, prompt guardrails, rate limiting and cost control for LLM endpoints, model benchmarking (accuracy, latency, calibration, cost), PII masking</dd>
         <dt>Tooling</dt>
-        <dd>Git, Unix shell, Vitest, Grunt, Salesforce Marketing Cloud / AMPscript, Litmus, Email on Acid, agile, pi, herdr, Codex</dd>
+        <dd>Git, Unix shell, Vitest, Grunt, Salesforce Marketing Cloud / AMPscript, Litmus, Email on Acid, Codex</dd>
       </dl>
     </section>
 
@@ -324,7 +331,8 @@
         <li><strong>pii-gate</strong> (TypeScript, 2026). Masks PII before LLM calls and restores it after. <a class="link" href="https://github.com/stern9/pii-gate">github.com/stern9/pii-gate</a></li>
         <li><strong>jev-bench</strong> (Python, 2026). Accuracy, latency, calibration and cost across eleven models on 72 labeled decisions. <a class="link" href="https://github.com/stern9/jev-bench">github.com/stern9/jev-bench</a></li>
         <li><strong>dirsize</strong> and <strong>dupes</strong> (Rust, 2026). Parallel disk usage tree and BLAKE3 duplicate finder, CI on Linux and macOS. <a class="link" href="https://github.com/stern9/dirsize">github.com/stern9/dirsize</a>, <a class="link" href="https://github.com/stern9/dupes">github.com/stern9/dupes</a></li>
-        <li><strong>tennis-reservation</strong> (TypeScript). Books courts at midnight with parallel requests to the club's API in about 500 ms, 12x faster than the browser-automation version it replaced. <a class="link" href="https://github.com/stern9/tennis-reservation">github.com/stern9/tennis-reservation</a></li>
+        <li><strong>typed-env</strong> (TypeScript, 2026). Validates environment variables against a schema and returns a typed, frozen config. Zero dependencies, published on npm as @stern9/typed-env. <a class="link" href="https://github.com/stern9/typed-env">github.com/stern9/typed-env</a></li>
+        <li><strong>tennis-reservation</strong> (TypeScript, 2026). Books courts at midnight with parallel requests to the club's API in about 500 ms, 12x faster than the browser-automation version it replaced. <a class="link" href="https://github.com/stern9/tennis-reservation">github.com/stern9/tennis-reservation</a></li>
       </ul>
     </section>
 
@@ -338,7 +346,7 @@
 
     <section aria-labelledby="languages-h">
       <h2 id="languages-h">Languages</h2>
-      <p>English, Spanish, French (soon Japanese)</p>
+      <p>English, Spanish, French (learning Japanese)</p>
     </section>
   </main>
 

@@ -200,3 +200,62 @@ export const env = loadEnv({
     stack: ["Next.js", "Tailwind CSS", "FaunaDB"],
   },
 ];
+
+// Product-team work at Gorilla Logic. The code is private, so these cards have
+// no source link: a description, the stack, and a case study when one is live.
+export type ProductWork = {
+  title: string;
+  client: string;
+  period: string;
+  description: string;
+  stack: string[];
+  caseStudy?: { href: string; label: string };
+};
+
+// Newest first.
+export const productWork: ProductWork[] = [
+  {
+    title: "Sprint refinement and bug tracing with agents",
+    client: "Insurance agency client",
+    period: "2026 to present",
+    description:
+      "Built Claude Code skills that read Jira tickets, map a change across two repositories, flag upstream dependencies and propose estimates with reasoning. Used agents to trace a client bug from the front end to the production database. I check every finding against the code before the team sees it.",
+    stack: ["Claude Code", "TypeScript", "Jira"],
+    caseStudy: {
+      href: "/blog/explaining-auth-changes-with-an-ai-skill",
+      label: "Case study: explaining an auth change",
+    },
+  },
+  {
+    title: "Payments, auth and releases",
+    client: "Panasonic Well",
+    period: "2023 to 2026",
+    description:
+      "On a membership service that handles everyday tasks for busy families in the US and Japan, owned the Stripe auth and payment flows, led the change that made 3D Secure mandatory at checkout for its Japan customers, and ran production releases for the web apps from scope to post-release verification.",
+    stack: ["TypeScript", "Next.js", "Flutter", "Stripe", "Auth0", "Terraform"],
+  },
+  {
+    title: "Terrain layers for a robot route editor",
+    client: "Cyngn",
+    period: "2023",
+    description:
+      "On the mapping editor for autonomous industrial robots, split elevation data into map layers by geographic coordinates, which made terrain readable for the operators configuring routes.",
+    stack: ["React", "Python", "Mapbox", "deck.gl", "nebula.gl"],
+  },
+  {
+    title: "E-commerce storefront from scratch",
+    client: "The Pro's Closet",
+    period: "2022 to 2023",
+    description:
+      "Helped build the storefront on Next.js Incremental Static Regeneration, designed the app-wide React Context state management, and led the identity-verification proof of concept with Veriff.",
+    stack: ["Next.js", "TypeScript", "Sanity", "Shopify"],
+  },
+  {
+    title: "Activity feeds and real-time chat",
+    client: "HIMSS",
+    period: "2021 to 2022",
+    description:
+      "Built the activity feeds and real-time chat for a networking platform for healthcare professionals, plus Express endpoints, SQL migrations and Elasticsearch for content discovery.",
+    stack: ["React", "Node.js", "PostgreSQL", "Elasticsearch", "GetStream"],
+  },
+];
