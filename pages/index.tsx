@@ -56,7 +56,7 @@ export default function Home({
           brief, and agree on what done means. Agents do the building and the
           tracing in parallel. The compiler, the tests and my own review decide
           when it&apos;s finished. That&apos;s how I work on payments, auth and
-          production releases today, with over 10 years of web engineering
+          production releases today, with over 10 years of software engineering
           behind the judgment.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
