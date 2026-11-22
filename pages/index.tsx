@@ -46,16 +46,18 @@ export default function Home({
           Senior full stack engineer · San José, Costa Rica
         </p>
         <h1 className="mt-4 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl sm:leading-none">
-          I solve real problems
+          I build software with AI agents
           <span className="block text-zinc-400 dark:text-zinc-500">
-            with software that ships.
+            and verify what they build.
           </span>
         </h1>
         <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
-          I&apos;ve been building for the web for over 10 years: agency work for
-          brands like American Express and PlayStation, then product teams at
-          Gorilla Logic. Now I build software with AI agents and still know
-          exactly what got built, because I verify everything they build.
+          I start with the problem: read the code that&apos;s there, write the
+          brief, and agree on what done means. Agents do the building and the
+          tracing in parallel. The compiler, the tests and my own review decide
+          when it&apos;s finished. That&apos;s how I work on payments, auth and
+          production releases today, with over 10 years of web engineering
+          behind the judgment.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
