@@ -1,7 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { FaGithub } from "react-icons/fa";
-import type { Project } from "../lib/projects";
+import type { ProductWork, Project } from "../lib/projects";
 
 const CardItem = ({
   title,
@@ -120,6 +121,49 @@ export const CompactCardItem = ({
       <FaGithub className="h-3.5 w-3.5" /> Source
     </a>
   </li>
+);
+
+// Card for private product-team work: no cover and no source link.
+export const ProductWorkCard = ({
+  title,
+  client,
+  period,
+  description,
+  stack,
+  caseStudy,
+}: ProductWork) => (
+  <article className="flex flex-col rounded-xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
+    <div className="flex items-baseline justify-between gap-3">
+      <p className="font-mono text-xs text-accent dark:text-accent-light">
+        {client}
+      </p>
+      <span className="text-sm tabular-nums text-zinc-400">{period}</span>
+    </div>
+    <h3 className="mt-2 font-medium text-zinc-900 dark:text-zinc-100">
+      {title}
+    </h3>
+    <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+      {description}
+    </p>
+    <ul className="mt-4 flex flex-wrap gap-1.5">
+      {stack.map((tech) => (
+        <li
+          key={tech}
+          className="rounded-md bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300"
+        >
+          {tech}
+        </li>
+      ))}
+    </ul>
+    {caseStudy && (
+      <Link
+        href={caseStudy.href}
+        className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-zinc-900 hover:text-accent dark:text-zinc-100 dark:hover:text-accent-light"
+      >
+        {caseStudy.label} <HiArrowUpRight className="h-3.5 w-3.5" />
+      </Link>
+    )}
+  </article>
 );
 
 export default CardItem;

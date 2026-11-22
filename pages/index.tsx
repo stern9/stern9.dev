@@ -55,9 +55,9 @@ export default function Home({
           I start with the problem: read the code that&apos;s there, write the
           brief, and agree on what done means. Agents do the building and the
           tracing in parallel. The compiler, the tests and my own review decide
-          when it&apos;s finished. That&apos;s how I work on payments, auth and
-          production releases today, with over 10 years of software engineering
-          behind the judgment.
+          when it&apos;s finished. That&apos;s how I work today. Behind the
+          judgment are over 10 years of software engineering, with payments,
+          auth and production releases among them.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link

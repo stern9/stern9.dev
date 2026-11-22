@@ -1,5 +1,5 @@
-import CardItem, { CompactCardItem } from "./CardItem";
-import { projects, type ProjectGroup } from "../lib/projects";
+import CardItem, { CompactCardItem, ProductWorkCard } from "./CardItem";
+import { productWork, projects, type ProjectGroup } from "../lib/projects";
 
 const byGroup = (group: ProjectGroup) =>
   projects.filter((p) => p.group === group);
@@ -35,26 +35,42 @@ const Projects = ({ limit }: { limit?: number }) => {
     },
     {
       group: "client",
-      label: "Client work",
-      note: "Agency projects, 2018 to 2020",
+      label: "Agency work",
+      note: "Prodigious / Publicis, 2018 to 2020",
     },
   ] as const;
 
+  const section = ({ group, label, note }: (typeof sections)[number]) => (
+    <section key={group} aria-labelledby={`projects-${group}`}>
+      <div className="mb-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <SectionLabel id={`projects-${group}`}>{label}</SectionLabel>
+        <p className="text-sm text-zinc-400 dark:text-zinc-500">{note}</p>
+      </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        {byGroup(group).map((project) => (
+          <CardItem key={project.title} {...project} />
+        ))}
+      </div>
+    </section>
+  );
+
   return (
     <div className="space-y-14">
-      {sections.map(({ group, label, note }) => (
-        <section key={group} aria-labelledby={`projects-${group}`}>
-          <div className="mb-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <SectionLabel id={`projects-${group}`}>{label}</SectionLabel>
-            <p className="text-sm text-zinc-400 dark:text-zinc-500">{note}</p>
-          </div>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {byGroup(group).map((project) => (
-              <CardItem key={project.title} {...project} />
-            ))}
-          </div>
-        </section>
-      ))}
+      {section(sections[0])}
+      <section aria-labelledby="projects-product">
+        <div className="mb-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <SectionLabel id="projects-product">Product teams</SectionLabel>
+          <p className="text-sm text-zinc-400 dark:text-zinc-500">
+            Gorilla Logic client work, 2021 to present, private code
+          </p>
+        </div>
+        <div className="grid gap-5 sm:grid-cols-2">
+          {productWork.map((work) => (
+            <ProductWorkCard key={work.client} {...work} />
+          ))}
+        </div>
+      </section>
+      {section(sections[1])}
       <section aria-labelledby="projects-archive">
         <div className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
           <SectionLabel id="projects-archive">Archive</SectionLabel>

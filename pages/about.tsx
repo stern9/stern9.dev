@@ -9,7 +9,7 @@ const about = () => {
     <Layout>
       <Seo
         title="About"
-        description="Avram Stern is a senior full stack engineer in San José, Costa Rica, with 10+ years at Prodigious/Publicis and Gorilla Logic, now building with AI agents and verifying what they build."
+        description="Avram Stern is a senior full stack engineer in San José, Costa Rica, who builds software with AI agents and verifies what they build, with 10+ years of software engineering at Gorilla Logic and Prodigious/Publicis."
       />
       <header className="mb-10">
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -19,54 +19,17 @@ const about = () => {
 
       <div className="prose prose-zinc max-w-none dark:prose-invert sm:prose-lg">
         <p className="lead">
-          I&apos;m Avram Stern, a senior full stack engineer in San José, Costa Rica
-          🇨🇷, with more than 10 years of building for the web. I work across
-          the stack, from HTML email that renders in Outlook to authentication
-          flows that span several applications, and these days I build with AI
-          agents and verify what they ship. The full history is on my{" "}
+          I&apos;m Avram Stern, a senior full stack engineer in San José, Costa
+          Rica 🇨🇷. I build software with AI agents and verify what they
+          build. Behind that are more than 10 years of software engineering
+          across the stack: payment and authentication flows, production
+          releases, and the tooling around them. The full history is on my{" "}
           <a href={site.resume}>résumé</a>.
         </p>
 
-        <h2>Work</h2>
+        <h2>How I work</h2>
         <p>
-          From 2013 to 2021 I was at Prodigious, part of Publicis, growing from
-          media operations to senior creative engineer. I built emails and
-          landing pages for American Express, Delta, Kellogg&apos;s,
-          Dunkin&apos; and PlayStation, where fallbacks and testing on real
-          clients were the job, not an afterthought. One example:{" "}
-          <Link href="/blog/building-an-interactive-email-that-works-in-outlook">
-            an interactive PlayStation email that still works in Outlook
-          </Link>
-          . I also made my{" "}
-          <a
-            href="http://stern9.github.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            first personal site
-          </a>{" "}
-          in 2013.
-        </p>
-        <p>
-          Since 2021 I&apos;ve been at Gorilla Logic, embedded on client
-          product teams. At HIMSS I built activity feeds and real-time chat for
-          a healthcare networking platform. At The Pro&apos;s Closet I helped
-          build an e-commerce storefront from scratch on Next.js. At Cyngn I
-          built terrain layers for a mapping editor used to route autonomous
-          industrial robots. At Panasonic Well I owned the Stripe auth and
-          payment flows, led the change that made 3D Secure mandatory for Japan,
-          and ran production releases for the web apps. A recent example of how
-          I work is{" "}
-          <Link href="/blog/explaining-auth-changes-with-an-ai-skill">
-            an authentication change across several applications
-          </Link>{" "}
-          and how I explained it to the team.
-        </p>
-
-        <h2>How I work now</h2>
-        <p>
-          I build software with AI agents and still know exactly what got
-          built. The brief and the conventions come before any code. Agents run
+          The brief and the conventions come before any code. Agents run
           in parallel on separate pieces. The compiler, the linter and the tests
           decide when something is done, and I review everything that comes
           back. At work this looks like Claude Code skills that read a Jira
@@ -93,6 +56,44 @@ const about = () => {
           is a TypeScript library that masks personal data in prompts before
           they reach an LLM API and restores it in the reply. TypeScript and
           JavaScript are still home.
+        </p>
+
+        <h2>Experience</h2>
+        <p>
+          Since 2021 I&apos;ve been at Gorilla Logic, embedded on client
+          product teams. Right now that&apos;s an insurance agency client,
+          where I build Claude Code skills for sprint refinement and recently
+          walked the team through{" "}
+          <Link href="/blog/explaining-auth-changes-with-an-ai-skill">
+            an authentication change across several applications
+          </Link>
+          . Before that, at Panasonic Well I owned the Stripe auth and payment
+          flows, led the change that made 3D Secure mandatory for its Japan
+          customers, and ran production releases for the web apps. At Cyngn I
+          built terrain layers for a mapping editor used to route autonomous
+          industrial robots. At The Pro&apos;s Closet I helped build an
+          e-commerce storefront from scratch on Next.js. At HIMSS I built
+          activity feeds and real-time chat for a healthcare networking
+          platform.
+        </p>
+        <p>
+          From 2013 to 2021 I was at Prodigious, part of Publicis, growing from
+          media operations to senior creative engineer. I built emails and
+          landing pages for American Express, Delta, Kellogg&apos;s,
+          Dunkin&apos; and PlayStation, where fallbacks and testing on real
+          clients were the job, not an afterthought. One example:{" "}
+          <Link href="/blog/building-an-interactive-email-that-works-in-outlook">
+            an interactive PlayStation email that still works in Outlook
+          </Link>
+          . I also made my{" "}
+          <a
+            href="http://stern9.github.io/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            first personal site
+          </a>{" "}
+          in 2013.
         </p>
 
         <h2>About this site</h2>

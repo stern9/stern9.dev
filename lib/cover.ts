@@ -1,9 +1,9 @@
 // Server-only: highlights the code shown in the home page cover.
-// Every snippet is real code from one of the projects on this site.
+// Every snippet comes from one of the projects on this site, shortened to fit.
 import { codeToHtml } from "shiki";
 
 const snippets = [
-  // jev-bench, jevbench/runner.py (two keyword arguments trimmed to fit).
+  // jev-bench, jevbench/runner.py, as shown in the jev-bench blog post.
   {
     lang: "python",
     code: `def make_caller(model: str, stack: ExitStack) -> Callable:
@@ -23,7 +23,7 @@ const snippets = [
     code: `import { mask, unmask } from "pii-gate";
 
 const { masked, vault } = mask(
-  "Insured: Maria Gonzalez, DOB: 03/14/1979.",
+  "Insured: John Doe, DOB: 01/01/1980.",
 );
 // "Insured: {{PERSON_1}}, DOB: {{DOB_1}}."
 

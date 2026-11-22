@@ -2,7 +2,7 @@ export const site = {
   name: "Avram Stern",
   title: "Avram Stern — Senior Full Stack Engineer",
   description:
-    "Senior full stack engineer in San José, Costa Rica, with 10+ years of shipping web software. I build with AI agents and verify what they build, and I write about it here.",
+    "Senior full stack engineer in San José, Costa Rica. I build software with AI agents and verify what they build, with 10+ years of software engineering behind it. I write about it here.",
   url: "https://stern9.dev",
   resume: "/resume",
   social: {
