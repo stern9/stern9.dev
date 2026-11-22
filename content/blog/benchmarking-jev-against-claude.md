@@ -1,14 +1,14 @@
 ---
-title: "Jev beat Claude Haiku on 72 decisions, 7 times faster, for two cents per thousand"
-date: 2026-11-08
-description: "I benchmarked TypeSafe's Jev against Claude on 72 labeled decisions. Jev: 94.4% at ~185 ms. Haiku 4.5: 91.7% at ~1.2 s. Opus 5: 98.6% at ~2.6 s, for over 300 times Jev's cost."
+title: "Jev against ten LLMs on 72 decisions: mid-pack on accuracy, far ahead on speed and cost"
+date: 2026-10-15
+description: "I benchmarked TypeSafe's Jev against Claude, GPT and local models on 72 labeled decisions. Jev: 94.4% at 171 ms and $0.017 per 1k. Two GPT models got all 72 right, at 13 times the latency and 80 to 400 times the cost."
 tags: ["ai", "benchmarks", "python", "side project"]
 draft: false
 ---
 
 After my [bank statement script](/blog/sorting-bank-statements-with-jev) worked, I had a bigger question. Jev sorted 305 emails without a single mistake I could find. But that was one task, on my own inbox, with no labels to check against. Is Jev good enough to replace an LLM for the routine decisions software makes all day? Routing a ticket. Flagging a scam. Grading an alert.
 
-"It felt right" is not an answer. So I built [jev-bench](https://github.com/stern9/jev-bench), a small Python harness that asks Jev and Claude the exact same questions and scores them with the exact same code.
+"It felt right" is not an answer. So I built [jev-bench](https://github.com/stern9/jev-bench), a small Python harness that asks Jev and a set of LLMs the exact same questions and scores them with the exact same code.
 
 ## Three tasks, three question types
 
@@ -26,12 +26,12 @@ A task is a JSON file with one question and its labeled examples. The loader tur
 
 ## Fair by construction
 
-The whole point is that both sides get the same treatment.
+The whole point is that every model gets the same treatment.
 
-- **Same questions.** Jev is called through `typesafe-sdk`. Claude is called through [`system-one-adapter`](https://github.com/typesafe-ai/system-one-adapter-python), a drop-in replacement for the same `system_one()` API backed by Claude's structured outputs. Claude never sees a different prompt.
-- **Same scoring.** Both return the same response type, with a probability for every possible answer. One function scores all of them.
+- **Same questions.** Jev is called through `typesafe-sdk`. Every LLM is called through [`system-one-adapter`](https://github.com/typesafe-ai/system-one-adapter-python), a drop-in replacement for the same `system_one()` API backed by the model's structured outputs. No model sees a different prompt.
+- **Same scoring.** Every model returns the same response type, with a probability for every possible answer. One function scores all of them.
 - **Same clock.** Latency is wall-clock time around each call, from the same laptop, network included.
-- **Same cost formula.** Cost comes from the token usage each API reports, times its list price.
+- **Same cost formula.** Cost comes from the token usage each API reports, times its list price. Local models cost nothing per call.
 
 Here is the part of the runner that picks the backend. Everything after this line is shared:
 
@@ -41,14 +41,18 @@ def make_caller(model: str, stack: ExitStack) -> Callable:
         client = stack.enter_context(TypeSafeClient(model=model))
         return lambda state, questions: client.system_one(state, questions)
     client = stack.enter_context(SystemOneAdapterClient(
-        structured_outputs=True,
+        # Native structured outputs reject very large choice schemas (e.g. 75 categories);
+        # JEVBENCH_STRUCTURED_OUTPUTS=0 falls back to prompt-based JSON with retries.
+        structured_outputs=os.environ.get("JEVBENCH_STRUCTURED_OUTPUTS", "1") != "0",
         llm_answer_mode="probabilities",
         normalize_probabilities=True,
         n_retry_malformed_structure=2,
-        model=AnthropicProvider(model, max_tokens=16000),
+        model=make_provider(model),
     ))
     return lambda state, questions: client.system_one(state, questions)
 ```
+
+`make_provider` reads the model id: `openai:<id>` goes to the OpenAI API, `local:<id>` to a server on my own machine, and anything else to Claude.
 
 Accuracy alone hides something I care about: whether a model knows when it is unsure. So the harness also measures calibration, two ways:
 
@@ -59,68 +63,90 @@ Calibration is what makes a threshold like "act if p ≥ 0.80, otherwise send to
 
 ## The results
 
-The run is from September 24, 2026. Three models: `jev-latest`, `claude-haiku-4-5` and `claude-opus-5`.
+I ran this twice. The first run, on September 24, 2026, had three models: Jev, Claude Haiku 4.5 and Claude Opus 5. On October 14 I reran everything with the current Claude models and added three GPT models. The next day I added four local models that run on my laptop through LM Studio. The numbers below are from the October run: eleven models, 792 calls, and none of them failed or returned an unusable answer.
 
-| | `jev-latest` | `claude-haiku-4-5` | `claude-opus-5` |
-| --- | ---: | ---: | ---: |
-| **Accuracy** (all 72) | **94.4%** | 91.7% | 98.6% |
-| **p50 latency** | **~185 ms** | ~1.2 s | ~2.6 s |
-| **$ per 1k decisions** | **~$0.02** | ~$0.82 | ~$6.40 |
-| Speed vs Jev | 1x | ~7x slower | ~14x slower |
+The API models, with Jev first as the baseline and then by accuracy:
 
-Per task, accuracy and median latency:
+| Model | Accuracy (of 72) | p50 latency | $ per 1k decisions | Speed vs Jev |
+| --- | ---: | ---: | ---: | ---: |
+| **`jev-latest`** | 94.4% (68) | **171 ms** | **$0.017** | 1x |
+| `openai:gpt-6.1-sol` | **100%** (72) | 2.26 s | $1.31 | ~13x slower |
+| `openai:gpt-6-astra` | **100%** (72) | 2.26 s | $6.67 | ~13x slower |
+| `claude-opus-5-5` | 97.2% (70) | 2.12 s | $4.33 | ~12x slower |
+| `openai:gpt-6-luna` | 97.2% (70) | 1.90 s | $0.073 | ~11x slower |
+| `claude-haiku-5-5` | 95.8% (69) | 1.44 s | $0.12 | ~8x slower |
+| `claude-sonnet-5-5` | 93.1% (67) | 1.68 s | $2.14 | ~10x slower |
 
-| Task | Jev | Haiku 4.5 | Opus 5 |
-| ---- | --: | --------: | -----: |
-| `support_routing` (choice, 5 teams) | 96.2% · 183 ms | 92.3% · 1,530 ms | 100% · 2,548 ms |
-| `phishing_check` (yes/no) | 100% · 175 ms | 100% · 1,156 ms | 100% · 2,547 ms |
-| `incident_severity` (score 0 to 3) | 86.4% · 193 ms | 81.8% · 1,524 ms | 95.5% · 2,926 ms |
+Per task:
 
-None of the 216 calls failed or returned an unusable answer.
+| Task | Jev | GPT-6.1 Sol | GPT-6 Astra | Opus 5.5 | GPT-6 Luna | Haiku 5.5 | Sonnet 5.5 |
+| ---- | --: | --: | --: | --: | --: | --: | --: |
+| `support_routing` (choice, 5 teams) | 96.2% | 100% | 100% | 96.2% | 100% | 96.2% | 92.3% |
+| `phishing_check` (yes/no) | 100% | 100% | 100% | 100% | 100% | 100% | 100% |
+| `incident_severity` (score 0 to 3) | 86.4% | 100% | 100% | 95.5% | 90.9% | 90.9% | 86.4% |
+
+The local models, free to run, on an Apple M5 Pro with 48 GB:
+
+| Model | Accuracy (of 72) | p50 latency | Routing | Phishing | Severity |
+| --- | ---: | ---: | --: | --: | --: |
+| `gemma-4-26b-a4b-it-mlx` | 97.2% (70) | 619 ms | 100% | 100% | 90.9% |
+| `qwen3.6-27b-mlx` | 95.8% (69) | 3.61 s | 100% | 100% | 86.4% |
+| `qwen3.6-35b-a3b-mlx` | 76.4% (55) | 597 ms | 88.5% | 70.8% | 68.2% |
+| `google/gemma-4-e4b` | 70.8% (51) | 889 ms | 96.2% | 62.5% | 50.0% |
 
 ## What the numbers mean
 
-**Jev vs Haiku is the fair fight.** Both are the "fast and cheap" option. Jev was more accurate on routing and severity and tied on phishing. It was about 7 times faster and about 50 times cheaper. On these tasks, I see no reason to pick Haiku over Jev.
+**Speed and cost are Jev's edge.** Its median call took 171 ms. Its 95th percentile was 197 ms and its slowest single call 247 ms. That is 8 to 13 times faster than every API model here, and about 3.5 times faster than the quickest local one. Per decision it cost about 4 times less than the cheapest LLM (GPT-6 Luna) and about 400 times less than GPT-6 Astra.
 
-**Opus is the ceiling.** It missed one decision out of 72. Jev missed four. Jev reached about 96% of Opus's accuracy at about 1/14 of the latency. The price gap is the big one: at ~$6.40 versus ~$0.02 per thousand, every Opus call costs more than 300 Jev calls.
+**On accuracy, Jev is in the pack.** Most models landed between 67 and 70 right out of 72, Jev included, with 68. At this sample size a gap of one or two decisions is noise. Only GPT-6.1 Sol and GPT-6 Astra clearly stand out, with all 72 right.
 
-> **LLM:** For the record, I am on both sides of this table. Opus earned that 98.6%, and it is the right call when one wrong answer is expensive. It is the wrong call for 50,000 support tickets a day. Paying 300 times more for three more correct answers out of 72 is a choice someone should make on purpose, not by default.
+**The fast Claude model caught up.** In the September run, Jev beat Haiku 4.5 by two decisions (68 against 66) and trailed only Opus 5 (71). Jev scored the same 68 in October. Haiku 5.5 scored 69. So I can no longer say Jev beats the cheap LLM on accuracy. What I can say is that Haiku 5.5 buys one more right answer for about 7 times the cost and 8 times the latency.
 
-**Phishing was a three-way tie.** Every model got all 24 right. With a clear question and clear criteria, this task doesn't need a big model.
+> **LLM:** Three rows in that table are me. Opus 5.5 got 70 of 72, two more than Jev, at about 257 times the cost per decision. That is the right call when one wrong answer is expensive. It is the wrong call for 50,000 support tickets a day. Paying that much for two more correct answers out of 72 is a choice someone should make on purpose, not by default.
 
-**Severity is where Jev lost ground.** It is the hardest task by design. Routing has five separate buckets. Severity has four levels on one scale, and the line between "low" and "medium" is a judgment call. All three of Jev's severity misses were one level off:
+**Phishing was a tie among the hosted models.** Every API model and the two larger local models got all 24 right. With a clear question and clear criteria, this task doesn't need a big model. It does need a capable one: the two weakest local models flagged ordinary messages as phishing.
 
-- A CPU spike on one of twelve web nodes, already drained by the load balancer. I labeled it low. Jev said medium.
-- A disk at 72% on the logging server. I labeled it low. Jev said medium.
-- An analytics dashboard counting yesterday's page views twice. I labeled it medium. Jev said low.
+**Severity is where Jev lost ground.** It is the hardest task by design. Routing has five separate buckets. Severity has four levels on one scale, and the line between "low" and "medium" is a judgment call. Every API model except Sol and Astra dropped one to three questions here. All three of Jev's severity misses were one level off, and they were the same three in both runs:
 
-Two of those three came with a confidence of 0.59 or less. Jev wasn't wrong and sure. It was unsure, and it said so. That is exactly the case a threshold catches. Haiku missed four severity cases, two of them the same as Jev. Opus missed one: an SSO failure for a single enterprise customer, which it rated high instead of medium.
+- A disk at 72% on the logging server. I labeled it low. Jev said medium, at 0.56.
+- A CPU spike on one of twelve web nodes, already drained by the load balancer. I labeled it low. Jev said medium, at 0.78.
+- An analytics dashboard counting yesterday's page views twice. I labeled it medium. Jev said low, at 0.58.
 
-Calibration tells a second story. On routing, Jev had the best ECE of the three: 0.025. On severity, Jev had the best Brier score (0.167, versus 0.187 for Opus) even with lower accuracy. Opus was the most accurate on severity but the least calibrated, with an ECE of 0.243. It sounded less sure than its hit rate justified. If you build thresholds on Opus probabilities, you will send it work it could have handled.
+Two of the three came with a confidence under 0.6. Jev wasn't wrong and sure. It was unsure, and it said so. That is exactly the case a threshold catches.
 
-Jev's one routing miss was a ticket that read "I updated my email address but I still get logged out every few minutes on Chrome." I labeled it technical. Jev said account, at 0.79. I can see the argument.
+The CPU spike deserves a second look. Seven of the eleven models called it medium, including Haiku 5.5, Sonnet 5.5 and GPT-6 Luna. When that many models disagree with one label, the label is the first suspect.
+
+**Routing had one shared miss.** The ticket read "I updated my email address but I still get logged out every few minutes on Chrome." I labeled it technical. Jev said account, at 0.78. So did Haiku 5.5, Sonnet 5.5 and Opus 5.5. I can see the argument.
+
+**Calibration tells a second story.** On routing, Jev's ECE was 0.025. That matches the GPT models (0.023 to 0.030) and beats every Claude model (0.08 to 0.13). On severity, the Claude models were the least calibrated of the API models, with an ECE between 0.15 and 0.25. Opus 5.5 was right 95.5% of the time on severity while reporting an average confidence of about 0.71. It sounded less sure than its hit rate justified. If you build thresholds on those probabilities, you will send it work it could have handled.
+
+**Local models vary a lot.** Gemma 4 26B matched Opus 5.5 and GPT-6 Luna at 70 of 72, in 619 ms, for free. Qwen 3.6 35B was just as fast but got only 17 of 24 on phishing. The small Gemma 4 E4B handled routing and little else.
 
 ## Limits
 
 This is a small benchmark, and I want the numbers read at their real size.
 
-- **72 decisions.** One miss moves a task's accuracy by about 4 points. The gap between Jev and Haiku is two decisions.
-- **One run.** I didn't repeat it. LLM answers vary between runs, and so does network latency.
-- **One laptop.** Latency is end-to-end from one laptop, network included. Your numbers will differ.
+- **72 decisions.** One miss moves a task's accuracy by about 4 points. The gap between Jev and Haiku 5.5 is one decision.
+- **One run per model.** LLM answers vary between runs, and so does network latency. Jev is the only model in both the September and October runs, and it scored 68 each time.
+- **One laptop.** Latency is end-to-end from one laptop, network included. Local model speed depends entirely on the hardware. Your numbers will differ.
 - **Hand-labeled by me.** On severity, the labels are my opinion. Someone else could reasonably label a few of them one level up or down.
-- **Default settings.** Claude ran with default settings through the adapter. Opus 5 used adaptive thinking. Both sides got the same questions, with no per-model prompt tuning.
+- **Default settings.** Every LLM ran with its defaults, including default thinking and effort, with no per-model prompt tuning. Both Qwen models answered without thinking. Local servers only use the response schema to constrain the output, so the local backend also puts the schema in the system prompt.
+- **List prices.** Costs use list prices as of October 14, 2026.
 
-Treat the results as directional. They say Jev is in the same league as Claude on structured decisions, at a different order of speed and cost. They don't say Jev is 2.7 points better than Haiku.
+Treat the results as directional. They say Jev is in the same accuracy band as much larger models on structured decisions, at a different order of speed and cost. They don't say Haiku 5.5 is 1.4 points better than Jev.
 
 > **LLM:** The label point matters most. On severity, the models were partly graded on agreeing with one person about where "medium" starts. A miss there can be a model that disagrees, not a model that is wrong. A second labeler would tell you how much of that 86% is noise.
 
 ## When I would use which
 
-- **Jev** for high-volume decisions with a fixed set of answers: routing, tagging, yes/no filters, triage. Use its probabilities with a threshold, and send the low-confidence cases to a person or a bigger model.
-- **Opus** when a wrong answer costs real money or trust, the volume is low, and a few seconds is fine. Or as the second tier, only for the cases Jev isn't sure about.
-- **Haiku**, for this kind of task, I wouldn't pick. Jev beat it on accuracy, speed and cost. Haiku still makes sense when the answer has to be text.
+| If you need | Use | Why |
+| --- | --- | --- |
+| Decisions in the request path, at high volume | **Jev** | 171 ms and $0.017 per 1k, with accuracy in the same band as the LLMs |
+| The best accuracy, and latency is fine | **GPT-6.1 Sol** | A perfect score at a fifth of Astra's price |
+| Cheap API calls | **GPT-6 Luna** | Same accuracy band as Haiku 5.5, at about 60% of its cost |
+| Free, private or offline | **Gemma 4 26B** | 97% at 0.6 s on a laptop, faster than any hosted LLM here |
 
-The setup I like best combines the first two. Jev answers everything in under 200 ms. Anything below the threshold goes to Opus. Most calls cost a fraction of a cent, and the hard ones still get the best model.
+The setup I like best combines the first two. Jev answers everything in about 170 ms and returns a probability with it. Anything below the threshold goes to a bigger model. Most calls cost a fraction of a cent, and the hard ones still get the best answer available.
 
 ## Run it on your own decisions
 

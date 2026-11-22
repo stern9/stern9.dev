@@ -39,20 +39,20 @@ audit   PERSON x1, SSN x1 masked, values not logged`,
     title: "jev-bench",
     group: "recent",
     year: 2026,
-    terminal: `Results (2026-09-24) · 72 labeled decisions
+    terminal: `Results (2026-10-14) · 72 labeled decisions
 
-                  jev       haiku-4.5   opus-5
-accuracy          94.4%     91.7%       98.6%
-p50 latency       ~185 ms   ~1.2 s      ~2.6 s
-$ per 1k calls    ~$0.02    ~$0.82      ~$6.40
+                  jev       haiku-5.5   opus-5.5
+accuracy          94.4%     95.8%       97.2%
+p50 latency       171 ms    1.44 s      2.12 s
+$ per 1k calls    $0.017    $0.12       $4.33
 
-support_routing   96.2%     92.3%       100%
+support_routing   96.2%     96.2%       96.2%
 phishing_check    100%      100%        100%
-incident_severity 86.4%     81.8%       95.5%`,
+incident_severity 86.4%     90.9%       95.5%`,
     previewURL: null,
     codeURL: "https://github.com/stern9/jev-bench",
     description:
-      "Benchmarks TypeSafe's Jev against Claude Haiku 4.5 and Opus 5 on 72 labeled decisions, with the same questions and scoring code for every model. Jev scored 94.4% at ~185 ms and ~$0.02 per 1k calls; the report also covers calibration (ECE, Brier).",
+      "Benchmarks TypeSafe's Jev against ten other models (Claude, GPT and local) on 72 labeled decisions, with the same questions and scoring code for every model. Jev scored 94.4% at 171 ms and about $0.02 per 1k calls, two decisions behind Claude Opus 5.5 at about 1/250 of the cost. The report also covers calibration (ECE, Brier).",
     stack: ["Python", "Jev", "Claude"],
   },
   {

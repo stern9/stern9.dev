@@ -215,7 +215,7 @@
       <ul>
         <li><strong>Made 3D Secure mandatory for Japan.</strong> Owned the Stripe auth and payment flows on a US and Japan consumer platform, led the 3DS rollout, and ran production releases for the web apps from scope to post-release verification.</li>
         <li><strong>Explained a cross-application auth change.</strong> Mapped redirects, callbacks, gateway and identity provider, then gave the team an AI-generated interactive explainer, sequence diagrams and a flow spec, each step verified against the code.</li>
-        <li><strong>Benchmarked models before using one.</strong> jev-bench scores TypeSafe's Jev against Claude Haiku 4.5 and Opus 5 on 72 labeled decisions with the same scoring code: Jev 94.4% at about 185 ms and $0.02 per 1k decisions, Opus 98.6% at 2.6 s and $6.40.</li>
+        <li><strong>Benchmarked models before using one.</strong> jev-bench scores TypeSafe's Jev against ten other models (Claude, GPT and local) on 72 labeled decisions with the same scoring code: Jev 94.4% at 171 ms and about $0.02 per 1k decisions, Claude Opus 5.5 97.2% at 2.1 s and $4.33.</li>
         <li><strong>Kept PII out of LLM calls.</strong> pii-gate masks personal data in prompts as typed placeholders and restores it in the reply, with a per-category mask/block/allow policy and an audit log that never stores values.</li>
       </ul>
     </section>
@@ -322,7 +322,7 @@
       <h2 id="projects-h">Projects</h2>
       <ul>
         <li><strong>pii-gate</strong> (TypeScript, 2026). Masks PII before LLM calls and restores it after. <a class="link" href="https://github.com/stern9/pii-gate">github.com/stern9/pii-gate</a></li>
-        <li><strong>jev-bench</strong> (Python, 2026). Accuracy, latency, calibration and cost across three models on 72 labeled decisions. <a class="link" href="https://github.com/stern9/jev-bench">github.com/stern9/jev-bench</a></li>
+        <li><strong>jev-bench</strong> (Python, 2026). Accuracy, latency, calibration and cost across eleven models on 72 labeled decisions. <a class="link" href="https://github.com/stern9/jev-bench">github.com/stern9/jev-bench</a></li>
         <li><strong>dirsize</strong> and <strong>dupes</strong> (Rust, 2026). Parallel disk usage tree and BLAKE3 duplicate finder, CI on Linux and macOS. <a class="link" href="https://github.com/stern9/dirsize">github.com/stern9/dirsize</a>, <a class="link" href="https://github.com/stern9/dupes">github.com/stern9/dupes</a></li>
         <li><strong>tennis-reservation</strong> (TypeScript). Books courts at midnight with parallel requests to the club's API in about 500 ms, 12x faster than the browser-automation version it replaced. <a class="link" href="https://github.com/stern9/tennis-reservation">github.com/stern9/tennis-reservation</a></li>
       </ul>
