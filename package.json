@@ -13,7 +13,7 @@
     "start": "sh scripts/start.sh"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^1.10.0",
+    "@anthropic-ai/sdk": "^1.14.0",
     "@tailwindcss/typography": "^0.5.20",
     "gray-matter": "^4.0.3",
     "next": "^16.4.6",
@@ -29,7 +29,7 @@
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
-    "resend": "^6.38.1",
+    "resend": "^6.39.0",
     "shiki": "^4.6.0",
     "swr": "^2.5.1",
     "tailwindcss": "^4.3.5",
@@ -37,8 +37,8 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.5",
-    "@types/node": "^26.6.6",
-    "@types/react": "^19.3.0",
+    "@types/node": "^26.6.9",
+    "@types/react": "^19.3.1",
     "@types/react-dom": "^19.3.0",
     "typescript": "^7.0.2"
   },
